@@ -1,0 +1,86 @@
+@import 'variables';
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0));
+  pointer-events: none; /* allows clicks to pass through */
+}
+.blogs{
+    padding-top: 4rem;
+    .properties-carousel{
+        margin-top: 1rem;
+        .img-wrapper{
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 100%;
+            img{
+                height: 190px;
+                object-fit: cover;
+                width: 100%;
+            }
+            .date{
+                display: inline-block;
+                padding: 7px 16px;
+                background-color: $primary-color;
+                border-radius: 3px;
+                overflow: hidden;
+                color: #fff;
+                position: absolute;
+                bottom: -13px;
+                left: 21px;
+                z-index: 1;
+                .day{
+                    font-size: 22px;
+                    font-weight: 600;
+                    letter-spacing: 1.2px;
+                    margin-bottom: 3px;
+                }
+                .month{
+                    display: block;
+                    font-size: 14px;
+                }
+            }
+        }
+        .caption-wrapper{
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: $box-shadow;
+            .property-type{
+                font-size: 14px;
+                color: #666;
+            }
+            .property-price{
+                font-size: 20px;
+                font-weight: bold;
+                .rent-type{
+                    font-size: 18px;
+                    font-weight: 500;
+                }
+            }
+            .read-more{
+                button{
+                    color: $primary-color;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 177.78%; /* 9:16 ratio => 16 / 9 * 100 */
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}

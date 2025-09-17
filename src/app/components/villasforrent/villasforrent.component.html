@@ -1,0 +1,47 @@
+<app-propertieslist [purpose]="2" [type]="3" [status]="0" [pageheading]="'Villas for rent in Dubai'" [navmenu]="'Rent'"></app-propertieslist>
+
+<div class="row blog-details-section py-4 mt-4">
+  <div class="container narrow-container">
+    <div class="row">
+      <div class="col-lg-12 border-top pt-4">
+        <p class="text-muted mb-4">
+            Dubai is known for its high-end living, and its villas for rent in Dubai are no exception. Designed to offer the utmost comfort and luxury, these villas feature modern amenities and world-class facilities, delivering an exceptional living experience.  
+        </p>
+        <p class="text-muted mb-4">
+            Renting a villa in Dubai is an exciting opportunity to see dynamic and luxurious cities of Dubai. Whether you are moving to Dubai for work, family purposes, or to seek a new adventure, it is important to understand in and out of renting villas in Dubai. Villas - with its beautiful skyline, best amenities, and multiple communities, Dubai offers many options for people willing to rent a villa. However, the rental process looks complex if you are new to the city.
+        </p>
+        <p class="text-muted mb-4">
+            AMCA Properties aims to illuminate the unique market for these serene properties available for rent in Dubai, examining both the facets that make them desirable and the various neighborhoods that host such gems.
+        </p>
+        <p class="text-muted mb-4">
+            Finding a villa for rent in Sharjah is now more convenient than ever, with a wide range of homes and properties available to match various budgets and lifestyles. And when you are not relaxing in the comfort of your villa, Sharjah offers plenty of attractions and activities to explore. 
+        </p>
+        <p class="text-muted mb-4">
+            Renting a villa in Ajman offers an appealing mix of modern comfort and traditional community living. The emirates' charm stems not only from their scenic coastline but also from their vibrant culture and expanding real estate market.
+        </p>
+        <p class="text-muted mb-4">
+            Villas for rent in Abu Dhabi are distinguished by their rare combination of privacy and community living. 
+        </p>
+      </div>
+      
+      <div class="col-lg-12">
+        <h2 class="mb-3">FAQs</h2>
+        <div class="accordion">
+            <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
+                <h2 class="accordion-header">
+                <button class="accordion-button" 
+                        [class.collapsed]="!faq.open"
+                        type="button"
+                        (click)="toggleFaq(i)">
+                    {{ faq.question }}
+                </button>
+                </h2>
+                <div class="accordion-collapse" [class.collapse]="true" [class.show]="faq.open">
+                <div class="accordion-body" [innerHTML]="faq.answer"></div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

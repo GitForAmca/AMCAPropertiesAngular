@@ -1,0 +1,11 @@
+@import 'variables';
+.developers-section{
+    margin-top: 1rem;
+    ol{
+        li{
+            a{
+                color: $primary-color;
+            }
+        }
+    }
+}

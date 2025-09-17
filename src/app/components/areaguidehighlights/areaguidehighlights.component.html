@@ -1,0 +1,123 @@
+<div class="row area-guide bg-light">
+    <div class="container narrow-container">
+        <div class="row">
+            <div class="offset-md-2 col-md-8">
+                <div class="main-heading">
+                    <h2>Community Insights</h2>
+                    <p>Community Insights help you choose the way of life. From schools to shopping, explore the culture, amenities and highlights that make every area special. We help you connect to the people, places and experiences that make life special.</p>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row area">
+            <div class="col-md-12">
+                <div class="tabs">
+                    <div class="tab-buttons d-flex flex-wrap justify-content-center">
+                        <button [ngClass]="{ active: activeTab === 'dubai' }" (click)="setTab('dubai')">Dubai</button>
+                        <button [ngClass]="{ active: activeTab === 'abudhabi' }" (click)="setTab('abudhabi')">Abu Dhabi</button>
+                        <button [ngClass]="{ active: activeTab === 'sharjah' }" (click)="setTab('sharjah')">Sharjah</button>
+                        <button [ngClass]="{ active: activeTab === 'rasalkhaimah' }" (click)="setTab('rasalkhaimah')">Ras Al Khaimah</button>
+                        <button [ngClass]="{ active: activeTab === 'ummallquwain' }" (click)="setTab('ummallquwain')">Umm Al Quwain</button>
+                        <button [ngClass]="{ active: activeTab === 'ajman' }" (click)="setTab('ajman')">Ajman</button>
+                        <button [ngClass]="{ active: activeTab === 'fujairah' }" (click)="setTab('fujairah')">Fujairah</button>
+                    </div>
+                    <div class="tab-content mt-3">
+                        <div *ngIf="activeTab === 'dubai'">
+                            <ul>
+                                <li>
+                                    <div class="img-wrapper">
+                                        <img src="images/area/jvc.jpg">
+                                        <div class="gradient-overlay"></div>
+                                        <div class="area-name">Jumeirah Village Circle - JVC</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="img-wrapper">
+                                        <img src="images/area/dubailand.jpg">
+                                        <div class="gradient-overlay"></div>
+                                        <div class="area-name">DubaiLand</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="img-wrapper">
+                                        <img src="images/area/businessbay.jpg">
+                                        <div class="gradient-overlay"></div>
+                                        <div class="area-name">Business Bay</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="img-wrapper">
+                                        <img src="images/area/jvt.jpg">
+                                        <div class="gradient-overlay"></div>
+                                        <div class="area-name">Jumeirah Village Triangle - JVT</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="img-wrapper">
+                                        <img src="images/area/dubaisciencepark.jpg">
+                                        <div class="gradient-overlay"></div>
+                                        <div class="area-name">Dubai Science Park</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="img-wrapper">
+                                        <img src="images/area/dip.jpg">
+                                        <div class="gradient-overlay"></div>
+                                        <div class="area-name">Dubai Investment Park - DIP</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="img-wrapper">
+                                        <img src="images/area/deira.jpg">
+                                        <div class="gradient-overlay"></div>
+                                        <div class="area-name">Deira</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="img-wrapper">
+                                        <img src="images/area/alfurjan.jpg">
+                                        <div class="gradient-overlay"></div>
+                                        <div class="area-name">Al Furjan</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="img-wrapper">
+                                        <img src="images/area/downtime.jpg">
+                                        <div class="gradient-overlay"></div>
+                                        <div class="area-name">Downtown Dubai</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div *ngIf="activeTab === 'rent'">
+                        <p>Display Rent properties here.</p>
+                        </div>
+                        <div *ngIf="activeTab === 'offplan'">
+                        <p>Display Off Plan properties here.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="row properties-carousel splide" id="area-guide-carousel">
+            <div class="splide__track"> 
+                <ul class="splide__list">
+                    <li *ngFor="let area of AreaGuideInterface" class="splide__slide cursor-pointer" [routerLink]="['/area/',area.pageURL]">
+                        <div class="card border-0 shadow-sm text-left card-hover" style="border-radius: 12px;">
+                        <img [src]="area.imageURL"
+                            alt="" 
+                            class="card-img-top" 
+                            style="height: 300px; object-fit: cover; object-position: top; border-radius: 12px 12px 0 0;">
+                        <div class="card-body p-4">
+                            <h4 class="fw-bold mb-0 color-primary-w">
+                            {{area.area}}
+                            </h4>
+                            <div class="text-semibold mb-0 description-area" [innerHTML]="area.areaDescription| slice:0:60"></div>
+                            <p class="small text-secondary mb-0">{{area.emiratesName}}</p>
+                        </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

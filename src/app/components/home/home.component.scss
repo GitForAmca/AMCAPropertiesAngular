@@ -1,0 +1,156 @@
+@import 'variables';
+.mainBanner {
+    position: relative;
+    min-height: 600px;
+    overflow: visible;
+    video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+        object-position: top;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    &::after{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-height: 100%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+        z-index: 1;
+    }
+    .searchbar{
+        position: absolute;
+        bottom: -25px;
+        left: 50%;
+        max-width: 1170px;
+        transform: translateX(-50%);
+        width: 100%;
+        z-index: 2;
+        .caption{
+            position: relative;
+            top: -20px;
+        }
+        h1{
+            text-align: center;
+            font-size: 58px;
+            color: #ffffff;
+            font-family: $secondary-font-stack;
+        }
+        .subheading{
+            display: inline-block;
+            background-color: $primary-color;
+            padding: 2px 12px;
+            margin-top: 15px;
+        }
+        .tabs {
+            margin-top: 30px;
+            .segmented-control {
+            display: flex;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #eee; // light background for entire control
+
+            button {
+                flex: 1;
+                padding: 0.5rem 1rem;
+                border: none;
+                background: transparent;
+                cursor: pointer;
+                font-weight: 600;
+                color: #555;
+                transition: background-color 0.3s, color 0.3s;
+
+                &:not(:last-child) {
+                border-right: 1px solid rgba(0,0,0,0.1);
+                }
+
+                &.active {
+                background: $secondary-color;
+                color: white;
+                }
+
+                &:hover:not(.active) {
+                background-color: #ddd;
+                }
+            }
+            }
+            .tab-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                button {
+                    background-color: #ffffff;
+                    border: 0px;
+                    padding: 8px 37px;
+                    color: #000;
+                    font-size: 16px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    border-top-left-radius: 6px;
+                    border-top-right-radius: 6px;
+                    font-weight: bold;
+                    &.active {
+                        background-color: $primary-color;
+                        color: white;
+                        border-color: $primary-color;
+                    }
+
+                    &:hover {
+                        opacity: 0.85;
+                    }
+                }
+            }
+            .tab-content {
+                padding: 1.5rem;
+                border: 0px;
+                background-color: #ffffff;
+                box-shadow: $box-shadow;
+                border-radius: 16px;
+                .display-cover-div{
+                    width: 20%;
+                    display: grid;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .segmented-control.w-50 {
+            width: 100% !important;
+            button{
+                font-size: 12px;
+            }
+        }
+        min-height: 394px;
+        background-color: #fffcf3;
+        .searchbar{
+            bottom: -211px;
+            .tabs{
+                margin-top: 0px;
+                .tab-content {
+                    padding: 0.5rem;
+                }
+            }
+            h1{
+                font-size: 25px;
+            }
+            .caption{
+                top: 23px;
+            }
+            .subheading{
+                font-size: 12px;
+                font-weight: bold;
+            }
+        }
+        &::after{
+            min-height: 30%;
+        }
+    }
+}

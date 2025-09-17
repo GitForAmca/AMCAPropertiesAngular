@@ -1,0 +1,27 @@
+@import 'variables';
+.mortgage-calculator{
+    .section-slider{
+        position: relative;
+        .slider-custom{
+            position: absolute;
+            bottom: 17px;
+        }
+    }
+    .slider-custom::-webkit-slider-thumb {
+        appearance: none;
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background: $primary-color;
+        cursor: pointer;
+    }
+
+    .slider-custom::-moz-range-thumb {
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background: $primary-color;
+        cursor: pointer;
+    }
+
+}

@@ -1,0 +1,14 @@
+
+@import 'variables';
+
+.contact-us {
+  margin-top: 1rem;
+
+  ol {
+    li {
+      a {
+        color: $primary-color;
+      }
+    }
+  }
+}

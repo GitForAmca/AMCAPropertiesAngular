@@ -1,0 +1,76 @@
+<div class="row latest-projects bg-light">
+  <div class="container narrow-container">
+    <div class="row">
+      <div class="offset-md-2 col-md-8">
+        <div class="main-heading">
+          <h2>Our New Projects</h2>
+          <p>Discover our latest projects that are designed with modern amenities, premium spaces, and prime locations. Our new projects are being done to match your dreams. We offer comfort, style and value.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row properties-carousel splide" id="latest-offplan-project-carousel">
+      <div class="splide__track">
+        <ul class="splide__list">
+          @for (items of projectDetails; track $index) {
+          <li class="splide__slide">
+            <div class="card border-0 shadow-sm text-left" style="border-radius: 12px;">
+              <div class="img-wrapper">
+                <img [src]="items.firstProjectImagesPath">
+                <div class="gradient-overlay"></div>
+                <div class="property-category">
+                  <ul>
+                    <li>{{items.status}}</li>
+                  </ul>
+                </div>
+                <div class="property-cta">
+                  <ul>
+                    <li class="mail cursor-pointer" (click)="mailSeller(items.contactSellerEmail, $event)"><i
+                        class="bi bi-envelope"></i></li>
+                    <li class="whatsapp cursor-pointer"
+                      (click)="whtsappSeller(items.countryCodeContactSeller + items.contactSellerPhone, $event)"><i
+                        class="bi bi-whatsapp"></i></li>
+                    <li class="call cursor-pointer" (click)="callSeller(items.contactSellerPhone, $event)"><i
+                        class="bi bi-telephone"></i></li>
+                  </ul>
+                </div>
+                <div class="property-view">
+                  <ul>
+                    <li class="mail cursor-pointer" (click)="GoToProjectDetails(items.projectId, items.projectURL)"><i
+                        class="bi bi-eye"></i></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card-body p-4">
+                <div class="property-type">{{items.projectType}}</div>
+                <div class="property-title">{{items.projectName | slice:0:30}} </div>
+                <div class="property-price">
+                  <!-- <img src="images/UAE_Dirham_Symbol.svg" width="25" /> -->
+                  <span>Starting Price : {{items.startingPrice | number:'1.0-0'}} AED</span>
+                </div>
+                <div class="property-features">
+                  <ul>
+                    <li>
+                        <!-- <img src="images/bedIcon.png">  -->
+                        <span>{{items.projectBeds}}</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="property-location">
+                  <img src="images/locationIcon.png">
+                  <span>{{items.area}}</span>
+                </div>
+                <div class="property-enquire-now d-flex gap-2">
+                  <button type="button" class="btn btn-primary-color-outline w-100" (click)="enquiryform.open(items.projectId)">Enquire
+                    Now</button>
+                </div>
+              </div>
+            </div>
+          </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-enquiryform #enquiryform></app-enquiryform>

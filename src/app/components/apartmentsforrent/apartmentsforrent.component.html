@@ -1,0 +1,56 @@
+<app-propertieslist [purpose]="2" [type]="1" [status]="0" [pageheading]="'Apartments for rent in Dubai'" [navmenu]="'Rent'"></app-propertieslist>
+
+<div class="row blog-details-section py-4 mt-4">
+  <div class="container narrow-container">
+    <div class="row">
+      <div class="col-lg-12 border-top pt-4">
+        <p class="text-muted mb-4">
+            Dubai is one of the most exciting places to live, although rent can be a significant monthly expense. However, you can still find an affordable apartment for rent in Dubai with a smart approach that offers both comfort and convenience. Whether you are a young professional, a small household, or an expat new to the city, there are still plenty of affordable Dubai apartments and neighborhoods in Dubai where you can comfortably settle in and feel at home. 
+        </p>
+        <p class="text-muted mb-4">
+           Studio apartments are a popular choice in Dubai, valued for their affordability and practicality. These compact homes are thoughtfully designed to maximize space while still offering modern amenities. Whether situated in vibrant business districts or quiet suburban communities, studio apartments for rent in Dubai appeal to a diverse range of residents. 
+
+        </p>
+        <p class="text-muted mb-4">
+           Dubai has emerged as a global hub for travelers pursuing business opportunities in the region due to its strategic location. This has led to a significant rise in demand for hotel apartments for rent in Dubai, as more visitors opt for the flexibility and convenience of self-service accommodations over traditional hotel stays. 
+        </p>
+        <p class="text-muted mb-4">
+            Dubai’s real estate market is renowned for its fast-paced, uninterrupted momentum. In a city where opportunities move faster than the blink of an eye-especially in property-it’s often the swift buyers who secure the best deals. At AMCA Properties, our mission is to deliver the most suitable property within our clients’ specified budgets, ensuring value, efficiency, and satisfaction at every step. 
+        </p>
+        <p class="text-muted mb-4">
+            Abu Dhabi, the capital of the UAE, boasts a diverse range of residential real estate options. Living expenses in Abu Dhabi are generally considered to be slightly lower compared to Dubai. While both cities offer a high standard of living, an apartment for rent in Abu Dhabi provides an opportunity for cost-conscious individuals to save on their expenses. 
+        </p>
+        <p class="text-muted mb-4">
+            Sharjah, renowned as one of the UAE’s most culturally rich and historically significant emirates, is equally celebrated for its diverse and budget-friendly housing options. For couples or large families, renting an apartment in Sharjah provides the perfect combination of ample space and modern comfort. 
+        </p>
+        <p class="text-muted mb-4">
+            The demand for 1 BHK apartments for rent in Dubai rises not only from the attractive amenities but also for the space that meets the needs of individuals or small families. 
+        </p>
+        <p class="text-muted mb-4">
+            A 2BHK flat in Dubai usually features two bedrooms, a living area, a kitchen, and at least one bathroom. Highly sought after for their generous space and adaptability, these properties are perfect for families, working professionals, or investors seeking opportunities in Dubai’s thriving real estate market. 
+        </p>
+        <p class="text-muted mb-4">
+            Opting for a 3 BHK apartment for rent in Dubai is not just about space; it’s about adopting a lifestyle that combines luxury with everyday convenience.     
+        </p>
+      </div>
+      <div class="col-lg-12">
+        <h2 class="mb-3">FAQs</h2>
+        <div class="accordion">
+            <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
+                <h2 class="accordion-header">
+                <button class="accordion-button" 
+                        [class.collapsed]="!faq.open"
+                        type="button"
+                        (click)="toggleFaq(i)">
+                    {{ faq.question }}
+                </button>
+                </h2>
+                <div class="accordion-collapse" [class.collapse]="true" [class.show]="faq.open">
+                <div class="accordion-body" [innerHTML]="faq.answer"></div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

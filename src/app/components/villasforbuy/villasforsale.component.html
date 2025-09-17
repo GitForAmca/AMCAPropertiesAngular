@@ -1,0 +1,35 @@
+<app-propertieslist [purpose]="1" [type]="3" [status]="0" [pageheading]="'Looking for a villa for sale in Dubai?'" [navmenu]="'Buy'"></app-propertieslist>
+
+<div class="row blog-details-section py-4 mt-4">
+  <div class="container narrow-container">
+    <div class="row">
+      <div class="col-lg-12 border-top pt-4">
+        <p class="text-muted mb-4">
+            Whether you are looking for a luxurious family home, a private waterfront retreat, or a high-return investment property, AMCA Properties helps you find the best villas in Dubai’s most prestigious neighborhoods and upcoming communities.
+        </p>
+        <p class="text-muted mb-4">
+            Luxury villas for sale in Dubai often come with a high price tag, but they deliver unmatched comfort, privacy and exclusivity. Luxury villas for sale in Dubai are in elite neighborhoods like Palm Jumeirah or Emirates Hills. These residences typically boast state-of-the-art amenities that include access to beaches, fully equipped gyms, and beautifully landscaped gardens.
+        </p>
+      </div>
+      <div class="col-lg-12">
+        
+        <h2 class="mb-3">FAQs</h2>
+        <div class="accordion">
+            <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
+                <h2 class="accordion-header">
+                <button class="accordion-button" 
+                        [class.collapsed]="!faq.open"
+                        type="button"
+                        (click)="toggleFaq(i)">
+                    {{ faq.question }}
+                </button>
+                </h2>
+                <div class="accordion-collapse" [class.collapse]="true" [class.show]="faq.open">
+                <div class="accordion-body" [innerHTML]="faq.answer"></div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

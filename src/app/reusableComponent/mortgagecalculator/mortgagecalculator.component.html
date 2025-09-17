@@ -1,0 +1,115 @@
+<div class="col-md-12">
+    <h2 class="fs-4 mt-3"><strong>Mortgage Calculator</strong></h2>
+</div>
+<div class="col-md-12 mortgage-calculator mt-3">
+    <div class="row">
+        <div class="col-md-7">
+            <form id="mortgageCalculator" class="p-3 border rounded">
+                <!-- Purchase Price -->
+                <div class="mb-3 section-slider">
+                <label class="form-label fw-bold">Purchase price</label>
+                <div class="d-flex align-items-center border rounded justify-content-between">
+                    <input type="text" class="form-control border-0 fw-semibold fs-5"
+                    [value]="purchasePrice | number:'1.0-0'" readonly />
+                </div>
+                </div>
+
+                <!-- Down Payment -->
+                <div class="mb-3 section-slider">
+                <label class="form-label fw-bold">Down payment</label>
+                <div class="d-flex align-items-center border rounded px-1 py-1 justify-content-between">
+                    <input type="text" class="form-control border-0 fw-semibold fs-5"
+                    [value]="downPayment | number:'1.0-0'" readonly />
+                    <span class="text-secondary fw-bold">{{ downPaymentPercentage }}%</span>
+                </div>
+                <input type="range" class="form-range slider-custom"
+                    [min]="min" [max]="max" step="1"
+                    [value]="downPaymentPercentage"
+                    (input)="onSliderChange('downPayment', +$any($event.target).value)" />
+                <div class="d-flex justify-content-between mt-1 text-muted small">
+                    <span>{{ staticMinPrice | number }} AED</span>
+                    <span>{{ staticMaxPrice | number }} AED</span>
+                </div>
+                </div>
+
+                <!-- Loan Amount -->
+                <div class="mb-3 section-slider">
+                <label class="form-label fw-bold">Loan amount</label>
+                <div class="d-flex align-items-center border rounded px-1 py-1 justify-content-between">
+                    <input type="text" class="form-control border-0 fw-semibold fs-5"
+                    [value]="loanAmount | number:'1.0-0'" readonly />
+                    <span class="text-secondary fw-bold">{{ loanAmountPercentage }}%</span>
+                </div>
+                <input type="range" class="form-range slider-custom"
+                    [min]="min" [max]="max" step="1"
+                    [value]="loanAmountPercentage"
+                    (input)="onSliderChange('loan', +$any($event.target).value)" />
+                <div class="d-flex justify-content-between mt-1 text-muted small">
+                    <span>{{ staticMinPrice | number }} AED</span>
+                    <span>{{ staticMaxPrice | number }} AED</span>
+                </div>
+                </div>
+
+                <div class="mb-3 section-slider">
+                    <label class="form-label fw-bold">Loan period</label>
+                    <div class="d-flex align-items-center border rounded px-1 py-1 justify-content-between">
+                        <input 
+                        type="text" 
+                        class="form-control border-0 fw-semibold fs-5" 
+                        [value]="LoanPeriod | number:'1.0-0'" readonly />
+                    </div>
+                    <input 
+                        type="range" 
+                        class="form-range slider-custom"
+                        [min]="MinLoanPeriod" [max]="MaxLoanPeriod" step="1"
+                        [value]="LoanPeriod"
+                    (input)="onLoanPeriod($event)" />
+
+                    <div class="d-flex justify-content-between mt-1 text-muted small">
+                        <span>{{ MinLoanPeriod | number }} year</span>
+                        <span>{{ MaxLoanPeriod | number }} year</span>
+                    </div>
+                </div>
+
+                <div class="mb-3 section-slider">
+                    <label class="form-label fw-bold">Interest Rate</label>
+                    <div class="d-flex align-items-center border rounded px-1 py-1 justify-content-between">
+                        <input 
+                        type="text" 
+                        class="form-control border-0 fw-semibold fs-5" 
+                        [value]="InterestRate" readonly />
+                    </div>
+                    <input 
+                        type="range" 
+                        class="form-range slider-custom"
+                        [min]="MinInterestRate" [max]="MaxInterestRate" step="0.05"
+                        [value]="InterestRate"
+                    (input)="onInterestRate($event)" />
+
+                    <div class="d-flex justify-content-between mt-1 text-muted small">
+                        <span>{{ MinInterestRate | number }} %</span>
+                        <span>{{ MaxInterestRate | number }} %</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-5">
+            <div class="mb-4">
+                <small class="d-block fs-6 fw-semibold mb-1">Estimate your monthly mortgage payment</small>
+            </div>
+            <div class="row text-start">
+                <div class="col-12">
+                    <div class="text-muted small"><strong>Monthly payment</strong></div>
+                    <div class="fs-3 fw-bold">AED {{MonthlyPayment | number}}</div>
+                </div>
+                <div class="col-12 text-start">
+                    <div class="text-muted small"><strong>with interest rate <!--of --></strong></div>
+                    <div class="fs-5 fw-bold">{{InterestRate}}%</div>
+                </div>
+                <!-- <div class="col-12">
+                    <button class="btn w-100 btn-primary-color-outline mt-4">Get a Mortgage Qoute</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

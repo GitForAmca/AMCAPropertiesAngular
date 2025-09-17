@@ -1,0 +1,170 @@
+<div class="row mainBanner position-relative">
+    <video
+    #promoVideo
+    autoplay
+    muted
+    loop
+    playsinline
+    webkit-playsinline
+    preload="metadata"
+    class="w-100 h-auto"
+    style="object-fit: cover; max-height: 600px;">
+    <source src="images/videopro.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+    </video>
+
+ 
+    <div class="searchbar">
+        <div class="row">
+            <div class="col-12 text-center text-light caption mb-3">
+                <h1>Turn your property dreams<br />into reality</h1>
+                <p class="subheading">Discover a Place You'll Love to Live</p>
+            </div>
+
+            <div class="col-12">
+                <div class="tabs">
+                    <!-- Tabs -->
+                    <div class="segmented-control w-50 mb-2 mx-auto">
+                    @for(item of propertyPurpose; track $index){
+                        <button [ngClass]="{ active: activeTab === item.autoId }"
+                                (click)="setTab(item.autoId)">
+                        {{ item.purpose }}
+                        </button>
+                    }
+                    </div>
+
+                    <div class="tab-content">
+                    <form class="row justify-content-center" autocomplete="off" (ngSubmit)="search()">
+                        <div class="row rounded-3 border-secondary-subtle">
+
+                        <!-- Location -->
+                        <div class="col-12 col-md mb-2">
+                            <label class="mb-1 small fw-semibold">Area</label>
+                            <div class="position-relative">
+                            <div class="input-group">
+                                <span class="input-group-text bg-white border-end-0">
+                                <i class="bi bi-geo-alt-fill text-muted"></i>
+                                </span>
+                                <input type="text"
+                                    class="form-control border-start-0"
+                                    placeholder="Search Area..."
+                                    [(ngModel)]="searchText"
+                                    [ngModelOptions]="{standalone: true}"
+                                    (input)="onSearchArea()"
+                                    (focus)="onSearchArea()"
+                                    (blur)="onBlur()">
+                            </div>
+                            <ul *ngIf="showDropdown" class="list-group position-absolute w-100 shadow"
+                                style="z-index:1000; max-height:200px; overflow-y:auto;">
+                                @for (area of filteredAreas; track $index) {
+                                <li class="list-group-item list-group-item-action"
+                                    (click)="selectArea(area)">
+                                    <div>
+                                    <span class="fw-semibold">{{ area.area }}</span>
+                                    <small class="d-block" style="font-size:12px;">{{ area.emiratesName }}</small>
+                                    </div>
+                                </li>
+                                }
+                            </ul>
+                            </div>
+                        </div>
+
+                        <!-- Property Type -->
+                        <div class="col-12 col-md mb-2">
+                            <label class="mb-1 small fw-semibold">Property Type</label>
+                            <app-dropdownselector class="b" *ngIf="activeTab !== 3" [options]="propertyUnit" [(selectedValue)]="unitDetailsobj.unitType"></app-dropdownselector>
+                            <app-dropdownselector class="o" *ngIf="activeTab === 3" [options]="propertyUnit" [(selectedValue)]="projectDetailsobj.projectType"></app-dropdownselector>
+                        </div>
+
+                        <!-- Price Range -->
+                        <div class="col-12 col-md mb-2">
+                            <label class="mb-1 small fw-semibold">Price Range</label>
+                            <div class="dropdown" [class.show]="priceDropdownOpen">
+                                <button class="btn btn-outline-secondary text-start form-select dropdown-toggle btnsearch-style"
+                                        type="button"
+                                        (click)="toggleDropdown('price')">
+                                AED {{ activeDetailsObj.priceFrom || 'Min' }} - {{ activeDetailsObj.priceTo || 'Max' }}
+                                </button>
+                                <div class="dropdown-menu shadow border-0 mt-1 p-3" 
+                                    [class.show]="priceDropdownOpen" style="min-width: 100%;">
+                                <div class="d-flex flex-column gap-2">
+                                    <div>
+                                    <label class="form-label small fw-semibold">Min Price (AED)</label>
+                                    <input type="number" class="form-control"
+                                            [(ngModel)]="activeDetailsObj.priceFrom"
+                                            [ngModelOptions]="{standalone: true}">
+                                    </div>
+                                    <div>
+                                    <label class="form-label small fw-semibold">Max Price (AED)</label>
+                                    <input type="number" class="form-control"
+                                            [(ngModel)]="activeDetailsObj.priceTo"
+                                            [ngModelOptions]="{standalone: true}">
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+
+
+                        <!-- Beds & Baths -->
+                        <div class="col-12 col-md mb-2">
+                            <label class="mb-1 small fw-semibold">{{labelBedsBaths}}</label>
+                            <div class="dropdown" [class.show]="bedsBathsDropdownOpen">
+                            <button *ngIf="!IsBathroom" class="btn btn-outline-secondary text-start form-select dropdown-toggle btnsearch-style"
+                                    type="button"
+                                    (click)="toggleDropdown('bedsBaths')">
+                                {{ selectedBedsText }} Beds
+                            </button>
+                            <button *ngIf="IsBathroom" class="btn btn-outline-secondary text-start form-select dropdown-toggle btnsearch-style"
+                                    type="button"
+                                    (click)="toggleDropdown('bedsBaths')">
+                                {{ selectedBedsText }} Beds & {{ selectedBathsText }} Baths
+                            </button>
+                            <div class="dropdown-menu shadow border-0 mt-1 p-3" [class.show]="bedsBathsDropdownOpen" style="min-width: 100%;">
+                                <!-- Bedrooms -->
+                                <div class="mb-3">
+                                <label class="form-label small fw-semibold">Bedrooms</label>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <button *ngFor="let bed of propertyBed"
+                                            type="button"
+                                            class="btn btn-outline-secondary btn-sm"
+                                            [class.active]="unitDetailsobj.beds.includes(bed.autoId)"
+                                            (click)="selectBed(bed.autoId)">
+                                    {{ bed.type }}
+                                    </button>
+                                </div>
+                                </div>
+                                <!-- Bathrooms -->
+                                <div class="mb-3" *ngIf="IsBathroom">
+                                <label class="form-label small fw-semibold">Bathrooms</label>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <button *ngFor="let bath of propertyBath"
+                                            type="button"
+                                            class="btn btn-outline-secondary btn-sm"
+                                            [class.active]="unitDetailsobj.bathroom.includes(bath.autoId)"
+                                            (click)="selectBath(bath.autoId)">
+                                    {{ bath.bathroom }}
+                                    </button>
+                                </div>
+                                </div>
+                                <button class="btn btn-link p-0 small text-danger" type="button" (click)="resetBedsBaths()">Reset</button>
+                            </div>
+                            </div>
+                        </div>
+
+                        <!-- Search Button -->
+                        <div class="col-12 col-md mb-2 d-flex align-items-end btn-w-c">
+                            <button type="submit" class="btn btn-primary-color w-100">
+                            <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                </div>
+
+        </div>
+    </div>
+</div>

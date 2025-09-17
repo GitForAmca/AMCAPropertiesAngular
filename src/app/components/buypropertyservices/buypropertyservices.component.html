@@ -1,0 +1,55 @@
+<div class="row page-heading page-format">
+  <div class="container narrow-container">
+    <div class="row align-items-center">
+      <div class="col-md-12">
+        <nav aria-label="breadcrumb" class="mb-2">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item">
+              <a href="/"><i class="bi bi-house-door"></i> Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Services</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row py-0 mt-2">
+    <img src="images/imref1.jpg" class="img-fluid w-100 px-0" style="height: 300px; object-fit: cover; object-position: center;">
+</div>
+<!-- Service Header -->
+<div class="row py-5 bg-light text-center">
+  <div class="container narrow-container">
+    <div class="row align-items-center">
+      <div class="col-md-12">
+        <h1 class="mb-3">Buying a Property in Dubai</h1>
+        <p class="lead text-muted">
+          Dubai has been a global hub for foreigners, offering a unique combination of luxury, opportunity, and a smart lifestyle. In 2025, the city’s real estate market continues to grow, presenting unique opportunities for expatriates looking to invest in Dubai property. Whether you’re planning to move to Dubai, expand your investment portfolio, or secure a second home, <span class="fw-bold">AMCA Properties</span> will guide you through everything you need to know about buying a property in Dubai.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row py-5">
+  <div class="container narrow-container">
+    <div class="col-lg-12">
+        <h2 class="mb-3">FAQs</h2>
+        <div class="accordion">
+            <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
+                <h2 class="accordion-header">
+                <button class="accordion-button" 
+                        [class.collapsed]="!faq.open"
+                        type="button"
+                        (click)="toggleFaq(i)">
+                    {{ faq.question }}
+                </button>
+                </h2>
+                <div class="accordion-collapse" [class.collapse]="true" [class.show]="faq.open">
+                <div class="accordion-body" [innerHTML]="faq.answer"></div>
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>

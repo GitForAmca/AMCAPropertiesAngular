@@ -1,0 +1,10 @@
+<label class="mb-1 small fw-semibold">{{ label }}</label>
+<select class="form-select cursor-pointer" 
+        [(ngModel)]="selectedValue"
+        (ngModelChange)="selectedValueChange.emit($event)"
+        [ngModelOptions]="{standalone: true}">
+    <option [ngValue]="0">Any</option>
+    <option *ngFor="let item of options" [ngValue]="item.autoId">
+    {{ item.type }}
+    </option>
+</select>

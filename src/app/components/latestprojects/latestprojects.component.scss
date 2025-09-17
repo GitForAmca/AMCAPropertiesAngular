@@ -1,0 +1,191 @@
+@import 'variables';
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0));
+  pointer-events: none; /* allows clicks to pass through */
+  border-radius: 12px 12px 0 0;
+} 
+
+.latest-projects{ 
+    padding-top: 6rem;
+    padding-bottom: 3rem;
+    background-color: #fffcf3;
+    .properties-carousel{
+        margin-top: 20px;
+        .img-wrapper{
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 100%;
+            img{
+                height: 190px;
+                object-fit: cover;
+                width: 100%;
+                border-radius: 12px 12px 0 0;
+            }
+            .property-category{
+                position: absolute;
+                top: 15px;
+                left: 15px;
+                ul{
+                    padding: 0px;
+                    margin: 0px;
+                    list-style: none;
+                    li{
+                        display: inline-block;
+                        padding: 3px 6px;
+                        font-size: 12px;
+                        font-weight: bold;
+                        background-color: #ffffff;
+                        border-radius: 4px;
+                        color: #000;
+                        margin-left: 10px;
+                        &:first-child{
+                            margin-left: 0px
+                        }
+                    }
+                    .for-sale{
+                        background-color: #eb4d4d;
+                        color: #fff;
+                    }
+                    .for-rent{
+                        background-color: #3eb96d;
+                        color: #fff;
+                    }
+                }
+            }
+            .property-cta{
+                position: absolute;
+                bottom: 15px;
+                left: 15px;
+                ul{
+                    padding: 0px;
+                    margin: 0px;
+                    list-style: none;
+                    li{
+                        display: inline-block;
+                        padding: 3px 6px;
+                        font-size: 16px;
+                        font-weight: bold;
+                        height: 30px;
+                        width: 30px;
+                        text-align: center;
+                        background-color: #ffffff;
+                        border-radius: 100%;
+                        color: #000;
+                        margin-left: 10px;
+                        box-shadow: $box-shadow;
+                        &:first-child{
+                            margin-left: 0px
+                        }
+                    }
+                    .call{
+                        background-color: #EA3130;
+                        color: #fff;
+                    }
+                    .whatsapp{
+                        background-color: #1DAD18;
+                        color: #fff;
+                    }
+                    .mail{
+                        background-color: #3E8BF0;
+                        color: #fff;
+                    }
+                }
+            }
+            .property-view{
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                ul{
+                    padding: 0px;
+                    margin: 0px;
+                    list-style: none;
+                    li{
+                        display: inline-block;
+                        padding: 3px 6px;
+                        font-size: 16px;
+                        font-weight: bold;
+                        height: 30px;
+                        width: 30px;
+                        text-align: center;
+                        background-color: #ffffff;
+                        border-radius: 100%;
+                        color: #000;
+                        margin-left: 10px;
+                        box-shadow: $box-shadow;
+                        &:first-child{
+                            margin-left: 0px
+                        }
+                    }
+                }
+            } 
+        }
+        .card-body{
+            .property-type{
+                font-size: 14px;
+                color: #666;
+            }
+            .property-title{
+                font-weight: bold;
+            }
+            .property-price{
+                display: flex;
+                align-items: center; 
+                gap: 5px;
+                font-size: 25px;
+                .rent-type{
+                    font-size: 18px;
+                    font-weight: 500;
+                }
+            }
+            .property-features{
+                margin-top: 5px;
+                ul{
+                    padding: 0px;
+                    margin: 0px;
+                    list-style: none;
+                    li{
+                        display: inline-flex;
+                        align-items: center;
+                        padding: 0px 10px;
+                        font-size: 14px;
+                        font-weight: 500;
+                        gap: 5px;
+                        &:first-child{
+                            padding-left: 0px;
+                        }
+                        &:last-child{
+                            padding-right: 0px;
+                        }
+                    }
+                }
+            }
+            .property-location{
+                font-weight: 600;
+                margin-top: 10px;
+                display: flex;
+                align-items: center; 
+                gap: 5px;
+                font-size: 14px;
+            }
+            .property-enquire-now{
+                margin-top: 20px;
+                width: 100%;
+            }
+        }
+    }
+    @media (max-width: 767.98px) {
+        padding-top: 18rem;
+        padding-bottom: 0rem;
+        .properties-carousel{
+            .card-body{
+                padding-bottom: 38px !important;
+            }
+        }
+    }
+}

@@ -1,1 +1,255 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'variables';
+@import "@ng-select/ng-select/themes/default.theme.css";
+body{
+  font-family: $font-stack !important;
+}
+.narrow-container {
+  max-width: 1170px;
+  margin: 0 auto;
+}
+.btn-primary-color{
+  background-color: $primary-color !important; 
+  border: 1px solid $primary-color !important;
+  color: #ffffff !important;
+  font-weight: 500;
+  &:hover{
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
+    color: #ffffff;
+  }
+  &:active{
+    background-color: $primary-color !important;
+    border: 1px solid $primary-color !important;
+    color: #ffffff !important;
+  }
+}
+.btn-secondary-color{
+  background-color: $secondary-color !important; 
+  border: 1px solid $secondary-color !important;
+  color: #ffffff !important;
+  font-weight: 500;
+  &:hover{
+    background-color: $secondary-color;
+    border: 1px solid $secondary-color;
+    color: #ffffff;
+  }
+  &:active{
+    background-color: $secondary-color !important;
+    border: 1px solid $secondary-color !important;
+    color: #ffffff !important;
+  }
+}
+.btn-primary-color-outline{
+  background-color: transparent;
+  border: 1px solid $primary-color;
+  color: $primary-color;
+  font-weight: 500;
+  &:hover{
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
+    color: #ffffff;
+  }
+  &:active{
+    background-color: $primary-color !important;
+    border: 1px solid $primary-color !important;
+    color: #ffffff !important;
+  }
+}
+.btn-secondary-color-outline{
+  background-color: transparent;
+  border: 1px solid $secondary-color;
+  color: $secondary-color;
+  font-weight: 500;
+  &:hover{
+    background-color: $secondary-color;
+    border: 1px solid $secondary-color;
+    color: #ffffff;
+  }
+  &:active{
+    background-color: $secondary-color !important;
+    border: 1px solid $secondary-color !important;
+    color: #ffffff !important;
+  }
+}
+.main-heading{
+  text-align: center;
+  h2{
+    font-size: 36px;    
+    font-family: $secondary-font-stack;
+    color: $primary-color;
+  }
+  p{
+    color: #333;
+  }
+}
+.splide__pagination__page{
+  background-color: $secondary-color;
+}
+.splide__pagination__page.is-active{
+  background-color: $primary-color;
+}
+.splide__arrow--next{
+  right: -4em;
+}
+.splide__arrow--prev{
+  left: -4em;
+}
+.splide__arrow{
+  background-color: transparent;
+  border: 1px solid $secondary-color;
+  color: $secondary-color;
+}
+.splide__arrow svg{
+  fill: $secondary-color;
+  height: 10px;
+  width: 10px;
+}
+.splide__track{
+  padding-bottom: 18px;
+}
+.custom-pagination {
+  .page-item {
+    .page-link {
+      color: $secondary-color;
+      background-color: transparent;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: white;
+        background-color: $primary-color;
+        border-color: $primary-color;
+      }
+    }
+
+    &.active .page-link {
+      background-color: $primary-color;
+      border-color: $primary-color;
+      color: white;
+    }
+
+    &.disabled .page-link {
+      color: lighten($secondary-color, 20%);
+      border-color: lighten($secondary-color, 20%);
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+}
+.cursor-pointer{
+  cursor: pointer;
+}
+.standard-logo {
+  height: 100px;
+  width: 100%;
+  object-fit: cover;
+  margin-left: auto;
+  margin-right: auto;
+}
+.btnsearch-style{
+  border: 1px solid #dee2e6;
+  color: #212529;
+  &:hover{
+    background-color: transparent;
+    color: #212529;
+    border: 1px solid #dee2e6;
+  }
+}
+.btnsearch-style:checked + .btnsearch-style, .btnsearch-style.active, .btnsearch-style.show, .btnsearch-style:first-child:active, :not(.btnsearch-style) + .btnsearch-style:active{
+  background-color: transparent;
+    color: #212529;
+    border: 1px solid #dee2e6;
+}
+/* Replace Bootstrap dropdown arrow with ^ v style */
+.dropdown-toggle::after {
+  content: "";                /* down arrow */
+  font-size: 0.9rem;
+  margin-left: .5em;
+  border: none !important;     /* remove default caret */
+}
+
+/* When dropdown is open -> flip arrow */
+.dropdown.show .dropdown-toggle::after {
+  content: "";                /* up arrow */
+}
+.blur-load {
+  filter: blur(20px);
+  transition: filter 0.3s ease-out;
+}
+
+.blur-load.loaded {
+  filter: blur(0);
+}
+
+/* skeleton wrapper */
+.skeleton-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* skeleton base */
+.skeleton {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f2f2f2 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+/* variations */
+.skeleton-title {
+  height: 20px;
+  width: 60%;
+}
+
+.skeleton-text {
+  height: 14px;
+  width: 100%;
+}
+
+.skeleton-text.short {
+  width: 40%;
+}
+
+.skeleton-image {
+  height: 200px;
+  width: 100%;
+}
+
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card-hover:hover {
+  opacity: 0.9;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+.color-primary-w{
+  color: $primary-color;
+}
+.page-format{
+    margin-top: 1rem;
+    ol{
+        li{
+            a{
+                color: $primary-color;
+            }
+        }
+    }
+}
+.accordion-button:not(.collapsed){
+  background-color: #dee2e6;
+  color: #000;
+}
+.btn-w-c{
+  max-width: 70px;
+}
+
+@media (max-width: 767.98px){
+  .splide__pagination{
+    bottom: 1.5em;
+  }
+  .btn-w-c{
+    max-width: 100%;
+  }
+}
