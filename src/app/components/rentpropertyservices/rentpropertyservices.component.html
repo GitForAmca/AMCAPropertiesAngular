@@ -17,7 +17,8 @@
 
 
 <div class="row py-0 mt-2">
-    <img src="images/imgref2.jpg" class="img-fluid w-100 px-0" style="height: 300px; object-fit: cover; object-position: bottom;">
+  <img src="images/imgref2.jpg" class="img-fluid w-100 px-0"
+    style="height: 300px; object-fit: cover; object-position: bottom;">
 </div>
 <!-- Service Header -->
 <div class="row py-5 bg-light text-center">
@@ -26,32 +27,58 @@
       <div class="col-md-12">
         <h1 class="mb-3">Renting a property in Dubai</h1>
         <p class="lead text-muted">
-          Dubai is a popular destination among the cosmopolitan population looking for high-income career opportunities and comfortable way of life. Thousands of expats move to Dubai to turn their dreams into reality. Hence, the thriving city has a perfect selection of residential properties to accommodate its growing population. If you are new to Dubai and want to buy a new home, <span class="fw-bold">AMCA Properties</span> will help you will all the details.
+          Dubai is a popular destination among the cosmopolitan population looking for high-income career opportunities
+          and comfortable way of life. Thousands of expats move to Dubai to turn their dreams into reality. Hence, the
+          thriving city has a perfect selection of residential properties to accommodate its growing population. If you
+          are new to Dubai and want to buy a new home, <span class="fw-bold">AMCA Properties</span> will help you will
+          all the details.
         </p>
       </div>
     </div>
   </div>
 </div>
 
+
+
+<div class="row blog-details-section py-4">
+  <div class="container narrow-container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h5>Real estate services</h5>
+        <p class="lead text-muted">
+          AMCA Properties provide end-to-end real estate services for buying and renting in
+          Dubai. Through expert guidance and strategies that enhance property potential, we
+          ensure your real estate experience is smooth, efficient and rewarding. Whether you are
+          buying an apartment in Dubai or searching for a rental home, we offer personalized
+          solutions. Our team specializes in real estate management and collaborates with some
+          of the city’s top property developers to ensure smooth and hassle-free experience.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 <div class="row py-5">
   <div class="container narrow-container">
     <div class="col-lg-12">
-        <h2 class="mb-3">FAQs</h2>
-        <div class="accordion">
-            <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
-                <h2 class="accordion-header">
-                <button class="accordion-button" 
-                        [class.collapsed]="!faq.open"
-                        type="button"
-                        (click)="toggleFaq(i)">
-                    {{ faq.question }}
-                </button>
-                </h2>
-                <div class="accordion-collapse" [class.collapse]="true" [class.show]="faq.open">
-                <div class="accordion-body" [innerHTML]="faq.answer"></div>
-                </div>
-            </div>
+      <h2 class="mb-3">FAQs</h2>
+      <div class="accordion">
+        <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
+          <h2 class="accordion-header">
+            <button class="accordion-button" [class.collapsed]="!faq.open" type="button" (click)="toggleFaq(i)">
+              {{ faq.question }}
+            </button>
+          </h2>
+          <div class="accordion-collapse" [class.collapse]="true" [class.show]="faq.open">
+            <div class="accordion-body" [innerHTML]="faq.answer"></div>
+          </div>
         </div>
       </div>
+    </div>
   </div>
 </div>
