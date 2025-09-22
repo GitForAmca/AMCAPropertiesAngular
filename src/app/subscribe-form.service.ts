@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SubscribeFormService {
   // https://localhost:7038/api/InsertSubscriberDetail
-_url = "https://jsonplaceholder.typicode.com/users";
+_url = "";
   constructor(private http: HttpClient) { }
   saveSubscription(data: any){
     return this.http.post(this._url,data)

@@ -94,7 +94,7 @@
             <div class="text-danger fs-7 mb-1">Email id not valid</div>
             }
           </div>
-          <button class="btn btn-primary-color w-100" (onclick)="onSave()" [disabled]="!subscribeForm.valid">SUBSCRIBE</button>
+          <button class="btn btn-primary-color w-100" (onclick)="onSave()">SUBSCRIBE</button>
           <p class="text-success" *ngIf="isSubscribed">Subscription successful!</p>
         </form>
       </div>
