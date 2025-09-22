@@ -21,7 +21,7 @@ import { SkeletonloaderComponent } from "../../reusableComponent/skeletonloader/
 })
 export class LatestprojectsComponent {
   @ViewChild('enquiryform') enquiryform!: EnquiryformComponent;
-
+ 
   ngOnInit(){
     this.GetProjectDetails();
   }
