@@ -1,33 +1,77 @@
 <div class="row testimonial">
-    <div class="container narrow-container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="pt-5">
-                    <h2><strong>About AMCA Properties</strong></h2>
-                </div>
-            </div>
+  <div class="container narrow-container">
+
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="pt-5">
+          <h2><strong>AMCA Properties</strong></h2>
         </div>
-        <div class="row">
-            <p class="text-muted">AMCA Properties is a trusted choice for buyers, investors, and sellers. Recognized for its commitment to excellence and client success, AMCA Properties has earned a strong reputation for providing outstanding service through a team of experienced and professional real estate companies in UAE.</p>
-            <p class="text-muted">AMCA Properties has grown beyond traditional brokerage to meet the diverse client needs. From residential and commercial properties to off-plan opportunities and property investment in UAE, investment projects, AMCA Properties offers expertise across multiple sectors, offering personalized, transparent, and results-driven solutions.</p>
-        </div>
-        <div class="row">
-            <h4>FAQs</h4>
-            <div class="accordion">
-                <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
-                    <h2 class="accordion-header">
-                    <button class="accordion-button" 
-                            [class.collapsed]="!faq.open"
-                            type="button"
-                            (click)="toggleFaq(i)">
-                        {{ faq.question }}
-                    </button>
-                    </h2>
-                    <div class="accordion-collapse" [class.collapse]="true" [class.show]="faq.open">
-                    <div class="accordion-body" [innerHTML]="faq.answer"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+
+    <div class="row">
+      <p class="text-muted">
+        AMCA Properties is a trusted choice for buyers, investors, and sellers. Recognized for
+        their commitment to excellence and client success, AMCA Properties has earned a
+        strong reputation for providing outstanding service through a team of experienced and
+        professional real estate companies in Dubai.
+      </p>
+      <p class="text-muted">
+        AMCA Properties has grown beyond traditional brokerage to meet diverse client needs.
+        From residential and commercial properties to off-plan opportunities and property
+        investment in UAE, investment projects, AMCA Properties offers expertise across
+        multiple sectors, offering personalized, transparent, and results-driven solutions.
+      </p>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="pt-2">
+          <h2><strong>Our Property Categories</strong></h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <p class="text-muted">
+        At AMCA Properties, we help to build every lifestyle and investment goal:
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="text-muted mb-4">
+          <li>Be the first to invest in new off-plan properties with flexible payments with strong
+            appreciation potential.</li>
+          <li>Luxury homes in communities like Dubai Hills, Palm Jumeriah and Arabian
+            Ranches offering luxury lifestyle and privacy.</li>
+          <li>Townhouses are perfect for families who look for comfort, space and privacy.</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+
+
+
+
+    <div class="row">
+      <h4>FAQs</h4>
+      <div class="accordion">
+        <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
+          <h2 class="accordion-header">
+            <button class="accordion-button" [class.collapsed]="!faq.open" type="button" (click)="toggleFaq(i)">
+              {{ faq.question }}
+            </button>
+          </h2>
+          <div class="accordion-collapse" [class.collapse]="true" [class.show]="faq.open">
+            <div class="accordion-body" [innerHTML]="faq.answer"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
