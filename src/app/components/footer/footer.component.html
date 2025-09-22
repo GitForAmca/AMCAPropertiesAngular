@@ -63,7 +63,7 @@
       </div>
       <div class="col-md-3">
         <h5>Subscribe</h5>
-        <form [formGroup]="subscribeForm">
+        <form [formGroup]="subscribeForm" (ngSubmit)="onSave()">
           <div class="mb-2">
             <input type="text" class="form-control" placeholder="Name*" formControlName="name" />
              
@@ -95,6 +95,7 @@
             }
           </div>
           <button class="btn btn-primary-color w-100" (onclick)="onSave()" [disabled]="!subscribeForm.valid">SUBSCRIBE</button>
+          <p class="text-success" *ngIf="isSubscribed">Subscription successful!</p>
         </form>
       </div>
     </div>
