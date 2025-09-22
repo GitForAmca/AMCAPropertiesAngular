@@ -15,7 +15,8 @@
   </div>
 </div>
 <div class="row py-0 mt-2">
-    <img src="images/imref1.jpg" class="img-fluid w-100 px-0" style="height: 300px; object-fit: cover; object-position: center;">
+  <img src="images/imref1.jpg" class="img-fluid w-100 px-0"
+    style="height: 300px; object-fit: cover; object-position: center;">
 </div>
 <!-- Service Header -->
 <div class="row py-5 bg-light text-center">
@@ -24,32 +25,70 @@
       <div class="col-md-12">
         <h1 class="mb-3">Buying a Property in Dubai</h1>
         <p class="lead text-muted">
-          Dubai has been a global hub for foreigners, offering a unique combination of luxury, opportunity, and a smart lifestyle. In 2025, the city’s real estate market continues to grow, presenting unique opportunities for expatriates looking to invest in Dubai property. Whether you’re planning to move to Dubai, expand your investment portfolio, or secure a second home, <span class="fw-bold">AMCA Properties</span> will guide you through everything you need to know about buying a property in Dubai.
+          Dubai has been a global hub for foreigners, offering a unique combination of luxury, opportunity, and a smart
+          lifestyle. In 2025, the city’s real estate market continues to grow, presenting unique opportunities for
+          expatriates looking to invest in Dubai property. Whether you’re planning to move to Dubai, expand your
+          investment portfolio, or secure a second home, <span class="fw-bold">AMCA Properties</span> will guide you
+          through everything you need to know about buying a property in Dubai.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row blog-details-section py-3">
+  <div class="container narrow-container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="">Property Services</h2>
+        <p class="mb-0"> Owning or renting a property in Dubai can be more challenging and time-consuming.
+          From usual maintenance, tenant requests to cleaning, urgent repairs, and other
+          administrative tasks require more time and effort than expected. Our team in AMCA
+          Properties offers professional services, always prioritizing the landlord’s best interests.
+          Upholding European standards, we deliver brokerage and <span class="fw-bold">Property Services </span>that
+          will
+          meet the most expectations of our clients.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row blog-details-section py-2">
+  <div class="container narrow-container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="mb-3">Real estate investment advisory services</h2>
+        <p>
+          Our strategic real estate investment advisory services are custom-built to make you
+          informed about the insights and strategies required to make informed, future-focused
+          decisions about your real estate portfolio. As a leading real estate consulting firm in
+          Dubai, we work with clients across the region, offering customized guidance on
+          acquisitions, disposals, development planning, and portfolio optimization. Through a
+          data-driven and market-informed approach, we aim to simplify the complexities of the
+          real estate market and achieve your long-term goals.
         </p>
       </div>
     </div>
   </div>
 </div>
 
-<div class="row py-5">
+
+
+<div class="row py-2">
   <div class="container narrow-container">
     <div class="col-lg-12">
-        <h2 class="mb-3">FAQs</h2>
-        <div class="accordion">
-            <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
-                <h2 class="accordion-header">
-                <button class="accordion-button" 
-                        [class.collapsed]="!faq.open"
-                        type="button"
-                        (click)="toggleFaq(i)">
-                    {{ faq.question }}
-                </button>
-                </h2>
-                <div class="accordion-collapse" [class.collapse]="true" [class.show]="faq.open">
-                <div class="accordion-body" [innerHTML]="faq.answer"></div>
-                </div>
-            </div>
+      <h2 class="mb-3">FAQs</h2>
+      <div class="accordion">
+        <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
+          <h2 class="accordion-header">
+            <button class="accordion-button" [class.collapsed]="!faq.open" type="button" (click)="toggleFaq(i)">
+              {{ faq.question }}
+            </button>
+          </h2>
+          <div class="accordion-collapse" [class.collapse]="true" [class.show]="faq.open">
+            <div class="accordion-body" [innerHTML]="faq.answer"></div>
+          </div>
         </div>
       </div>
+    </div>
   </div>
 </div>

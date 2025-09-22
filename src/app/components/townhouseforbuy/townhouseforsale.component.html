@@ -1,36 +1,73 @@
-<app-propertieslist [purpose]="1" [type]="4" [status]="0" [pageheading]="'Townhouses for sale in Dubai'" [navmenu]="'Buy'"></app-propertieslist>
+<app-propertieslist [purpose]="1" [type]="4" [status]="0" [pageheading]="'Townhouses for sale in Dubai'"
+  [navmenu]="'Buy'"></app-propertieslist>
 
 <div class="row blog-details-section py-4 mt-4">
   <div class="container narrow-container">
     <div class="row">
       <div class="col-lg-12 border-top pt-4">
         <p class="text-muted mb-4">
-            A townhouse is a multi-level home that’s part of a row of attached residences sharing common walls. Unlike apartments, townhouses often feature a private entrance, giving residents great independence and a sense of home-like privacy. Explore the best townhouses for sale in Dubai here that offer modern designs and exceptional investment potential.
+          A townhouse is a multi-level home that’s part of a row of attached residences sharing common walls. Unlike
+          apartments, townhouses often feature a private entrance, giving residents great independence and a sense of
+          home-like privacy. Explore the best townhouses for sale in Dubai here that offer modern designs and
+          exceptional investment potential.
         </p>
         <p class="text-muted mb-4">
-            When buying an affordable townhouse for sale in Dubai, it’s important to look beyond walls and roofs. You need to consider the community and amenities, evaluating how a neighborhood aligns with your lifestyle. Key factors include access to schools, healthcare facilities, shopping centers, recreational areas, and convenient public transportation.
+          When buying an affordable townhouse for sale in Dubai, it’s important to look beyond walls and roofs. You need
+          to consider the community and amenities, evaluating how a neighborhood aligns with your lifestyle. Key factors
+          include access to schools, healthcare facilities, shopping centers, recreational areas, and convenient public
+          transportation.
         </p>
         <p class="text-muted mb-4">
-            Investing in a townhouse in Dubai offers both a luxurious lifestyle and strong financial potential. It's more than just finding a place to live in; it's about claiming a house in a vibrant, ever-evolving city where opportunity meets elegance. Our experts in AMCA Properties help you find the best Dubai townhouses for sale in Abu Dhabi and Ajman. 
+          Investing in a townhouse in Dubai offers both a luxurious lifestyle and strong financial potential. It's more
+          than just finding a place to live in; it's about claiming a house in a vibrant, ever-evolving city where
+          opportunity meets elegance. Our experts in AMCA Properties help you find the best Dubai townhouses for sale in
+          Abu Dhabi and Ajman.
         </p>
       </div>
+
+      <div class="row blog-details-section py-4">
+        <div class="container narrow-container">
+          <div class="row">
+            <div class="col-lg-12">
+              <h1 class="fw-bold fs-4">Popular Townhouse communities in Dubai</h1>
+              <p class=" text-muted">
+                Popular Townhouse communities in Dubai are Arabian Ranches, Dubai Hills Estate,
+                DAMAC Hills, Town Square and Villanova. Townhouses in these communities offer
+                green spaces, family-friendly amenities, schools, outlets and excellent connectivity to
+                the city. For investors and buyers, townhouses provide attractive rental returns and
+                strong potential appreciation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
       <div class="col-lg-12">
-        
+
         <h2 class="mb-3">FAQs</h2>
         <div class="accordion">
-            <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
-                <h2 class="accordion-header">
-                <button class="accordion-button" 
-                        [class.collapsed]="!faq.open"
-                        type="button"
-                        (click)="toggleFaq(i)">
-                    {{ faq.question }}
-                </button>
-                </h2>
-                <div class="accordion-collapse" [class.collapse]="true" [class.show]="faq.open">
-                <div class="accordion-body" [innerHTML]="faq.answer"></div>
-                </div>
+          <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
+            <h2 class="accordion-header">
+              <button class="accordion-button" [class.collapsed]="!faq.open" type="button" (click)="toggleFaq(i)">
+                {{ faq.question }}
+              </button>
+            </h2>
+            <div class="accordion-collapse" [class.collapse]="true" [class.show]="faq.open">
+              <div class="accordion-body" [innerHTML]="faq.answer"></div>
             </div>
+          </div>
         </div>
       </div>
     </div>

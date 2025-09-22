@@ -10,6 +10,7 @@ import { IProjectImages } from '../../model/interface/IProjectImages';
 import { ProjectImages } from '../../model/class/ProjectImages';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { SkeletonloaderComponent } from "../../reusableComponent/skeletonloader/skeletonloader.component";
 
 @Component({
   selector: 'app-latestprojects',
@@ -20,11 +21,11 @@ import { NgSelectModule } from '@ng-select/ng-select';
 })
 export class LatestprojectsComponent {
   @ViewChild('enquiryform') enquiryform!: EnquiryformComponent;
-
+ 
   ngOnInit(){
     this.GetProjectDetails();
   }
-
+   isLoading = true
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -44,6 +45,8 @@ export class LatestprojectsComponent {
     this.projectDetailsobj.pageNumber = 1;
     this.projectdetailsservice.GetProjectDetailsService(this.projectDetailsobj).subscribe((result: any) => {
       this.projectDetails = result;
+      this.isLoading = false
+   
         setTimeout(() => {
           this.initSplideMain();
         }, 0);

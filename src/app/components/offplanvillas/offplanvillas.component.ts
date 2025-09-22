@@ -26,19 +26,16 @@ export class OffplanvillasComponent {
     {
       question: 'What are the key factors in choosing off-plan villas?',
       answer: `<p class="text-muted mb-4">Selecting the right off plan villas in Dubai is not a small task,
-       the factors listed below play an important role in your decision making:</p>`,
-      open: false
-    },
-    {
-      question: 'Is off plan cheaper than ready property?',
-      answer: `<p class="text-muted mb-4">Yes, off-plan projects are cheaper than ready projects. Off-plan launches often offer lower entry prices and extended payment schedules.</p>
-      <ul class="text-muted mb-4">
+       the factors listed below play an important role in your decision making:</p>
+       
+        <ul class="text-muted mb-4">
                         <li>Location Considerations</li>
                         <li>Villa Specifications and Amenities</li>
                         <li>Understanding Payment Plans</li>
                         <li>Legal Aspects of Off Plan Purchases</li>
                         <li>Financing Options</li>
-                    </ul>`,
+                    </ul>
+       `,
       open: false
     },
     {
