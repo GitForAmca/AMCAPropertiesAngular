@@ -15,7 +15,7 @@ import { SkeletonloaderComponent } from "../../reusableComponent/skeletonloader/
 @Component({
   selector: 'app-latestprojects',
   standalone: true,
-  imports: [FormsModule, CommonModule, NgSelectModule, EnquiryformComponent, SkeletonloaderComponent],
+  imports: [FormsModule, CommonModule, NgSelectModule, EnquiryformComponent],
   templateUrl: './latestprojects.component.html',
   styleUrl: './latestprojects.component.scss'
 })
