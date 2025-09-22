@@ -7,7 +7,7 @@ describe('OffplanlatestprojctsComponent', () => {
   let fixture: ComponentFixture<OffplanlatestprojctsComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({  
+    await TestBed.configureTestingModule({   
       imports: [OffplanlatestprojctsComponent]
     })
     .compileComponents();
