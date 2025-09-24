@@ -20,4 +20,7 @@ export class EnquiryService {
   AddEnquiryProjectsLead(obj: any){
     return this.http.post(`${this.baseUrl}api/AddEnquiryLeadProjects`, obj);
   }
+  AddSubscriptionLead(obj: any){
+    return this.http.post(`${this.baseUrl}api/InsertSubscriberDetail`, obj);
+  }
 }

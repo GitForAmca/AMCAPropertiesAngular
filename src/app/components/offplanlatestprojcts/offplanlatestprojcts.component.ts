@@ -14,41 +14,46 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-offplanlatestprojcts',
   standalone: true,
-  imports: [FormsModule, CommonModule, NgSelectModule, EnquiryformComponent],
+  imports: [
+    FormsModule,
+    CommonModule,
+    NgSelectModule,
+    EnquiryformComponent,
+  ],
   templateUrl: './offplanlatestprojcts.component.html',
-  styleUrl: './offplanlatestprojcts.component.scss'
+  styleUrl: './offplanlatestprojcts.component.scss',
 })
 export class OffplanlatestprojctsComponent {
   @ViewChild('enquiryform') enquiryform!: EnquiryformComponent;
 
-  ngOnInit(){
+  ngOnInit() {
     this.GetProjectDetails();
   }
 
-
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private projectdetailsservice : ProjectdetailsService,
-    public router: Router,
+    private projectdetailsservice: ProjectdetailsService,
+    public router: Router
   ) {}
 
-  projectDetails : IProjectDetails[] = [];
-  projectDetailsobj : ProjectDetails = new ProjectDetails();
-  projectImages : IProjectImages[] = [];
-  projectImagesobj : ProjectImages = new ProjectImages();
+  projectDetails: IProjectDetails[] = [];
+  projectDetailsobj: ProjectDetails = new ProjectDetails();
+  projectImages: IProjectImages[] = [];
+  projectImagesobj: ProjectImages = new ProjectImages();
 
   projectImagesMap: { [projectId: number]: IProjectImages[] } = {};
-
   GetProjectDetails() {
     this.projectDetailsobj.pageSize = 10;
     this.projectDetailsobj.pageNumber = 1;
     this.projectDetailsobj.status = 1;
-    this.projectdetailsservice.GetProjectDetailsService(this.projectDetailsobj).subscribe((result: any) => {
-      this.projectDetails = result;
+    this.projectdetailsservice
+      .GetProjectDetailsService(this.projectDetailsobj)
+      .subscribe((result: any) => {
+        this.projectDetails = result;
         setTimeout(() => {
           this.initSplideMain();
         }, 0);
-    });
+      });
   }
 
   GoToProjectDetails(projectId: number, pageURL: string) {
@@ -65,30 +70,30 @@ export class OffplanlatestprojctsComponent {
         pagination: false,
         arrows: true,
         breakpoints: {
-          1024: { 
-            perPage: 2 
+          1024: {
+            perPage: 2,
           },
-          640: { 
+          640: {
             perPage: 1,
             pagination: true,
-            arrows: false
+            arrows: false,
           },
         },
       }).mount();
     }
   }
-  callSeller(call : string, event: MouseEvent){
+  callSeller(call: string, event: MouseEvent) {
     event.stopPropagation();
     event.preventDefault();
     window.location.href = `tel:` + call;
   }
-  whtsappSeller(whatspp : string, event : MouseEvent){
+  whtsappSeller(whatspp: string, event: MouseEvent) {
     event.stopPropagation();
     event.preventDefault();
     const formattedPhone = whatspp.replace(/\D/g, '');
     window.open(`https://wa.me/${formattedPhone}`, '_blank');
   }
-  mailSeller(mail : string, event : MouseEvent){
+  mailSeller(mail: string, event: MouseEvent) {
     event.stopPropagation();
     event.preventDefault();
     window.location.href = `mailTo:` + mail;

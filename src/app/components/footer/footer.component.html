@@ -75,7 +75,7 @@
 
         } @else if(subscribeForm.controls["name"].touched &&
             subscribeForm.controls["name"].errors?.["minlength"]){
-            <span class="text-danger">Min char 4 required </span>
+            <span class="text-danger">Min char 3 required </span>
                 }
            
           </div>
@@ -94,8 +94,8 @@
             <div class="text-danger fs-7 mb-1">Email id not valid</div>
             }
           </div>
-          <button class="btn btn-primary-color w-100" (onclick)="onSave()">SUBSCRIBE</button>
-          <p class="text-success" *ngIf="isSubscribed">Subscription successful!</p>
+          <button class="btn btn-primary-color w-100" (onclick)="onSave()" [disabled]="subscribeForm.invalid">SUBSCRIBE</button>
+          <p class="text-success" *ngIf="isSubscribed" >Subscription successful!</p>
         </form>
       </div>
     </div>

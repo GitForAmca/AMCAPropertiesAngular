@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://apiproperties.amca.ae/'
+  apiUrl: 'https://localhost:7038/'
 };
