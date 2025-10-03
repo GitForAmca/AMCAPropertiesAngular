@@ -29,202 +29,229 @@ import { ProjectdetailsComponent } from './components/projectdetails/projectdeta
 import { FaqsComponent } from './components/faqs/faqs.component';
 import { PrivacypolicyComponent } from './components/privacypolicy/privacypolicy.component';
 import { TermsconditionComponent } from './components/termscondition/termscondition.component';
+import { CareersComponent } from './components/careers/careers.component';
+import { CareerCvFormComponent } from './components/career-cv-form/career-cv-form.component';
 
 export const routes: Routes = [
-    {
-        path : '',
-        component: LayoutComponent,
-        data : {
-            title: 'AMCA Properties – Real Estate in UAE | Buy & Rent Homes', 
-            description: 'Discover premium properties in UAE with AMCA Properties. Buy, sell, or rent apartments, villas, and more with trusted real estate experts.'
-        }
+  {
+    path: '',
+    component: LayoutComponent,
+    data: {
+      title: 'AMCA Properties – Real Estate in UAE | Buy & Rent Homes',
+      description:
+        'Discover premium properties in UAE with AMCA Properties. Buy, sell, or rent apartments, villas, and more with trusted real estate experts.',
     },
-    {
-        path : 'property-list',
-        component: PropertieslistComponent
+  },
+  {
+    path: 'property-list',
+    component: PropertieslistComponent,
+  },
+  {
+    path: 'property/:pageURL/:unitId',
+    component: PropertydetailsComponent,
+  },
+  {
+    path: 'project-list',
+    component: ProjectlistComponent,
+  },
+  {
+    path: 'project/:pageURL/:projectId',
+    component: ProjectdetailsComponent,
+  },
+  {
+    path: 'blogs/:blogTitle/:blogId',
+    component: BlogsdetailsComponent,
+  },
+  {
+    path: 'developers',
+    component: DevelopersComponent,
+    data: {
+      title: 'Top Real Estate Developers in UAE | AMCA Properties',
+      description:
+        'Discover the best real estate developers in the UAE. AMCA Properties partners with trusted names to bring you premium off-plan projects and luxury homes.',
     },
-    {
-        path : 'property/:pageURL/:unitId',
-        component: PropertydetailsComponent
+  },
+  {
+    path: 'areas',
+    component: ArealistComponent,
+    data: {
+      title: 'Properties for Sale & Rent in UAE | AMCA Properties',
+      description:
+        'Explore apartments, villas, and commercial properties across the UAE. AMCA Properties helps you find the right home or investment in prime locations.',
     },
-    {
-        path : 'project-list',
-        component: ProjectlistComponent
+  },
+  {
+    path: 'blogs',
+    component: BlogslistComponent,
+  },
+  {
+    path: 'about-us',
+    component: AboutusComponent,
+    data: {
+      title: 'About AMCA Properties | UAE Real Estate Specialists',
+      description:
+        'Discover AMCA Properties, your trusted partner in UAE real estate. We offer expert services in buying, selling, and renting properties.',
     },
-    {
-        path : 'project/:pageURL/:projectId',
-        component: ProjectdetailsComponent
+  },
+  {
+    path: 'contact-us',
+    component: ContactusComponent,
+    data: {
+      title: 'Contact AMCA Properties | UAE Real Estate Experts',
+      description:
+        'Reach out to AMCA Properties for buying, selling, or renting properties in the UAE. Our team is here to assist with all your real estate needs.',
     },
-    {
-        path : 'blogs/:blogTitle/:blogId',
-        component: BlogsdetailsComponent
+  },
+  {
+    path: 'looking-for-apartments-for-sale-in-dubai',
+    component: ApartmentsforsaleComponent,
+    data: {
+      title: 'Apartments for Sale in UAE | AMCA Properties',
+      description:
+        'Browse luxury and affordable apartments for sale in UAE. Find your dream home with AMCA Properties’ expert guidance and trusted listings.',
     },
-    {
-        path : 'developers',
-        component: DevelopersComponent,
-        data : {
-            title: 'Top Real Estate Developers in UAE | AMCA Properties', 
-            description: 'Explore UAE’s leading real estate developers. AMCA Properties partners with trusted names to bring you premium projects and homes.'
-        }
+  },
+  {
+    path: 'penthouse-for-sale-in-dubai',
+    component: PenthouseforsaleComponent,
+    data: {
+      title: 'Penthouses for Sale in UAE | AMCA Properties',
+      description:
+        'Discover luxury penthouses for sale in UAE with breathtaking views. AMCA Properties brings you elite living spaces in iconic locations.',
     },
-    {
-        path : 'areas',
-        component: ArealistComponent,
-        data : {
-            title: 'Properties Across All Areas in UAE | AMCA Properties', 
-            description: 'Browse properties for sale and rent across all UAE areas. AMCA Properties covers prime locations for your dream home or investment.'
-        }
+  },
+  {
+    path: 'townhouse-for-sale-in-dubai',
+    component: TownhouseforsaleComponent,
+    data: {
+      title: 'Townhouses for Sale in UAE | AMCA Properties',
+      description:
+        'Find modern and spacious townhouses for sale in UAE. AMCA Properties offers exclusive listings in prime locations at the best prices.',
     },
-    {
-        path : 'blogs',
-        component: BlogslistComponent
+  },
+  {
+    path: 'villas-for-sale-in-dubai',
+    component: VillasforsaleComponent,
+    data: {
+      title: 'Villas for Sale in UAE | AMCA Properties',
+      description:
+        'Explore stunning villas for sale across UAE. From luxury estates to family homes, AMCA Properties connects you with the perfect villa.',
     },
-    {
-        path : 'about-us',
-        component: AboutusComponent,
-        data : {
-            title: 'About AMCA Properties | UAE Real Estate Specialists', 
-            description: 'Learn about AMCA Properties, your trusted partner in UAE real estate. Offering expert services in buying, selling, and renting homes.'
-        }
+  },
+  {
+    path: 'apartments-for-rent-in-dubai',
+    component: ApartmentsforrentComponent,
+    data: {
+      title: 'Apartments for Rent in UAE | AMCA Properties',
+      description:
+        'Search top apartments for rent in UAE. From affordable rentals to luxury residences, AMCA Properties helps you find the perfect home.',
     },
-    {
-        path : 'contact-us',
-        component: ContactusComponent,
-        data : {
-            title: 'Contact AMCA Properties UAE | Real Estate Experts', 
-            description: 'Get in touch with AMCA Properties for buying, selling, or renting properties in UAE. Our team is ready to assist you today.'
-        }
+  },
+  {
+    path: 'penthouses-for-rent-in-dubai',
+    component: PenthouseforrentComponent,
+    data: {
+      title: 'Luxury Penthouses for Rent in UAE | AMCA Properties',
+      description:
+        'Rent luxury penthouses in UAE with AMCA Properties. Enjoy spacious living, premium amenities, and breathtaking city and sea views in Dubai & beyond.',
     },
-    {
-        path : 'looking-for-apartments-for-sale-in-dubai',
-        component: ApartmentsforsaleComponent,
-        data : {
-            title: 'Apartments for Sale in UAE | AMCA Properties', 
-            description: 'Browse luxury and affordable apartments for sale in UAE. Find your dream home with AMCA Properties’ expert guidance and trusted listings.'
-        }
+  },
+  {
+    path: 'townhouses-in-dubai-for-rent',
+    component: TownhouseforrentComponent,
+    data: {
+      title: 'Townhouses for Rent in UAE | AMCA Properties',
+      description:
+        'Find townhouses for rent in UAE’s best locations. AMCA Properties ensures quality homes that match your lifestyle and budget.',
     },
-    {
-        path : 'penthouse-for-sale-in-dubai',
-        component: PenthouseforsaleComponent,
-        data : {
-            title: 'Penthouses for Sale in UAE | AMCA Properties', 
-            description: 'Discover luxury penthouses for sale in UAE with breathtaking views. AMCA Properties brings you elite living spaces in iconic locations.'
-        }
+  },
+  {
+    path: 'villas-for-rent-in-dubai',
+    component: VillasforrentComponent,
+    data: {
+      title: 'Villas for Rent in UAE | AMCA Properties',
+      description:
+        'Rent beautiful villas in UAE with ease. AMCA Properties offers furnished and unfurnished villas in prime residential communities.',
     },
-    {
-        path : 'townhouse-for-sale-in-dubai',
-        component: TownhouseforsaleComponent,
-        data : {
-            title: 'Townhouses for Sale in UAE | AMCA Properties', 
-            description: 'Find modern and spacious townhouses for sale in UAE. AMCA Properties offers exclusive listings in prime locations at the best prices.'
-        }
+  },
+  {
+    path: 'off-plan-apartments',
+    component: OffplanapartmentsComponent,
+    data: {
+      title: 'Off-Plan Apartments in UAE | AMCA Properties',
+      description:
+        'Invest in off-plan apartments across the UAE with strong ROI potential. AMCA Properties connects buyers with top developers and prime projects.',
     },
-    {
-        path : 'villas-for-sale-in-dubai',
-        component: VillasforsaleComponent,
-        data : {
-            title: 'Villas for Sale in UAE | AMCA Properties', 
-            description: 'Explore stunning villas for sale across UAE. From luxury estates to family homes, AMCA Properties connects you with the perfect villa.'
-        }
+  },
+  {
+    path: 'off-plan-villas',
+    component: OffplanvillasComponent,
+    data: {
+      title: 'Off-Plan Villas in UAE | AMCA Properties',
+      description:
+        'Secure your future with off-plan villas in the UAE. AMCA Properties offers exclusive projects from leading real estate developers at competitive prices.',
     },
-    {
-        path : 'apartments-for-rent-in-dubai',
-        component: ApartmentsforrentComponent,
-        data : {
-            title: 'Apartments for Rent in UAE | AMCA Properties', 
-            description: 'Search top apartments for rent in UAE. From affordable rentals to luxury residences, AMCA Properties helps you find the perfect home.'
-        }
+  },
+  {
+    path: 'buying-a-property-in-dubai',
+    component: BuypropertyservicesComponent,
+    data: {
+      title: 'Buy Property in UAE | AMCA Properties',
+      description:
+        'Buy property in UAE with expert guidance from AMCA Properties. Find apartments, villas, and townhouses in prime locations.',
     },
-    {
-        path : 'penthouses-for-rent-in-dubai',
-        component: PenthouseforrentComponent,
-        data : {
-            title: 'Penthouses for Rent in UAE | AMCA Properties', 
-            description: 'Experience high-end living with penthouses for rent in UAE. AMCA Properties offers luxury spaces with panoramic city and sea views.'
-        }
+  },
+  {
+    path: 'renting-a-property-in-dubai',
+    component: RentpropertyservicesComponent,
+    data: {
+      title: '',
+      description: '',
     },
-    {
-        path : 'townhouses-in-dubai-for-rent',
-        component: TownhouseforrentComponent,
-        data : {
-            title: 'Townhouses for Rent in UAE | AMCA Properties', 
-            description: 'Find townhouses for rent in UAE’s best locations. AMCA Properties ensures quality homes that match your lifestyle and budget.'
-        }
+  },
+  {
+    path: 'property-management',
+    component: PropertymanagementservicesComponent,
+    data: {
+      title: 'Property Management Services in UAE | AMCA Properties',
+      description:
+        'AMCA Properties offers professional property management in the UAE. From tenant services to maintenance and rental management, we keep your property hassle-free.',
     },
-    {
-        path : 'villas-for-rent-in-dubai',
-        component: VillasforrentComponent,
-        data : {
-            title: 'Villas for Rent in UAE | AMCA Properties', 
-            description: 'Rent beautiful villas in UAE with ease. AMCA Properties offers furnished and unfurnished villas in prime residential communities.'
-        }
+  },
+  {
+    path: 'communities',
+    component: CommunityComponent,
+    data: {
+      title: '',
+      description: '',
     },
-    {
-        path : 'off-plan-apartments',
-        component: OffplanapartmentsComponent,
-        data : {
-            title: 'Off-Plan Apartments in UAE | AMCA Properties', 
-            description: 'Invest in off-plan apartments in UAE with high ROI potential. AMCA Properties connects you with trusted developers and prime projects.'
-        }
-    },
-    {
-        path : 'off-plan-villas',
-        component: OffplanvillasComponent,
-        data : {
-            title: 'Off-Plan Villas in UAE | AMCA Properties', 
-            description: 'Buy off-plan villas in UAE for a smart property investment. AMCA Properties brings you projects from leading real estate developers.'
-        }
-    },
-    {
-        path : 'buying-a-property-in-dubai',
-        component: BuypropertyservicesComponent,
-        data : {
-            title: 'Buy Property in UAE | AMCA Properties', 
-            description: 'Buy property in UAE with expert guidance from AMCA Properties. Find apartments, villas, and townhouses in prime locations.'
-        }
-    },
-    {
-        path : 'renting-a-property-in-dubai',
-        component: RentpropertyservicesComponent,
-        data : {
-            title: '', 
-            description: ''
-        }
-    },
-    {
-        path : 'property-management',
-        component: PropertymanagementservicesComponent,
-        data : {
-            title: 'Property Management Services in UAE | AMCA Properties', 
-            description: 'Get professional property management in UAE. AMCA Properties handles maintenance, tenant services, and rental management.'
-        }
-    },
-    {
-        path : 'communities',
-        component: CommunityComponent,
-        data : {
-            title: '', 
-            description: ''
-        }
-    },
-    {
-        path : 'developer/:URL',
-        component: DeveloperdetailsComponent
-    },
-    {
-        path : 'area/:URL',
-        component: AreadetailsComponent
-    },
-    {
-        path : 'faq',
-        component: FaqsComponent
-    },
-    {
-        path : 'privacy-policy',
-        component: PrivacypolicyComponent
-    },
-    {
-        path : 'terms-condition',
-        component: TermsconditionComponent
-    }
+  },
+  {
+    path: 'developer/:URL',
+    component: DeveloperdetailsComponent,
+  },
+  {
+    path: 'area/:URL',
+    component: AreadetailsComponent,
+  },
+  {
+    path: 'faq',
+    component: FaqsComponent,
+  },
+  {
+    path: 'privacy-policy',
+    component: PrivacypolicyComponent,
+  },
+  {
+    path: 'terms-condition',
+    component: TermsconditionComponent,
+  },
+  {
+    path: 'careerCvForm',
+    component: CareerCvFormComponent,
+  },
+  {
+    path: 'careers',
+    component: CareersComponent,
+  },
 ];
