@@ -52,96 +52,6 @@
           <app-skeletonloader></app-skeletonloader>
         </div>
       </ng-container>
-      <div class="col-lg-12">
-        <h2 class="fw-bold fs-4">Emaar</h2>
-        <p class="text-muted mb-4">
-          Emaar Properties was established in 1997, and it is one of the leading property developers in the UAE. Emaar’s
-          interests extend throughout the retail, hospitality, residential and commercial property development sectors.
-        </p>
-      </div>
-      <div class="col-lg-12  pt-4">
-        <h2 class="fw-bold fs-4">Nakheel</h2>
-        <p class="text-muted mb-4">
-          Nakheel is another well-known name that appears on the list of best real estate developers in Dubai. The
-          company covers the country’s real estate sector, including leisure developments, hospitality, commercial,
-          retail and residential projects.
-        </p>
-      </div>
-      <div class="col-lg-12  pt-4">
-        <h2 class="fw-bold fs-4">Azizi</h2>
-        <p class="text-muted mb-4">
-          Azizi Developments is one of the leading real estate developers in Dubai, it offers a diverse portfolio that
-          ranges from budget friendly apartments and residences to exclusive beachfront and luxury apartments.
-        </p>
-      </div>
-      <div class="col-lg-12  pt-4">
-        <h2 class="fw-bold fs-4">Binghatti</h2>
-        <p class="text-muted mb-4">
-          Binghatti Developers have established themselves as a prominent name in Dubai renowned for their various
-          properties throughout the city. Their projects are instantly recognizable by the signature of its iconic
-          orange and white hues and hexagonal design.
-        </p>
-      </div>
-
-      <div class="col-lg-12  pt-4">
-        <h2 class="fw-bold fs-4">Ellington</h2>
-        <p class="text-muted mb-4">
-          Ellington properties are famous from iconic fronds of Palm Jumeirah to Dubai Hills and the calm shores of Ras
-          Al Khaimah. They offer many varieties and best quality developments with exclusive selection.
-        </p>
-      </div>
-      <div class="col-lg-12  pt-4">
-        <h2 class="fw-bold fs-4">Samana</h2>
-        <p class="text-muted mb-4">
-          Samana approaches design and construction with redefined luxury living in Dubai from every aspect. Samana
-          creates spaces that are flexible, acceptable, and innovative. From technology to amenities, every detail is
-          crafted cleverly resulting in a living space that is both beautiful and functional for urban living.
-        </p>
-      </div>
-
-      <div class="col-lg-12  pt-4">
-        <h2 class="fw-bold fs-4">Damac</h2>
-        <p class="text-muted mb-4">
-          DAMAC Properties was established in 2002, it has quickly grown into one of Dubai’s top real estate developers.
-          It was founded by visionary businessman Hussain Sajwani, the company has delivered a wide portfolio of
-          commercial and residential projects across Dubai, Saudi Arabia, Jordan, Oman, Lebanon and the United Kingdom.
-          It is also considered one of the top off-plan developers in Dubai.
-        </p>
-      </div>
-
-      <div class="col-lg-12  pt-4">
-        <h2 class="fw-bold fs-4">Danube</h2>
-        <p class="text-muted mb-4">
-          Danube Properties, being a part of the Danube Group, is one of the country’s leading property developers.
-          Dreamz, their first property launch in 2017, has demonstrated their power in creating luxury-affordable
-          spaces.
-        </p>
-      </div>
-
-      <div class="col-lg-12  pt-4">
-        <h2 class="fw-bold fs-4">Sobha Realty</h2>
-        <p class="text-muted mb-4">
-          Sobha Realty, leading developer known for its impressive portfolio of luxury properties, has earned a strong
-          reputation for quality and excellence. This is the well-known developer in Dubai that has some excellent
-          projects in Meydan, including the highly anticipated Sobha Hartland.
-        </p>
-      </div>
-      <div class="col-lg-12  pt-4">
-        <h2 class="fw-bold fs-4">Meeras</h2>
-        <p class="text-muted mb-4">
-          Meeras is a Dubai-based company that has launched several developments in multiple sectors that include real
-          estate, retail, entertainment, F&B, hospitality and healthcare.
-        </p>
-      </div>
-
-      <div class="col-lg-12  pt-4 mb-4">
-        <h2 class="fw-bold fs-4">Omniyat</h2>
-        <p class="text-muted mb-4">
-          OMNIYAT was founded in 2005 with a vision to be the best in class, in every class. Transcending property and
-          space, this vision transforms the extraordinary into reality and builds a future beyond imagination.
-        </p>
-      </div>
-
 
       <div class="col-md-3 mb-4" *ngFor="let developer of activeDeveloper">
         <div class="card border-0 shadow-sm text-center card-hover" [routerLink]="['/developer/', developer.pageURL]"
@@ -150,7 +60,7 @@
             class="card-img-top mx-auto mt-3 rounded border" style="width: 100px; height: 100px; object-fit: contain;">
           <div class="card-body">
             <h6 class="fw-bold mb-0 color-primary-w">{{ developer.developersName }}</h6>
-            <div [innerHTML]="developer.description | slice:0:60"></div>
+            <!-- <div [innerHTML]="developer.description | slice:0:50"></div> -->
           </div>
         </div>
       </div>
