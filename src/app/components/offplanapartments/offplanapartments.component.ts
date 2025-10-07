@@ -14,7 +14,7 @@ export class OffplanapartmentsComponent {
     {
       question: 'What is the process involved in buying off-plan apartments?',
       answer: `<p class="text-muted mb-4">
-                        <strong>The step-by-step process involved in buying off-plan apartments are listed below</strong>
+                        <strong>The step-by-step process involved in buying off-plan apartments are listed below:</strong>
                     </p>
                     <ul class="text-muted mb-4">
                         <li>Research the Market</li>
@@ -39,31 +39,14 @@ export class OffplanapartmentsComponent {
     },
     {
       question: 'Is off plan cheaper than ready property?',
-      answer: `<p class="text-muted mb-4">Yes, off-plan projects are cheaper than ready projects. Off-plan launches often offer lower entry prices and extended payment schedules.</p>`,
+      answer: `<p class="text-muted mb-4">Yes off-plan projects are cheaper than ready projects. Off-plan launches often offer lower entry prices and extended payment schedules.</p>`,
       open: false,
     },
-    {
-      question: 'What’s the process of buying off-plan property?',
-      answer: `<p class="text-muted mb-4">
-                        <strong>The buying of off-plan property in Dubai typically includes:</strong>
-                    </p>
-                    <ul class="text-muted mb-4">
-                        <li>Choosing a unit</li>
-                        <li>Paying a booking fee</li>
-                        <li>Signing the SPA</li>
-                        <li>Making payments overtime</li>
-                    </ul>`,
-      open: false,
-    },
+
     {
       question:
         'What are the Benefits of Purchasing Off-Plan Property in Dubai?',
-      answer: `<p class="text-muted mb-4">Buying off-plan property offers many benefits, including lower prices, early discounts,
-and flexible payment plans. This reduces the financial burden for buyers and allows
-them to plan payments over the construction period. Off-plan properties also have
-strong potential for capital appreciation as the project progresses, especially in high-
-demand areas. Buyers can often choose prime units and sometimes customize aspects
-of the property.</p>`,
+      answer: `<p class="text-muted mb-4">Buying off-plan property offers many benefits, including lower prices, early discounts, and flexible payment plans. This reduces the financial burden for buyers and allows them to plan payments over the construction period. Off-plan properties also have strong potential for capital appreciation as the project progresses, especially in high-demand areas. Buyers can often choose prime units and sometimes customize aspects of the property. </p>`,
       open: false,
     },
   ];

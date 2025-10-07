@@ -21,7 +21,7 @@ export class HomepageaboutusfaqComponent {
       open: false,
     },
     {
-      question: 'Why work with real estate company?',
+      question: 'Why work with real estate companies?',
       answer: `<p class="text-muted mb-4">Working with the best real estate company in Dubai offers many benefits while searching for property, including access to a booming real estate market, tax reductions, adaptable working hours, rewarding commission rates, and significant compensation. Real estate specialists in Dubai can profit from the city’s outstanding ascent in the real estate market, which can prompt significant financial achievement.</p>`,
       open: false,
     },
@@ -37,13 +37,13 @@ most sought-after communities.</p>`,
 
     {
       question: 'How long does it take to purchase property in Dubai?',
-      answer: `<p class="text-muted mb-4">The process of buying a property in Dubai usually takes 30 days, after signing the Memorandum of Understanding. The process can be faster for off-plan properties, that is 1-3 days.</p>`,
+      answer: `<p class="text-muted mb-4">The process of buying a property in Dubai usually takes 30 days, after signing the Memorandum of Understanding. The process can be faster for off-plan properties, that is 1-3 days. .</p>`,
       open: false,
     },
     {
       question:
         'What are the key considerations when buying property in Dubai?',
-      answer: `<p class="text-muted mb-4">The important factors to consider while working with a registered real estate company are involving the potential return on investment and understanding the ownership laws. Foreigners can own freehold properties in areas like Dubai Marina, JVC and Palm Jumeirah. Also, consider the location's amenities, such as schools and healthcare facilities, to make sure your lifestyle needs are meant.</p>`,
+      answer: `<p class="text-muted mb-4">The important factors to consider while working with a registered real estate company are involving the potential return on investment and understanding the ownership laws. Foreigners can own freehold properties in areas like Dubai Marina, JVC and Palm Jumeirah. Also, consider the location's amenities, such as schools and healthcare facilities, to make sure your lifestyle needs are meant​. are meant.</p>`,
       open: false,
     },
   ];

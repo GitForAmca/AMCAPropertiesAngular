@@ -1,45 +1,54 @@
 <div class="row featured-developers">
-    <div class="container narrow-container">
-        <div class="row">
-            <div class="offset-md-2 col-md-8">
-                <div class="main-heading">
-                    <h2>Leading Developers</h2>
-                    <p>Meet the developers who are recognized for their quality and trusted for their delivery. These developers define excellence in real estate. Our collaboration with top developers ensures best design and secure delivery.</p>
-                </div>
-            </div>
+  <div class="container narrow-container">
+    <div class="row">
+      <div class="offset-md-2 col-md-8">
+        <div class="main-heading">
+          <h2>Leading Developers</h2>
+          <p>Meet the developers who are recognized for their quality and trusted for their delivery. These developers
+            define excellence in real estate. Our collaboration with top developers ensures best design and secure
+            delivery.</p>
         </div>
-        <div class="row properties-carousel splide" id="featured-developers-carousal">
-            <div class="splide__track">
-                <ul class="splide__list">
-                @for (item of activeDeveloper; track $index) {
-                    <li class="splide__slide">
-                    <!-- Logo -->
-                    <div class="img-wrapper border text-center p-2">
-                        <img [src]="item.logoPath" class="standard-logo img-fluid">
-                    </div>
-
-                    <!-- Caption -->
-                    <div class="caption-wrapper">
-                        <div class="row align-items-center gy-2">
-                        <!-- Text -->
-                        <div class="col-12 col-md-9 text-center text-md-start">
-                            <div class="property-type small text-muted">{{ item.developersUnits }} Projects</div>
-                            <div class="developer-name fw-semibold">{{ item.developersName }}</div>
-                        </div>
-
-                        <!-- Button -->
-                        <div class="col-12 col-md-3 text-center text-md-end">
-                            <button class="btn btn-primary-color btn-sm w-100 w-md-auto" [routerLink]="['/developer/',item.pageURL]">
-                            <i class="bi bi-arrow-up-right"></i>
-                            </button>
-                        </div>
-                        </div>
-                    </div>
-                    </li>
-                }
-                </ul>
-            </div>
-            </div>
-
+      </div>
     </div>
+    <div class="row">
+      <ng-container *ngIf="IsLoaded">
+        <div class="col-md-4 mb-4" *ngFor="let skeleton of skeletonArray">
+          <app-skeletonloader></app-skeletonloader>
+        </div>
+      </ng-container>
+      <div class="row properties-carousel splide" id="featured-developers-carousal">
+        <div class="splide__track">
+          <ul class="splide__list">
+            @for (item of activeDeveloper; track $index) {
+            <li class="splide__slide" *ngIf="!IsLoaded && activeDeveloper.length > 0">
+              <!-- Logo -->
+              <div class="img-wrapper border text-center p-2">
+                <img [src]="item.logoPath" class="standard-logo img-fluid">
+              </div>
+
+              <!-- Caption -->
+              <div class="caption-wrapper">
+                <div class="row align-items-center gy-2">
+                  <!-- Text -->
+                  <div class="col-12 col-md-9 text-center text-md-start">
+                    <div class="property-type small text-muted">{{ item.developersUnits }} Projects</div>
+                    <div class="developer-name fw-semibold">{{ item.developersName }}</div>
+                  </div>
+
+                  <!-- Button -->
+                  <div class="col-12 col-md-3 text-center text-md-end">
+                    <button class="btn btn-primary-color btn-sm w-100 w-md-auto"
+                      [routerLink]="['/developer/',item.pageURL]">
+                      <i class="bi bi-arrow-up-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

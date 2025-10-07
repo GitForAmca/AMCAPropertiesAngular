@@ -1,47 +1,46 @@
 <div class="row blogs bg-light">
-    <div class="container narrow-container">
-        <div class="row">
-            <div class="offset-md-2 col-md-8">
-                <div class="main-heading">
-                    <h2>Latest News and Blogs</h2>
-                    <p>Stay updated with expert insights, market trends and community highlights in our blogs and posts. From property trends to community insights, our news and blogs have it all.</p>
-                </div>
-            </div>
+  <div class="container narrow-container">
+    <div class="row">
+      <div class="offset-md-2 col-md-8">
+        <div class="main-heading">
+          <h2>Latest News and Blogs</h2>
+          <p>Stay updated with expert insights, market trends and community highlights in our blogs and posts. From
+            property trends to community insights, our news and blogs have it all.</p>
         </div>
-        <div class="row properties-carousel splide" id="blogs-carousal">
-            <div class="splide__track"> 
-                <ul class="splide__list" *ngIf="IsLoaded">
-                    <li class="splide__slide">
-                        <app-skeletonloader></app-skeletonloader>
-                    </li>
-                    <li class="splide__slide">
-                        <app-skeletonloader></app-skeletonloader>
-                    </li>
-                    <li class="splide__slide">
-                        <app-skeletonloader></app-skeletonloader>
-                    </li>
-                </ul>
-                <ul class="splide__list" *ngIf="!IsLoaded">
-                    @for (item of blogsInterface; track $index) {
-                        <li class="splide__slide">
-                            <div class="img-wrapper">
-                                <img [src]="item.imagesPath" class="standard-logo">
-                                <div class="date">
-                                    <span class="day">{{item.dayPart}}</span>
-                                    <span class="month">{{item.dayMonth}}</span>
-                                </div>
-                            </div>
-                            <div class="caption-wrapper">
-                                <div class="property-type">{{item.categoryName}}</div>
-                                <div class="property-price">{{item.title | textlimit:50}}</div>
-                                <div class="read-more mt-3">
-                                    <button type="button" (click)="GoToBlogsPage(item.autoId,item.blogURL)" class="btn p-0 border-0 bg-transparent">Read More <i class="bi bi-arrow-right"></i></button>
-                                </div>
-                            </div>
-                        </li>
-                    }
-                </ul>
-            </div>
-        </div>
+      </div>
     </div>
-</div>
+
+
+    <div class="row">
+      <ng-container *ngIf="IsLoaded">
+        <div class="col-md-4 mb-4" *ngFor="let skeleton of skeletonArray">
+          <app-skeletonloader></app-skeletonloader>
+        </div>
+      </ng-container>
+      <div class="row properties-carousel splide" id="blogs-carousal">
+        <div class="splide__track">
+          <ul class="splide__list">
+            @for (item of blogsInterface; track $index) {
+            <li class="splide__slide" *ngIf="!IsLoaded && blogsInterface.length > 0">
+              <div class="img-wrapper">
+                <img [src]="item.imagesPath" class="standard-logo">
+                <div class="date">
+                  <span class="day">{{item.dayPart}}</span>
+                  <span class="month">{{item.dayMonth}}</span>
+                </div>
+              </div>
+              <div class="caption-wrapper">
+                <div class="property-type">{{item.categoryName}}</div>
+                <div class="property-price">{{item.title | textlimit:50}}</div>
+                <div class="read-more mt-3">
+                  <button type="button" (click)="GoToBlogsPage(item.autoId,item.blogURL)"
+                    class="btn p-0 border-0 bg-transparent">Read More <i class="bi bi-arrow-right"></i></button>
+                </div>
+              </div>
+            </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

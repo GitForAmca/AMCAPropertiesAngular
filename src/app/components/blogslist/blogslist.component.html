@@ -28,8 +28,12 @@
 <div class="row blogs-list-section py-4">
   <div class="container narrow-container">
     <div class="row">
+      <ng-container *ngIf="IsLoaded">
+        <div class="col-md-4 mb-4" *ngFor="let skeleton of skeletonArray">
+          <app-skeletonloader></app-skeletonloader>
 
-      <app-skeletonloader *ngIf="IsLoaded"></app-skeletonloader>
+        </div>
+      </ng-container>
       <div class="col-md-4 mb-4" *ngFor="let blog of blogsInterface">
         <div class="card border-0 shadow-sm card-hover" style="border-radius: 12px;"
           (click)="GoToBlogsPage(blog.autoId, blog.blogURL)">

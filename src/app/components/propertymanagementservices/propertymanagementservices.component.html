@@ -17,7 +17,8 @@
 
 
 <div class="row py-0 mt-2">
-    <img src="images/imref4.jpg" class="img-fluid w-100 px-0" style="height: 300px; object-fit: cover; object-position: center;">
+  <img src="images/imref4.jpg" class="img-fluid w-100 px-0"
+    style="height: 300px; object-fit: cover; object-position: center;">
 </div>
 <!-- Service Header -->
 <div class="row py-5 bg-light text-center">
@@ -26,10 +27,118 @@
       <div class="col-md-12">
         <h1 class="mb-3">Property Management</h1>
         <p class="lead text-muted">
-          Property management involves professional administration and supervision of real estate assets. It covers key responsibilities like tenant relations, rent collection, property maintenance, and compliance with local regulations. In Dubai specialized companies provide these services, acting as intermediaries between owners and tenants. By managing day-to-day operations, they ensure efficiency, value preservation, and the optimal performance of each property. 
+          Property management involves professional administration and supervision of real estate assets. It covers key
+          responsibilities like tenant relations, rent collection, property maintenance, and compliance with local
+          regulations. In Dubai specialized companies provide these services, acting as intermediaries between owners
+          and tenants. By managing day-to-day operations, they ensure efficiency, value preservation, and the optimal
+          performance of each property.
         </p>
-        <p>All these companies play an important role in improving premises values and justifying operational challenges, allowing owners to navigate the city’s diverse landscape with ease while maximizing the returns on their investments.</p>
+        <p>All these companies play an important role in improving premises values and justifying operational
+          challenges, allowing owners to navigate the city’s diverse landscape with ease while maximizing the returns on
+          their investments. </p>
+        <p>Property management becomes important service in real estate. Property management companies in Dubai handle
+          all aspects of property oversight, this allows landlords to focus on other journey while ensuring that their
+          investment is protected and improved. </p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row blog-details-section py-4">
+    <div class="container narrow-container text-start">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2 class="fw-bold fs-4">Common Services Provided by Property Management Companies</h2>
+          <ul class="text-muted mb-4">
+            <li><strong> Screening and Leasing:</strong> Finding and securing good tenants.</li>
+            <li> <strong>Property Maintenance:</strong> Maintaining and repairing on time. </li>
+            <li> <strong>Financial Management:</strong> Collecting the rent, financial reporting, and budgeting.
+            </li>
+            <li> <strong>Legal Compliance:</strong> Ensuring compliance with Dubai’s property laws.</li>
+            <li> <strong>Marketing and Vacancy Management:</strong> Advertising properties and filling vacancies.
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
+
+
+
+
+
+  <div class="row blog-details-section py-4">
+    <div class="container narrow-container text-start">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2 class="fw-bold fs-4">Benefits of Hiring a Property Management Company in Dubai </h2>
+          <p class="text-muted mb-4">
+            Hiring a property management company in Dubai saves lot of time to landlords, reduces stress, and ensures
+            steady rental income. These property management companies handle tenant screening, leasing, rent collection,
+            property maintenance, making ownership hassle-free. They also ensure legal compliance with DLD and RERA
+            certificates, protecting landlords from disputes. With proper support, properties stay well-maintained and
+            attract good tenants. Property management services in Dubai mean higher returns with less risks, and peace
+            of mind in a competitive market for investors and professionals.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row blog-details-section py-4">
+    <div class="container narrow-container text-start">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2 class="fw-bold fs-4">Future of Property Management in Dubai </h2>
+          <p class="text-muted mb-4">
+            The future of property management in Dubai is growing high from both local and international investors. As
+            Dubai city expands, properties require professional management to meet high standards of living. Technology,
+            such as smart home systems, AI-driven platforms, and digital payment solutions, will play a bigger role in
+            improving efficiency. With Dubai’s focus on real estate growth and innovation, property management services
+            are set to become more advanced and essential for long-term success.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row blog-details-section py-4">
+    <div class="container narrow-container text-start">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2 class="fw-bold fs-4">Conclusion </h2>
+          <p class="text-muted mb-4">
+            Property management in Dubai requires expertise, detailed attention, and a deep understanding of market
+            conditions and local regulations. Aqua Properties offers personalized and professional services to owners to
+            maximize property value in Dubai and ensure everything runs smoothly. Whether you own a residential or
+            commercial property, AMCA Properties manage every detail efficiently and thoroughly comply with the law.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- FAQs -->
+  <section class="container py-4">
+    <div class="container narrow-container  mb-4">
+      <h2 class="text-start">FAQs</h2>
+      <div class="accordion">
+        <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
+          <h2 class="accordion-header">
+            <button class="accordion-button" [class.collapsed]="!faq.open" type="button" (click)="toggleFaq(i)">
+              {{ faq.question }}
+            </button>
+          </h2>
+          <div class="accordion-collapse" [class.collapse]="true" [class.show]="faq.open">
+            <div class="accordion-body" [innerHTML]="faq.answer"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
 </div>

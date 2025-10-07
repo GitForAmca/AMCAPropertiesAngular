@@ -10,6 +10,7 @@ import { ProjectdetailsService } from '../../service/projectdetails.service';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { Router } from '@angular/router';
+import { SkeletonloaderComponent } from '../../reusableComponent/skeletonloader/skeletonloader.component';
 
 @Component({
   selector: 'app-offplanlatestprojcts',
@@ -19,6 +20,7 @@ import { Router } from '@angular/router';
     CommonModule,
     NgSelectModule,
     EnquiryformComponent,
+    SkeletonloaderComponent,
   ],
   templateUrl: './offplanlatestprojcts.component.html',
   styleUrl: './offplanlatestprojcts.component.scss',
@@ -42,14 +44,19 @@ export class OffplanlatestprojctsComponent {
   projectImagesobj: ProjectImages = new ProjectImages();
 
   projectImagesMap: { [projectId: number]: IProjectImages[] } = {};
+  IsLoaded: boolean = true;
+  skeletonArray = Array(3);
   GetProjectDetails() {
     this.projectDetailsobj.pageSize = 10;
     this.projectDetailsobj.pageNumber = 1;
     this.projectDetailsobj.status = 1;
     this.projectdetailsservice
+
       .GetProjectDetailsService(this.projectDetailsobj)
       .subscribe((result: any) => {
         this.projectDetails = result;
+        this.IsLoaded = false;
+
         setTimeout(() => {
           this.initSplideMain();
         }, 0);

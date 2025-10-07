@@ -6,36 +6,41 @@ import { AreaguideService } from '../../service/areaguide.service';
 import { IAreaGuide } from '../../model/interface/IAreaGuide';
 import { AreaGuide } from '../../model/class/AreaGuide';
 import { Router, RouterLink } from '@angular/router';
+import { SkeletonloaderComponent } from '../../reusableComponent/skeletonloader/skeletonloader.component';
 
 @Component({
   selector: 'app-areaguidehighlights',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, SkeletonloaderComponent],
   templateUrl: './areaguidehighlights.component.html',
-  styleUrl: './areaguidehighlights.component.scss'
+  styleUrl: './areaguidehighlights.component.scss',
 })
 export class AreaguidehighlightsComponent {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private areaguideservice : AreaguideService,
-    private router : Router
-  ){}
+    private areaguideservice: AreaguideService,
+    private router: Router
+  ) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.GetAreaGuide();
   }
 
-  AreaGuideInterface : IAreaGuide[] = [];
-  AreaGuideObj : AreaGuide = new AreaGuide();
+  AreaGuideInterface: IAreaGuide[] = [];
+  AreaGuideObj: AreaGuide = new AreaGuide();
+  IsLoaded: boolean = true;
+  skeletonArray = Array(2);
 
-
-  GetAreaGuide(){
-    this.areaguideservice.GetAreaGuide(this.AreaGuideObj).subscribe((result : any) =>{
-      this.AreaGuideInterface = result;
-      setTimeout(() => {
-        this.initSplideMain();
-      }, 0);
-    })
+  GetAreaGuide() {
+    this.areaguideservice
+      .GetAreaGuide(this.AreaGuideObj)
+      .subscribe((result: any) => {
+        this.AreaGuideInterface = result;
+        this.IsLoaded = false;
+        setTimeout(() => {
+          this.initSplideMain();
+        }, 0);
+      });
   }
   initSplideMain() {
     if (isPlatformBrowser(this.platformId)) {
@@ -47,13 +52,13 @@ export class AreaguidehighlightsComponent {
         pagination: false,
         arrows: true,
         breakpoints: {
-          1024: { 
-            perPage: 2 
+          1024: {
+            perPage: 2,
           },
-          640: { 
+          640: {
             perPage: 1,
             pagination: true,
-            arrows: false
+            arrows: false,
           },
         },
       }).mount();

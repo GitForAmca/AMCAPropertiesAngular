@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="row properties-carousel splide" id="latest-project-carousel">
-      <div class="splide__track" >
+      <div class="splide__track">
         <ul class="splide__list">
           @for (items of projectDetails; track $index) {
           <li class="splide__slide">
@@ -35,8 +35,9 @@
                 </div>
                 <div class="property-view">
                   <ul>
-                    <li class="mail cursor-pointer" (click)="GoToProjectDetails(items.projectId, items.projectMetaTitle)"><i
-                        class="bi bi-eye"></i></li>
+                    <li class="mail cursor-pointer"
+                      (click)="GoToProjectDetails(items.projectId, items.projectMetaTitle)"><i class="bi bi-eye"></i>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -57,7 +58,8 @@
                   <span>{{items.area}}</span>
                 </div>
                 <div class="property-enquire-now d-flex gap-2">
-                  <button type="button" class="btn btn-primary-color-outline w-100" (click)="enquiryform.open(items.projectId)">Enquire
+                  <button type="button" class="btn btn-primary-color-outline w-100"
+                    (click)="enquiryform.open(items.projectId)">Enquire
                     Now</button>
                 </div>
               </div>
