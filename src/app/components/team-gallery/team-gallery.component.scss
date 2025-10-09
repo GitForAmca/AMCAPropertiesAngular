@@ -1,0 +1,27 @@
+#team-gallery-carousel .splide__slide {
+  margin: 0.3rem !important;
+  padding: 1rem !important;
+  width: 320px !important;
+  /* match your card width */
+}
+
+.team-gallery-card img:hover {
+  transform: scale(1.03);
+}
+
+.team-gallery-card {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.team-gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+
+}

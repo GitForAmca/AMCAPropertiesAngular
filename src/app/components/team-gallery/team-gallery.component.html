@@ -1,0 +1,119 @@
+<!-- <section class="container py-4">
+  <h2 class="mb-4 text-center fw-bold">Team Gallery</h2>
+
+  <div class="d-flex align-items-center position-relative">
+
+    <button (click)="scrollLeft()" [disabled]="disableLeft" class="btn btn-light rounded-circle shadow-sm me-3"
+      aria-label="Scroll Left" style="width: 44px; height: 44px;">
+      <i class="bi bi-arrow-left fs-4"></i>
+    </button>
+
+    <div #scroller class="image-scroller d-flex px-2 py-2 flex-nowrap gap-3" tabindex="0"
+      (scroll)="updateScrollButtons()" style="scroll-behavior: smooth; width: 100%; overflow-x: auto;" tabindex="0"
+      (scroll)="updateScrollButtons()">
+      <img src="images/Team Gallery 2.JPG" alt="Team celebrating together" class="rounded shadow-sm"
+        style="width: 355px; height: 320px; flex-shrink: 0; object-fit: cover;" />
+
+      <img src="images/Team Gallery 4.JPG" alt="Team meeting in progress" class="rounded shadow-sm"
+        style="width: 355px; height: 320px; flex-shrink: 0; object-fit: cover;" />
+
+      <img src="images/Team Gallery 7.JPG" alt="Fun team event" class="rounded shadow-sm"
+        style="width: 355px; height: 320px; flex-shrink: 0; object-fit: cover;" />
+
+      <img src="images/WorkingAtSpringfieldProperties1.png" alt="Team collaboration" class="rounded shadow-sm"
+        style="width: 355px; height: 320px; flex-shrink: 0; object-fit: cover;" />
+    </div>
+
+    <button (click)="scrollRight()" [disabled]="disableRight" class="btn btn-light rounded-circle shadow-sm ms-3"
+      aria-label="Scroll Right" style="width: 44px; height: 44px;">
+      <i class="bi bi-arrow-right fs-4"></i>
+    </button>
+
+  </div>
+</section> -->
+
+
+<section class="container py-4">
+  <div class="container narrow-container">
+    <div class="row properties-carousel splide" id="team-gallery-carousel">
+
+      <h2 class="mb-4 text-center fw-bold display-6" style=" font-weight: 700;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2rem;">Team Gallery</h2>
+
+      <div class="splide__track">
+        <ul class="splide__list">
+
+          <li class="splide__slide" style="margin: 0; padding: 0;">
+            <div class="card border-0 shadow-sm text-center p-2"
+              style="width: 320px; height: 320px; border-radius: 12px;">
+
+              <img src="images/Team Gallery 1.jpg" alt="Team celebrating together" class="rounded shadow-sm"
+                style=" width: 300px; height: 300px; object-fit: cover;" />
+            </div>
+          </li>
+
+          <li class="splide__slide" style="margin: 0; padding: 0;">
+            <div class="card border-0 shadow-sm text-center p-2"
+              style="width: 320px; height: 320px; border-radius: 12px;">
+
+              <img src="images/Team Gallery 2.JPG" alt="Team meeting in progress" class="rounded shadow-sm"
+                style="width: 300px; height: 300px; flex-shrink: 0; object-fit: cover;" />
+            </div>
+          </li>
+
+          <li class="splide__slide" style="margin: 0; padding: 0;">
+            <div class="card border-0 shadow-sm text-center p-2"
+              style="width: 320px; height: 320px; border-radius: 12px;">
+
+              <img src="images/Team Gallery 3.jpg" alt="Fun team event" class="rounded shadow-sm"
+                style="width: 300px; height: 300px; flex-shrink: 0; object-fit: cover;" />
+            </div>
+          </li>
+
+          <li class="splide__slide" style="margin: 0; padding: 0;">
+            <div class="card border-0 shadow-sm text-center p-2"
+              style="width: 320px; height: 320px; border-radius: 12px;">
+
+              <img src="images/Team Gallery 4.JPG" alt="Team collaboration" class="rounded shadow-sm"
+                style="width: 300px; height: 300px; flex-shrink: 0; object-fit: cover;" />
+            </div>
+          </li>
+          <li class="splide__slide" style="margin: 0; padding: 0;">
+            <div class="card border-0 shadow-sm text-center p-2"
+              style="width: 320px; height: 320px; border-radius: 12px;">
+
+              <img src="images/Team Gallery 5.jpg" alt="Team collaboration" class="rounded shadow-sm"
+                style="width: 300px; height: 300px; flex-shrink: 0; object-fit: cover;" />
+            </div>
+          </li>
+          <li class="splide__slide" style="margin: 0; padding: 0;">
+            <div class="card border-0 shadow-sm text-center p-2"
+              style="width: 320px; height: 320px; border-radius: 12px;">
+
+              <img src="images/Team Gallery 6.jpg" alt="Team collaboration" class="rounded shadow-sm"
+                style="width: 300px; height: 300px; flex-shrink: 0; object-fit: cover;" />
+            </div>
+          </li>
+          <li class="splide__slide" style="margin: 0; padding: 0;">
+            <div class="card border-0 shadow-sm text-center p-2"
+              style="width: 320px; height: 320px; border-radius: 12px;">
+
+              <img src="images/Team Gallery 7.JPG" alt="Team collaboration" class="rounded shadow-sm"
+                style="width: 300px; height: 300px; flex-shrink: 0; object-fit: cover;" />
+            </div>
+          </li>
+          <li class="splide__slide" style="margin: 0; padding: 0;">
+            <div class="card border-0 shadow-sm text-center p-2"
+              style="width: 320px; height: 320px; border-radius: 12px;">
+
+              <img src="images/Team Gallery 8.png" alt="Team collaboration" class="rounded shadow-sm"
+                style="width: 300px; height: 300px; flex-shrink: 0; object-fit: cover;" />
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

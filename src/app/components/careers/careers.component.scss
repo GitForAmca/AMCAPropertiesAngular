@@ -1,0 +1,81 @@
+.custom-banner-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.bg-blur {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.bg-transparent {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.banner-container {
+  height: 500px;
+  overflow: hidden;
+}
+
+.custom-banner-img {
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+
+.banner-content {
+  text-align: start;
+  padding-left: 35px;
+}
+
+.top-50 {
+  bottom: 60% !important;
+}
+
+.custom-btn {
+  color: #C7B47F;
+  border-color: #C7B47F;
+  background-color: white;
+  transition: all 0.3s ease;
+  border: 1px solid #C7B47F
+}
+
+.custom-btn:hover {
+  background-color: #C7B47F;
+  color: white;
+}
+
+.icon-link {
+  color: #C7B47F;
+  text-decoration: none;
+}
+
+.cv-description,
+.vacancies-description {
+  color: #02010187;
+  margin: 0;
+}
+
+
+
+
+.image-scroller {
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  max-width: 100%;
+}
+
+.image-scroller::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
+}
+
+.image-scroller {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}

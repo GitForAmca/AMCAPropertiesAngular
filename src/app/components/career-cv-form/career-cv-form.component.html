@@ -1,0 +1,106 @@
+<section class="container my-2 pt-4">
+  <div class="container narrow-container">
+    <div class="row g-0 align-items-stretch border rounded overflow-hidden shadow-ls">
+
+      <div class="col-12 col-lg-6">
+        <img src="images/DSC_4390.JPG" alt="Team-img" class="img-fluid h-100 w-100 object-fit-cover">
+      </div>
+
+      <div class="col-12 col-lg-6 d-flex">
+        <div class="p-5 bg-light flex-fill d-flex flex-column justify-content-center">
+          <p class="mb-4 fs-5 text-muted">Join our amazing team. Submit your CV and we’ll get in touch!</p>
+
+          <form [formGroup]="cvForm" (ngSubmit)="onSave()">
+            <!-- name -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Full name</label>
+              <input type="text" class="form-control" id="name" placeholder="Your name" formControlName="name" required>
+            </div>
+            <div class="text-danger">
+              @if(cvForm.controls["name"].touched &&
+              cvForm.controls["name"].errors?.["required"]){
+              <div class="text-danger fs-7 mb-1">This is required </div>
+
+              } @else if(cvForm.controls["name"].touched &&
+              cvForm.controls["name"].errors?.["minlength"]){
+              <span class="text-danger">Min char 3 required </span>
+              }
+            </div>
+            <!-- email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">email address</label>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com" formControlName="email"
+                required>
+            </div>
+            <div class="text-danger">
+
+              @if(cvForm.controls["email"].touched &&
+              cvForm.controls["email"].errors?.["email"]){
+              <div class="text-danger" *ngIf="email?.errors?.['required']">email is required.</div>
+
+              <div class="text-danger fs-7 mb-1">email id not valid</div>
+              }
+            </div>
+            <!-- Phone (with flag icon) -->
+            <div class="mb-3">
+              <label for="mobileNo" class="form-label">Phone Number</label>
+              <div class="input-group">
+
+
+
+                <!-- Country Code Dropdown -->
+                <ng-select [items]="countrylisinterface" bindLabel="countryName" bindValue="countryID"
+                  formControlName="countryCode" placeholder="+ Country" [searchable]="true" [clearable]="false"
+                  class="flex-shrink-0" style="width: 130px; min-width: 100px;">
+
+                  <ng-template ng-option-tmp let-item="item">
+                    <img [src]="item.flag" class="me-1" style="width:20px; height:14px;">
+                    {{ item.countryName }} {{ item.countryISDCode }}
+                  </ng-template>
+
+                  <ng-template ng-label-tmp let-item="item">
+                    <img [src]="item.flag" class="me-1" style="width:20px; height:14px;">
+                    {{ item.countryISDCode }}
+                  </ng-template>
+
+                </ng-select>
+
+                <input type="tel" maxlength="12" placeholder="Enter name number" (keypress)="allowOnlyNumbers($event)"
+                  class="form-control" id="mobileNo" formControlName="mobileNo">
+              </div>
+              <div *ngIf="cvForm.controls['mobileNo'].touched && cvForm.controls['mobileNo'].errors"
+                class="text-danger fs-7 mt-1">
+                <div *ngIf="cvForm.controls['mobileNo'].errors['required']">Phone number is required.</div>
+                <div *ngIf="cvForm.controls['mobileNo'].errors['pattern']">Please enter a valid mobileNo number.</div>
+                <div *ngIf="cvForm.get('mobileNo')?.errors?.['minlength']">
+                  Please enter at least 10 digits.
+                </div>
+              </div>
+            </div>
+
+            <!-- File Upload  -->
+            <div class="mb-3">
+              <label for="cvUpload" class="form-label">Upload CV</label>
+              <div class="border rounded p-4 text-center" style="cursor: pointer;">
+                <input type="file" class="form-control" id="cvUpload" formControlName="cvUpload" hidden>
+                <label for="cvUpload" class="d-block">
+                  <span class="text-muted">Click or drag a file to this area to upload</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Submit  -->
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-submit-cv btn-primary btn-lg" [disabled]="cvForm.invalid"
+                (click)="onSave()">Submit
+                CV</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<app-submitted-cv-popup #messagepopup [headingpopup]="headingText" [textpopup]="messagePoppup"
+  [isSubmitted]="isSubmitted"></app-submitted-cv-popup>

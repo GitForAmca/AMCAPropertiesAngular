@@ -42,10 +42,11 @@ export class FooterComponent {
     return this.subscribeForm.get('phone')!;
   }
   onSave() {
-    this.subscribeFormobj = {...this.subscribeForm.value };
+    this.subscribeFormobj = { ...this.subscribeForm.value };
     this.subscribeService
       .AddSubscriptionLead(this.subscribeFormobj)
       .subscribe((result: any) => {
+        console.log(result);
         if (result) {
           this.subscribeForm.reset();
           this.isSubscribed = true;
