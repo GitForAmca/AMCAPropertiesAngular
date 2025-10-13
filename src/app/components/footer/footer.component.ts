@@ -46,7 +46,6 @@ export class FooterComponent {
     this.subscribeService
       .AddSubscriptionLead(this.subscribeFormobj)
       .subscribe((result: any) => {
-        console.log(result);
         if (result) {
           this.subscribeForm.reset();
           this.isSubscribed = true;

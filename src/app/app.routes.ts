@@ -153,7 +153,7 @@ export const routes: Routes = [
     data: {
       title: 'Luxury Penthouses for Rent in UAE | AMCA Properties',
       description:
-        'Rent luxury penthouses in UAE with AMCA Properties. Enjoy spacious living, premium amenities, and breathtaking city and sea views in Dubai & beyond.',
+        'Rent luxury penthouses in UAE with AMCA Properties.  Enjoy spacious living, premium amenities, and breathtaking city and sea views in Dubai & beyond.',
     },
   },
   {

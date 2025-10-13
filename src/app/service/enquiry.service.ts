@@ -23,7 +23,7 @@ export class EnquiryService {
   AddSubscriptionLead(obj: any) {
     return this.http.post(`${this.baseUrl}api/InsertSubscriberDetail`, obj);
   }
-  AddCareersCvLead(obj: any) {
-    return this.http.post(`${this.baseUrl}api/SubmitCareersCV`, obj);
+  AddCareersCvLead(data: any) {
+    return this.http.post(`${this.baseUrl}api/SubmitCareersCV`, data);
   }
 }

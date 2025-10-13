@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import {
   AbstractControl,
@@ -30,6 +31,9 @@ import { SubmittedCvPopupComponent } from '../submitted-cv-popup/submitted-cv-po
 })
 export class CareerCvFormComponent {
   @ViewChild('messagepopup') messagepopup!: SubmittedCvPopupComponent;
+  @ViewChild('fileInput') fileInputRef!: ElementRef<HTMLInputElement>;
+
+  http = inject(HttpClient);
 
   cvForm: FormGroup;
   constructor(
@@ -40,7 +44,6 @@ export class CareerCvFormComponent {
     this.cvForm = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-
       countryCode: [0, [Validators.required]],
       mobileNo: [
         '',
@@ -65,6 +68,9 @@ export class CareerCvFormComponent {
   get email(): AbstractControl {
     return this.cvForm.get('email')!;
   }
+  get countryCode(): AbstractControl {
+    return this.cvForm.get('countryCode')!;
+  }
   get mobileNo(): AbstractControl {
     return this.cvForm.get('mobileNo')!;
   }
@@ -79,6 +85,8 @@ export class CareerCvFormComponent {
   headingText: string = '';
   messagePoppup: string = '';
   isModalOpen: boolean = true;
+  uploadedFileName: string = '';
+  uploadedFileUrl: string = '';
 
   GetCountryList() {
     this.dropdownservice
@@ -92,39 +100,121 @@ export class CareerCvFormComponent {
         const uae = this.countrylisinterface.find((c) => c.countryID === 221);
         if (uae) {
           this.cvForm.patchValue({
-            countryCode: uae.countryID,
+            countryCode: uae.countryISDCode,
           });
         }
       });
   }
+  get fileStatusText(): string {
+    return this.uploadedFileName
+      ? `Selected file: ${this.uploadedFileName}`
+      : 'Click or drag a file to this area to upload';
+  }
+  onDragOver(event: DragEvent) {
+    event.preventDefault(); // ✅ prevents default browser behavior
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault(); // ✅ required for drop to work properly
+
+    const files = event.dataTransfer?.files;
+    if (files && files.length > 0) {
+      this.processFile(files[0]);
+    }
+  }
+
+  processFile(file: File) {
+    this.uploadedFileName = file.name;
+    // Upload logic goes here
+  }
+
+  triggerFileSelect() {
+    if (this.fileInputRef?.nativeElement) {
+      // Reset kar rahe hain taaki same file select karne par bhi change event fire ho
+      this.fileInputRef.nativeElement.value = '';
+      // File dialog open karo
+      this.fileInputRef.nativeElement.click();
+    }
+  }
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    this.uploadedFileName = file.name;
+    const formData = new FormData();
+    formData.append('file', file);
+    this.cvUpload.markAsTouched();
+    this.cvForm.get('cvUpload')?.updateValueAndValidity();
+    this.http
+      .post<any>('https://localhost:7038/api/SubmitCareerCV', formData)
+      .subscribe({
+        next: (res) => {
+          if (res && res.url) {
+            this.cvUpload.setValue(res.url);
+          } else {
+            this.uploadedFileName = '';
+          }
+          this.cvUpload.markAsTouched();
+          this.cvUpload.updateValueAndValidity();
+        },
+
+        error: (err) => {
+          console.error('File upload failed:', err);
+          this.cvUpload.setValue('');
+          this.uploadedFileName = '';
+        },
+      });
+  }
 
   onSave() {
-    this.submitCvFormObj = { ...this.cvForm.value };
-    this.submitCvService
-      .AddCareersCvLead(this.submitCvFormObj)
-      .subscribe((result: any) => {
+    if (this.cvForm.invalid) {
+      this.cvForm.markAllAsTouched();
+      return;
+    }
+
+    const payload = {
+      Name: this.cvForm.get('name')?.value,
+      Email: this.cvForm.get('email')?.value,
+      CountryCode: this.cvForm.get('countryCode')?.value,
+      MobileNo: this.cvForm.get('mobileNo')?.value,
+      Supporting: this.cvForm.get('cvUpload')?.value,
+    };
+
+    this.submitCvService.AddCareersCvLead(payload).subscribe({
+      next: (result: any) => {
         if (result) {
+          // Reset form (exclude file input)
           const countryCode = this.cvForm.get('countryCode')?.value;
-          this.cvForm.reset();
-          this.isSubmitted = true;
-          this.headingText = 'Success';
-          this.messagePoppup =
-            "Thanks, we've received your request. The agent will contact you soon to confirm.";
-          this.messagepopup.open();
-          this.isModalOpen = false;
           this.cvForm.reset({
             countryCode: countryCode,
           });
-          console.log(result);
-          alert('successful sumbitted');
-        } else {
-          this.isSubmitted = false;
-          this.headingText = 'Error';
-          this.messagePoppup = 'Something went wrong';
+          // Reset file name
+          setTimeout(() => {
+            this.uploadedFileName = '';
+          }, 1000);
+          const uae = this.countrylisinterface.find((c) => c.countryID === 221);
+          if (uae) {
+            this.cvForm.patchValue({
+              countryCode: uae.countryISDCode,
+            });
+          }
+          // Success message logic
+          this.isSubmitted = true;
+          this.headingText = 'Success';
+          this.messagePoppup = "Thanks, we've received your request.";
           this.messagepopup.open();
           this.isModalOpen = false;
         }
-      });
+      },
+      error: (err) => {
+        console.error('API Error:', err);
+        this.isSubmitted = false;
+        this.headingText = 'Error';
+        this.messagePoppup = 'Something went wrong';
+        this.messagepopup.open();
+        this.isModalOpen = false;
+      },
+    });
   }
 
   allowOnlyNumbers(event: KeyboardEvent) {
