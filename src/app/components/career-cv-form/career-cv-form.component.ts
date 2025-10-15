@@ -1,6 +1,5 @@
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 import {
   AbstractControl,
   FormBuilder,
@@ -54,7 +53,7 @@ export class CareerCvFormComponent {
           Validators.maxLength(12),
         ],
       ],
-      cvUpload: ['', Validators.required],
+      cvUpload: [null, Validators.required],
     });
   }
   isSubmitted = false;
@@ -86,8 +85,6 @@ export class CareerCvFormComponent {
   messagePoppup: string = '';
   isModalOpen: boolean = true;
   uploadedFileName: string = '';
-  uploadedFileUrl: string = '';
-
   GetCountryList() {
     this.dropdownservice
       .GetCountryList(this.countrylistobj)
@@ -105,17 +102,13 @@ export class CareerCvFormComponent {
         }
       });
   }
-  get fileStatusText(): string {
-    return this.uploadedFileName
-      ? `Selected file: ${this.uploadedFileName}`
-      : 'Click or drag a file to this area to upload';
-  }
+
   onDragOver(event: DragEvent) {
-    event.preventDefault(); // ✅ prevents default browser behavior
+    event.preventDefault(); //  prevents default browser behavior
   }
 
   onDrop(event: DragEvent) {
-    event.preventDefault(); // ✅ required for drop to work properly
+    event.preventDefault(); // required for drop to work properly
 
     const files = event.dataTransfer?.files;
     if (files && files.length > 0) {
@@ -136,34 +129,23 @@ export class CareerCvFormComponent {
       this.fileInputRef.nativeElement.click();
     }
   }
+
   onFileChange(event: any) {
     const file = event.target.files[0];
-    if (!file) return;
+    if (!file) {
+      // No file selected, reset related form control and filename display
+      this.uploadedFileName = '';
+      this.cvUpload.setValue(null);
+      return;
+    }
 
     this.uploadedFileName = file.name;
-    const formData = new FormData();
-    formData.append('file', file);
-    this.cvUpload.markAsTouched();
-    this.cvForm.get('cvUpload')?.updateValueAndValidity();
-    this.http
-      .post<any>('https://localhost:7038/api/SubmitCareerCV', formData)
-      .subscribe({
-        next: (res) => {
-          if (res && res.url) {
-            this.cvUpload.setValue(res.url);
-          } else {
-            this.uploadedFileName = '';
-          }
-          this.cvUpload.markAsTouched();
-          this.cvUpload.updateValueAndValidity();
-        },
 
-        error: (err) => {
-          console.error('File upload failed:', err);
-          this.cvUpload.setValue('');
-          this.uploadedFileName = '';
-        },
-      });
+    // Set the form control value to the file name or just a flag (not the file object!)
+    //this.cvUpload.setValue(file.name);
+
+    this.cvUpload.markAsTouched();
+    this.cvUpload.updateValueAndValidity();
   }
 
   onSave() {
@@ -172,51 +154,106 @@ export class CareerCvFormComponent {
       return;
     }
 
-    const payload = {
-      Name: this.cvForm.get('name')?.value,
-      Email: this.cvForm.get('email')?.value,
-      CountryCode: this.cvForm.get('countryCode')?.value,
-      MobileNo: this.cvForm.get('mobileNo')?.value,
-      Supporting: this.cvForm.get('cvUpload')?.value,
-    };
+    const inputEl = this.fileInputRef.nativeElement;
+    if (!inputEl.files || inputEl.files.length === 0) {
+      console.warn('No file selected to upload');
+      return;
+    }
 
-    this.submitCvService.AddCareersCvLead(payload).subscribe({
-      next: (result: any) => {
-        if (result) {
-          // Reset form (exclude file input)
-          const countryCode = this.cvForm.get('countryCode')?.value;
-          this.cvForm.reset({
-            countryCode: countryCode,
-          });
-          // Reset file name
-          setTimeout(() => {
-            this.uploadedFileName = '';
-          }, 1000);
-          const uae = this.countrylisinterface.find((c) => c.countryID === 221);
-          if (uae) {
-            this.cvForm.patchValue({
-              countryCode: uae.countryISDCode,
-            });
+    const file = inputEl.files[0];
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    this.http
+      .post<any>('https://localhost:7038/api/UploadCareerCV', formData)
+      .subscribe({
+        next: (uploadRes) => {
+          if (!uploadRes || !uploadRes.url) {
+            console.warn('No URL returned from server.');
+            this.cvUpload.setValue(null);
+            this.cvUpload.markAsTouched();
+            this.cvUpload.updateValueAndValidity();
+            return;
           }
-          // Success message logic
-          this.isSubmitted = true;
-          this.headingText = 'Success';
-          this.messagePoppup = "Thanks, we've received your request.";
+
+          // Set form control with the uploaded file URL
+          //this.cvUpload.setValue(uploadRes.url);   error12345
+
+          // Clear file input UI safely by resetting its value to empty string
+          inputEl.value = '';
+          this.uploadedFileName = '';
+
+          const payload = {
+            Name: this.cvForm.get('name')?.value,
+            Email: this.cvForm.get('email')?.value,
+            CountryCode: this.cvForm.get('countryCode')?.value,
+            MobileNo: this.cvForm.get('mobileNo')?.value,
+            Supporting: uploadRes.url,
+          };
+          if (uploadRes.result === 1 && uploadRes.url) {
+            this.http
+              .post<any>('https://localhost:7038/api/SubmitCareersCV', payload)
+              .subscribe({
+                next: (res) => {
+                  // Reset form but keep countryCode
+                  const countryCode = this.cvForm.get('countryCode')?.value;
+                  this.cvForm.reset({ countryCode: countryCode });
+
+                  // Clear filename display after 1 sec
+                  setTimeout(() => {
+                    this.uploadedFileName = '';
+                  }, 0);
+
+                  // Patch UAE ISD code again
+                  const uae = this.countrylisinterface.find(
+                    (c) => c.countryID === 221
+                  );
+                  if (uae) {
+                    this.cvForm.patchValue({ countryCode: uae.countryISDCode });
+                  }
+
+                  // Show success popup
+                  this.isSubmitted = true;
+                  this.headingText = 'Success';
+                  this.messagePoppup = "Thanks, we've received your request.";
+                  this.messagepopup.open();
+                  this.isModalOpen = false;
+                },
+                error: (err) => {
+                  console.error('AddCareersCvLead API Error:', err);
+                  this.isSubmitted = false;
+                  this.headingText = 'Error';
+                  this.messagePoppup =
+                    'Something went wrong while submitting your request.';
+                  this.messagepopup.open();
+                  this.isModalOpen = false;
+                },
+              });
+          }
+        },
+        error: (uploadErr) => {
+          console.error('Upload failed:', uploadErr);
+          this.cvUpload.setValue(null);
+          this.cvUpload.markAsTouched();
+          this.cvUpload.updateValueAndValidity();
+
+          this.isSubmitted = false;
+          this.headingText = 'Error';
+          this.messagePoppup = 'File upload failed. Please try again.';
           this.messagepopup.open();
           this.isModalOpen = false;
-        }
-      },
-      error: (err) => {
-        console.error('API Error:', err);
-        this.isSubmitted = false;
-        this.headingText = 'Error';
-        this.messagePoppup = 'Something went wrong';
-        this.messagepopup.open();
-        this.isModalOpen = false;
-      },
-    });
+        },
+      });
   }
 
+  clearFileInput() {
+    this.fileInputRef.nativeElement.value = ''; // resets file input
+    this.uploadedFileName = '';
+    this.cvUpload.setValue('');
+    this.cvUpload.markAsTouched();
+    this.cvUpload.updateValueAndValidity();
+  }
   allowOnlyNumbers(event: KeyboardEvent) {
     const charCode = event.key.charCodeAt(0);
     if (charCode < 48 || charCode > 57) {

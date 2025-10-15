@@ -12,87 +12,86 @@
 
           <form [formGroup]="cvForm" (ngSubmit)="onSave()">
             <!-- name -->
-            <div class="mb-3">
+            <div class="">
               <label for="name" class="form-label">Full name</label>
               <input type="text" class="form-control" id="name" placeholder="Your name" formControlName="name" required>
+              <div class="text-danger fs-7 mt-1" style="min-height: 1.5em;">
+                @if(cvForm.controls["name"].touched && cvForm.controls["name"].errors?.["required"]){
+                <div>Name is required</div>
+                } @else if(cvForm.controls["name"].touched && cvForm.controls["name"].errors?.["minlength"]){
+                <div>Min char 3 required</div>
+                }
+              </div>
             </div>
-            <div class="text-danger">
-              @if(cvForm.controls["name"].touched &&
-              cvForm.controls["name"].errors?.["required"]){
-              <div class="text-danger fs-7 mb-1">Name is required </div>
 
-              } @else if(cvForm.controls["name"].touched &&
-              cvForm.controls["name"].errors?.["minlength"]){
-              <span class="text-danger">Min char 3 required </span>
-              }
-            </div>
             <!-- email -->
-            <div class="mb-3">
-              <label for="email" class="form-label">email address</label>
+            <div class="">
+              <label for="email" class="form-label">Email address</label>
               <input type="email" class="form-control" id="email" placeholder="you@example.com" formControlName="email"
                 required>
-            </div>
-            <div *ngIf="cvForm.controls['email'].touched && cvForm.controls['email'].errors" class="text-danger fs-7 ">
-              <div *ngIf="cvForm.controls['email'].errors['required']">Email is required.</div>
+              <div class="text-danger fs-7 mt-1" style="min-height: 1.5em;">
+                <div *ngIf="cvForm.controls['email'].touched && cvForm.controls['email'].errors?.['required']">
+                  Email is required.
+                </div>
+              </div>
             </div>
 
-
-            <!-- Phone (with flag icon) -->
-            <div class="mb-3">
+            <!-- phone -->
+            <div class="">
               <label for="mobileNo" class="form-label">Phone Number</label>
               <div class="input-group" style="display: flex; gap: 6px; align-items: center;">
-                <!-- Country Code Dropdown -->
                 <ng-select [items]="countrylisinterface" bindLabel="countryName" bindValue="countryISDCode"
                   formControlName="countryCode" placeholder="+ Country" [searchable]="true" [clearable]="false"
                   class="flex-shrink-0" style="width: 100px; min-width: 90px;">
-
                   <ng-template ng-option-tmp let-item="item">
                     <img [src]="item.flag" class="me-1" style="width:20px; height:14px;">
                     {{ item.countryName }} {{ item.countryISDCode }}
                   </ng-template>
-
                   <ng-template ng-label-tmp let-item="item">
                     <img [src]="item.flag" class="me-1" style="width:20px; height:14px;">
                     {{ item.countryISDCode }}
                   </ng-template>
                 </ng-select>
                 <input type="tel" maxlength="12" placeholder="Enter mobile number" (keypress)="allowOnlyNumbers($event)"
-                  class="form-control flex-grow-1" style="border-radius: 4px;" id="mobileNo" formControlName="mobileNo">
+                  class="form-control flex-grow-1" style="border-radius: 4px;" id="mobileNo"
+                  formControlName="mobileNo" />
               </div>
-              <div *ngIf="cvForm.controls['mobileNo'].touched && cvForm.controls['mobileNo'].errors"
-                class="text-danger fs-7 mt-2">
-                <div *ngIf="cvForm.controls['mobileNo'].errors['required']">Phone number is required.</div>
-                <div *ngIf="cvForm.controls['mobileNo'].errors['pattern']">Please enter a valid mobileNo number.</div>
+              <div class="text-danger fs-7 mt-2" style="min-height: 2em;">
+                <div *ngIf="cvForm.controls['mobileNo'].touched && cvForm.controls['mobileNo'].errors?.['required']">
+                  Phone number is required.
+                </div>
+                <div *ngIf="cvForm.controls['mobileNo'].errors?.['pattern']">
+                  Please enter a valid mobile number.
+                </div>
                 <div *ngIf="cvForm.get('mobileNo')?.errors?.['minlength']">
                   Please enter at least 10 digits.
                 </div>
               </div>
             </div>
-            <label for="cvUpload" class="form-label">CV Upload</label>
-            <!-- File Upload  -->
-            <div class="mb-3" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
-              <input type="file" id="cvUpload" #fileInput hidden (change)="onFileChange($event)"
-                formControlName="cvUpload" accept=".pdf,.doc,.docx" />
 
+            <!-- CV Upload -->
+            <label for="cvUpload" class="form-label">CV Upload</label>
+            <div class="mt-0" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+              <input type="file" id="cvUpload" #fileInput (change)="onFileChange($event)" accept=".pdf,.doc,.docx"
+                formControlName="cvUpload" hidden />
               <label for="cvUpload" class="border rounded p-4 text-center" style="cursor: pointer; display: block;">
                 <div *ngIf="uploadedFileName" class="text-success">
-                  <span class="text-muted text-black">Selected file:</span> {{ uploadedFileName }}
+                  <span class="text-muted text-black">Selected file:</span> {{ uploadedFileName || 'No file selected' }}
                 </div>
                 <div *ngIf="!uploadedFileName" class="text-muted">
                   Click or drag a file to this area to upload
                 </div>
               </label>
+              <div class="text-danger fs-7 mt-1" style="min-height: 1.5em;">
+                <div *ngIf="cvUpload.touched && cvUpload.errors?.['required']">
+                  File is required.
+                </div>
+              </div>
             </div>
 
-
-            <div *ngIf="cvUpload.touched && cvUpload.errors?.['required']" class="text-danger">
-              File is required.
-            </div>
-
-            <!-- Submit  -->
-            <div class="d-grid mt-4">
-              <button type="submit" class="btn btn-submit-cv btn-primary btn-lg">Submit
-                CV</button>
+            <!-- Submit -->
+            <div class="d-grid mt-3">
+              <button type="submit" class="btn btn-submit-cv btn-primary btn-lg">Submit CV</button>
             </div>
           </form>
         </div>
@@ -101,5 +100,6 @@
     </div>
   </div>
 </section>
+
 <app-submitted-cv-popup #messagepopup [headingpopup]="headingText" [textpopup]="messagePoppup"
   [isSubmitted]="isSubmitted"></app-submitted-cv-popup>
