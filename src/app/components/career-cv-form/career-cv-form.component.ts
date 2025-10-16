@@ -15,7 +15,6 @@ import { ICountryList } from '../../model/interface/ICountryList';
 import { AddCvCareers } from '../../model/class/AddCvCareers';
 import { EnquiryService } from '../../service/enquiry.service';
 import { MessagepopupComponent } from '../../reusableComponent/messagepopup/messagepopup.component';
-import { privateDecrypt } from 'crypto';
 @Component({
   selector: 'app-career-cv-form',
   standalone: true,
@@ -127,7 +126,6 @@ export class CareerCvFormComponent {
 
   triggerFileSelect() {
     if (this.fileInputRef?.nativeElement) {
-      // Reset kar rahe hain taaki same file select karne par bhi change event fire ho
       this.fileInputRef.nativeElement.value = '';
       // File dialog open karo
       this.fileInputRef.nativeElement.click();
@@ -138,7 +136,7 @@ export class CareerCvFormComponent {
     const inputEl = event.target as HTMLInputElement;
     const file = inputEl.files?.[0];
 
-    this.cvUpload.markAsTouched(); // ✅ always mark as touched
+    this.cvUpload.markAsTouched();
     this.cvUpload.updateValueAndValidity();
 
     if (!file) {
@@ -147,7 +145,6 @@ export class CareerCvFormComponent {
     }
 
     this.uploadedFileName = file.name;
-    this.cvUpload.setValue(file);
   }
 
   onSave() {
@@ -177,9 +174,6 @@ export class CareerCvFormComponent {
           this.cvUpload.updateValueAndValidity();
           return;
         }
-
-        // Set form control with the uploaded file URL
-        //this.cvUpload.setValue(uploadRes.url);   error12345
 
         // Clear file input UI safely by resetting its value to empty string
         inputEl.value = '';
