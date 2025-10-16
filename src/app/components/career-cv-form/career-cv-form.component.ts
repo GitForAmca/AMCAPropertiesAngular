@@ -14,7 +14,7 @@ import { CountryList } from '../../model/class/CountryList';
 import { ICountryList } from '../../model/interface/ICountryList';
 import { AddCvCareers } from '../../model/class/AddCvCareers';
 import { EnquiryService } from '../../service/enquiry.service';
-import { SubmittedCvPopupComponent } from '../submitted-cv-popup/submitted-cv-popup.component';
+import { MessagepopupComponent } from '../../reusableComponent/messagepopup/messagepopup.component';
 @Component({
   selector: 'app-career-cv-form',
   standalone: true,
@@ -22,14 +22,14 @@ import { SubmittedCvPopupComponent } from '../submitted-cv-popup/submitted-cv-po
     NgSelectComponent,
     ReactiveFormsModule,
     CommonModule,
-    SubmittedCvPopupComponent,
     NgSelectModule,
+    MessagepopupComponent,
   ],
   templateUrl: './career-cv-form.component.html',
   styleUrl: './career-cv-form.component.scss',
 })
 export class CareerCvFormComponent {
-  @ViewChild('messagepopup') messagepopup!: SubmittedCvPopupComponent;
+  @ViewChild('messagepopup') messagepopup!: MessagepopupComponent;
   @ViewChild('fileInput') fileInputRef!: ElementRef<HTMLInputElement>;
 
   http = inject(HttpClient);
@@ -85,6 +85,7 @@ export class CareerCvFormComponent {
   messagePoppup: string = '';
   isModalOpen: boolean = true;
   uploadedFileName: string = '';
+  IsSuccess: boolean = false;
   GetCountryList() {
     this.dropdownservice
       .GetCountryList(this.countrylistobj)
@@ -192,44 +193,44 @@ export class CareerCvFormComponent {
             Supporting: uploadRes.url,
           };
           if (uploadRes.result === 1 && uploadRes.url) {
-            this.http
-              .post<any>('https://localhost:7038/api/SubmitCareersCV', payload)
-              .subscribe({
-                next: (res) => {
-                  // Reset form but keep countryCode
-                  const countryCode = this.cvForm.get('countryCode')?.value;
-                  this.cvForm.reset({ countryCode: countryCode });
+            this.submitCvService.AddCareersCvLead(payload).subscribe({
+              next: (res) => {
+                // Reset form but keep countryCode
+                const countryCode = this.cvForm.get('countryCode')?.value;
+                this.cvForm.reset({ countryCode: countryCode });
 
-                  // Clear filename display after 1 sec
-                  setTimeout(() => {
-                    this.uploadedFileName = '';
-                  }, 0);
+                // Clear filename display after 1 sec
+                setTimeout(() => {
+                  this.uploadedFileName = '';
+                }, 0);
 
-                  // Patch UAE ISD code again
-                  const uae = this.countrylisinterface.find(
-                    (c) => c.countryID === 221
-                  );
-                  if (uae) {
-                    this.cvForm.patchValue({ countryCode: uae.countryISDCode });
-                  }
+                // Patch UAE ISD code again
+                const uae = this.countrylisinterface.find(
+                  (c) => c.countryID === 221
+                );
+                if (uae) {
+                  this.cvForm.patchValue({ countryCode: uae.countryISDCode });
+                }
 
-                  // Show success popup
-                  this.isSubmitted = true;
-                  this.headingText = 'Success';
-                  this.messagePoppup = "Thanks, we've received your request.";
-                  this.messagepopup.open();
-                  this.isModalOpen = false;
-                },
-                error: (err) => {
-                  console.error('AddCareersCvLead API Error:', err);
-                  this.isSubmitted = false;
-                  this.headingText = 'Error';
-                  this.messagePoppup =
-                    'Something went wrong while submitting your request.';
-                  this.messagepopup.open();
-                  this.isModalOpen = false;
-                },
-              });
+                // Show success popup
+
+                this.IsSuccess = true;
+                this.headingText = 'Success';
+                this.messagePoppup =
+                  "Thanks, we've received your request. The agent will contact you soon to confirm.";
+                this.messagepopup.open();
+                this.isModalOpen = false;
+              },
+              error: (err) => {
+                console.error('AddCareersCvLead API Error:', err);
+                this.IsSuccess = false;
+                this.headingText = 'Error';
+                this.messagePoppup =
+                  'Something went wrong while submitting your request.';
+                this.messagepopup.open();
+                this.isModalOpen = false;
+              },
+            });
           }
         },
         error: (uploadErr) => {
