@@ -39,23 +39,32 @@
   <div class="container narrow-container">
     <div class="row">
 
-      <!-- Area Card -->
-      <div class="col-md-4 mb-4" *ngFor="let area of AreaGuideInterface" [routerLink]="['/area/',area.pageURL]">
-        <div class="card border-0 shadow-sm card-hover" style="border-radius: 12px;">
-
-          <!-- Area Image -->
-          <img [src]="area.imageURL" alt="{{ area.area }}" class="card-img-top"
-            style="height: 200px; object-fit: cover; border-radius: 12px 12px 0 0;">
-
-          <!-- Card Body -->
-          <div class="card-body">
-            <h6 class="fw-bold mb-1 color-primary-w">{{ area.area }}</h6>
-            <div class="small text-semibold mb-1" [innerHTML]="area.areaDescription | slice:0:80"></div>
-            <p class="small text-secondary mb-0">{{ area.emiratesName }}</p>
-          </div>
-
+      <!-- Show Skeleton Loader While Loading -->
+      <ng-container *ngIf="!IsLoaded; else areaList">
+        <div class="col-md-4 mb-4" *ngFor="let skeleton of skeletonArray">
+          <app-skeletonloader></app-skeletonloader>
         </div>
-      </div>
+      </ng-container>
+
+      <!-- Area List -->
+      <ng-template #areaList>
+        <div class="col-md-4 mb-4" *ngFor="let area of AreaGuideInterface" [routerLink]="['/area/', area.pageURL]">
+          <div class="card border-0 shadow-sm card-hover" style="border-radius: 12px;">
+
+            <!-- Area Image -->
+            <img [src]="area.imageURL" alt="{{ area.area }}" class="card-img-top"
+              style="height: 200px; object-fit: cover; border-radius: 12px 12px 0 0;" />
+
+            <!-- Card Body -->
+            <div class="card-body">
+              <h6 class="fw-bold mb-1 color-primary-w">{{ area.area }}</h6>
+              <div class="small text-semibold mb-1" [innerHTML]="area.areaDescription | slice:0:80"></div>
+              <p class="small text-secondary mb-0">{{ area.emiratesName }}</p>
+            </div>
+
+          </div>
+        </div>
+      </ng-template>
 
     </div>
   </div>
