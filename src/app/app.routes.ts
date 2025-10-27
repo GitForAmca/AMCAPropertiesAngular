@@ -59,8 +59,13 @@ export const routes: Routes = [
     component: ProjectdetailsComponent,
   },
   {
-    path: 'blogs/:blogTitle/:blogId',
+    path: 'blogs/:blogURL',
     component: BlogsdetailsComponent,
+    data: {
+      title: '',
+      description:
+        'Stay updated with AMCA Properties’ real estate blogs — covering Dubai property trends, investment tips, market insights, and expert advice.',
+    },
   },
   {
     path: 'developers',
@@ -83,6 +88,11 @@ export const routes: Routes = [
   {
     path: 'blogs',
     component: BlogslistComponent,
+    data: {
+      title: '',
+      description:
+        'Stay updated with AMCA Properties’ real estate blogs — covering Dubai property trends, investment tips, market insights, and expert advice.',
+    },
   },
   {
     path: 'about-us',
@@ -206,7 +216,8 @@ export const routes: Routes = [
     component: RentpropertyservicesComponent,
     data: {
       title: '',
-      description: '',
+      description:
+        'Learn everything about renting a property in Dubai with AMCA Properties — expert advice, legal guidance, and top rental listings in prime areas.',
     },
   },
   {
@@ -237,14 +248,29 @@ export const routes: Routes = [
   {
     path: 'faq',
     component: FaqsComponent,
+    data: {
+      title: '',
+      description:
+        'Get answers to common real estate questions about buying, selling, and renting properties in Dubai with AMCA Properties’ expert guidance.',
+    },
   },
   {
     path: 'privacy-policy',
     component: PrivacypolicyComponent,
+    data: {
+      title: '',
+      description:
+        'Learn how AMCA Properties safeguard your data while offering trusted real estate services in Dubai. Your privacy and security are our priority.',
+    },
   },
   {
     path: 'terms-condition',
     component: TermsconditionComponent,
+    data: {
+      title: '',
+      description:
+        'Review AMCA Properties’ terms and conditions for using our Dubai real estate services, ensuring clarity, transparency, and trusted property dealings.',
+    },
   },
   {
     path: 'careerCvForm',

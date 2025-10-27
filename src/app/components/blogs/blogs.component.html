@@ -21,7 +21,7 @@
         <div class="splide__track">
           <ul class="splide__list">
             @for (item of blogsInterface; track $index) {
-            <li class="splide__slide" *ngIf="!IsLoaded && blogsInterface.length > 0">
+            <li class="splide__slide" #blogsCarousal *ngIf="!IsLoaded && blogsInterface.length > 0">
               <div class="img-wrapper">
                 <img [src]="item.imagesPath" class="standard-logo">
                 <div class="date">
@@ -33,7 +33,7 @@
                 <div class="property-type">{{item.categoryName}}</div>
                 <div class="property-price">{{item.title | textlimit:50}}</div>
                 <div class="read-more mt-3">
-                  <button type="button" (click)="GoToBlogsPage(item.autoId,item.blogURL)"
+                  <button type="button" (click)="GoToBlogsPage(item.blogURL)"
                     class="btn p-0 border-0 bg-transparent">Read More <i class="bi bi-arrow-right"></i></button>
                 </div>
               </div>

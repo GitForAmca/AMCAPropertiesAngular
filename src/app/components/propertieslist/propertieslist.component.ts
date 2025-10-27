@@ -70,7 +70,7 @@ export class PropertieslistComponent {
     this.unitDetailsobj.developerURL = this.developerurl || '';
     this.unitDetailsobj.areaURL = this.areaurl || '';
 
-    this.pageheading = this.pageheading || 'Property List';
+    this.pageheading = this.pageheading || '';
     this.navmenu = this.navmenu || '';
 
     this.GetPurposeDropdown();

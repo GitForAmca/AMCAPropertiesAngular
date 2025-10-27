@@ -52,11 +52,10 @@ export class BlogslistComponent {
         this.blogsCategoryInterface = result;
       });
   }
-  GoToBlogsPage(blogId: number, blogURL: string) {
-    this.routerblogs.navigate([`/blogs/${blogURL}`, blogId]);
+  GoToBlogsPage(blogURL: string) {
+    this.routerblogs.navigate([`/blogs/${blogURL}`]);
   }
   GetBlogsCategoryWise(autoId: number) {
-    debugger;
     this.blogsobj.categoryId = autoId;
     this.getBlogs();
   }

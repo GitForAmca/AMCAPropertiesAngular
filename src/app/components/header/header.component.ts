@@ -5,9 +5,9 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  emailText = "info@amcaproperties.com";
-  contactNoText = "+971 4 491 8258";
+  emailText = 'info@amcaproperties.com';
+  contactNoText = '+971 585711705';
 }

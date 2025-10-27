@@ -1,20 +1,34 @@
 import { Component, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { HeaderComponent } from "./components/header/header.component";
-import { MenuComponent } from "./components/menu/menu.component";
-import { FooterComponent } from "./components/footer/footer.component";
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterOutlet,
+} from '@angular/router';
+import { HeaderComponent } from './components/header/header.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { filter, map, mergeMap } from 'rxjs';
 import { MetaService } from './service/meta.service';
-import { ContactusenquiryformComponent } from "./reusableComponent/contactusenquiryform/contactusenquiryform.component";
+import { ContactusenquiryformComponent } from './reusableComponent/contactusenquiryform/contactusenquiryform.component';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { MessagepopupComponent } from "./reusableComponent/messagepopup/messagepopup.component";
+import { MessagepopupComponent } from './reusableComponent/messagepopup/messagepopup.component';
+import { CanonicalServiceService } from './service/canonical-service.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, MenuComponent, FooterComponent, ContactusenquiryformComponent, CommonModule, MessagepopupComponent],
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+    MenuComponent,
+    FooterComponent,
+    ContactusenquiryformComponent,
+    CommonModule,
+    MessagepopupComponent,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   @ViewChild('messagepopup') messagepopup: any;
@@ -23,7 +37,7 @@ export class AppComponent {
   messagePoppup = '';
   IsSuccess = false;
 
-  handleEnquiry(event: { success: boolean, message: string }) {
+  handleEnquiry(event: { success: boolean; message: string }) {
     // Close the enquiry modal
     this.isModalOpen = false;
 
@@ -40,35 +54,45 @@ export class AppComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private metaService: MetaService,
+    private canonicalService: CanonicalServiceService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit(): void {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd),
-      map(() => this.activatedRoute),
-      map(route => {
-        while (route.firstChild) route = route.firstChild;
-        return route;
-      }),
-      mergeMap(route => route.data)
-    ).subscribe(data => {
-      if (data['title'] && data['description']) {
-        this.metaService.setMeta(data['title'], data['description']);
-      }
-    });
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        map(() => this.activatedRoute),
+        map((route) => {
+          while (route.firstChild) route = route.firstChild;
+          return route;
+        }),
+        mergeMap((route) => route.data)
+      )
+      .subscribe((data) => {
+        if (data['title'] && data['description']) {
+          this.metaService.setMeta(data['title'], data['description']);
+        }
+        //  Set Canonical Tag (either from route data or auto-generated)
+        if (data['canonical']) {
+          this.canonicalService.setCanonicalURL(data['canonical']);
+        } else {
+          // fallback: current page URL
+          const url = 'https://amcaproperties.com' + this.router.url;
+          this.canonicalService.setCanonicalURL(url);
+        }
+      });
   }
-  ngAfterViewInit() : void {
-    if (isPlatformBrowser(this.platformId)){
+  ngAfterViewInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
       const isShown = localStorage.getItem('EnquiryForm');
-      if(!isShown){
+      if (!isShown) {
         this.isModalOpen = true;
         localStorage.setItem('EnquiryForm', 'true');
       }
     }
-    
   }
-  close(){
+  close() {
     this.isModalOpen = false;
   }
 }

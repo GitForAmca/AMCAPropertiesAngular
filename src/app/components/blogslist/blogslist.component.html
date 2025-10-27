@@ -36,7 +36,7 @@
       </ng-container>
       <div class="col-md-4 mb-4" *ngFor="let blog of blogsInterface">
         <div class="card border-0 shadow-sm card-hover" style="border-radius: 12px;"
-          (click)="GoToBlogsPage(blog.autoId, blog.blogURL)">
+          (click)="GoToBlogsPage(blog.blogURL)">
           <img [src]="blog.imagesPath || 'assets/default-blog.png'" alt="{{ blog.title }}" class="card-img-top"
             style="height: 200px; object-fit: cover; border-radius: 12px 12px 0 0;">
           <div class="card-body">

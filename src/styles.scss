@@ -1,112 +1,137 @@
 @import 'variables';
 @import "@ng-select/ng-select/themes/default.theme.css";
-body{
+
+body {
   font-family: $font-stack !important;
 }
+
 .narrow-container {
   max-width: 1170px;
   margin: 0 auto;
 }
-.btn-primary-color{
-  background-color: $primary-color !important; 
+
+.btn-primary-color {
+  background-color: $primary-color !important;
   border: 1px solid $primary-color !important;
   color: #ffffff !important;
   font-weight: 500;
-  &:hover{
+
+  &:hover {
     background-color: $primary-color;
     border: 1px solid $primary-color;
     color: #ffffff;
   }
-  &:active{
+
+  &:active {
     background-color: $primary-color !important;
     border: 1px solid $primary-color !important;
     color: #ffffff !important;
   }
 }
-.btn-secondary-color{
-  background-color: $secondary-color !important; 
+
+.btn-secondary-color {
+  background-color: $secondary-color !important;
   border: 1px solid $secondary-color !important;
   color: #ffffff !important;
   font-weight: 500;
-  &:hover{
+
+  &:hover {
     background-color: $secondary-color;
     border: 1px solid $secondary-color;
     color: #ffffff;
   }
-  &:active{
+
+  &:active {
     background-color: $secondary-color !important;
     border: 1px solid $secondary-color !important;
     color: #ffffff !important;
   }
 }
-.btn-primary-color-outline{
+
+.btn-primary-color-outline {
   background-color: transparent;
   border: 1px solid $primary-color;
   color: $primary-color;
   font-weight: 500;
-  &:hover{
+
+  &:hover {
     background-color: $primary-color;
     border: 1px solid $primary-color;
     color: #ffffff;
   }
-  &:active{
+
+  &:active {
     background-color: $primary-color !important;
     border: 1px solid $primary-color !important;
     color: #ffffff !important;
   }
 }
-.btn-secondary-color-outline{
+
+.btn-secondary-color-outline {
   background-color: transparent;
   border: 1px solid $secondary-color;
   color: $secondary-color;
   font-weight: 500;
-  &:hover{
+
+  &:hover {
     background-color: $secondary-color;
     border: 1px solid $secondary-color;
     color: #ffffff;
   }
-  &:active{
+
+  &:active {
     background-color: $secondary-color !important;
     border: 1px solid $secondary-color !important;
     color: #ffffff !important;
   }
 }
-.main-heading{
+
+.main-heading {
   text-align: center;
-  h2{
-    font-size: 36px;    
+
+  h2 {
+    font-size: 36px;
     font-family: $secondary-font-stack;
     color: $primary-color;
   }
-  p{
+
+  p {
     color: #333;
   }
 }
-.splide__pagination__page{
+
+.splide__pagination__page {
   background-color: $secondary-color;
 }
-.splide__pagination__page.is-active{
+
+.splide__pagination__page.is-active {
   background-color: $primary-color;
 }
-.splide__arrow--next{
+
+.splide__arrow--next {
   right: -4em;
 }
-.splide__arrow--prev{
+
+.splide__arrow--prev {
   left: -4em;
 }
-.splide__arrow{
+
+.splide__arrow {
   background-color: transparent;
   border: 1px solid $secondary-color;
   color: $secondary-color;
 }
-.splide__arrow svg{
+
+.splide__arrow svg {
   fill: $secondary-color;
   height: 10px;
   width: 10px;
 }
-.splide__track{
+
+.splide__track {
   padding-bottom: 18px;
 }
+
 .custom-pagination {
   .page-item {
     .page-link {
@@ -135,9 +160,11 @@ body{
     }
   }
 }
-.cursor-pointer{
+
+.cursor-pointer {
   cursor: pointer;
 }
+
 .standard-logo {
   height: 100px;
   width: 100%;
@@ -145,32 +172,44 @@ body{
   margin-left: auto;
   margin-right: auto;
 }
-.btnsearch-style{
+
+.btnsearch-style {
   border: 1px solid #dee2e6;
   color: #212529;
-  &:hover{
+
+  &:hover {
     background-color: transparent;
     color: #212529;
     border: 1px solid #dee2e6;
   }
 }
-.btnsearch-style:checked + .btnsearch-style, .btnsearch-style.active, .btnsearch-style.show, .btnsearch-style:first-child:active, :not(.btnsearch-style) + .btnsearch-style:active{
+
+.btnsearch-style:checked+.btnsearch-style,
+.btnsearch-style.active,
+.btnsearch-style.show,
+.btnsearch-style:first-child:active,
+:not(.btnsearch-style)+.btnsearch-style:active {
   background-color: transparent;
-    color: #212529;
-    border: 1px solid #dee2e6;
+  color: #212529;
+  border: 1px solid #dee2e6;
 }
+
 /* Replace Bootstrap dropdown arrow with ^ v style */
 .dropdown-toggle::after {
-  content: "";                /* down arrow */
+  content: "";
+  /* down arrow */
   font-size: 0.9rem;
   margin-left: .5em;
-  border: none !important;     /* remove default caret */
+  border: none !important;
+  /* remove default caret */
 }
 
 /* When dropdown is open -> flip arrow */
 .dropdown.show .dropdown-toggle::after {
-  content: "";                /* up arrow */
+  content: "";
+  /* up arrow */
 }
+
 .blur-load {
   filter: blur(20px);
   transition: filter 0.3s ease-out;
@@ -222,34 +261,110 @@ body{
 
 .card-hover:hover {
   opacity: 0.9;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
-.color-primary-w{
+
+.color-primary-w {
   color: $primary-color;
 }
-.page-format{
-    margin-top: 1rem;
-    ol{
-        li{
-            a{
-                color: $primary-color;
-            }
-        }
+
+.page-format {
+  margin-top: 1rem;
+
+  ol {
+    li {
+      a {
+        color: $primary-color;
+      }
     }
+  }
 }
-.accordion-button:not(.collapsed){
+
+.accordion-button:not(.collapsed) {
   background-color: #dee2e6;
   color: #000;
 }
-.btn-w-c{
+
+.btn-w-c {
   max-width: 70px;
 }
 
-@media (max-width: 767.98px){
-  .splide__pagination{
+@media (max-width: 767.98px) {
+  .splide__pagination {
     bottom: 1.5em;
   }
-  .btn-w-c{
+
+  .btn-w-c {
     max-width: 100%;
   }
+}
+
+/* HEADER sticky */
+app-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: block;
+}
+
+/* MENU sticky just below header */
+app-menu {
+  position: sticky;
+  top: 34px;
+  /* header ki height jitni rakhni hai */
+  z-index: 999;
+  display: block;
+  background-color: white;
+}
+
+
+app-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  /* adjust your desktop header height */
+  display: block;
+}
+
+/////////
+/* Navbar sticky below header */
+app-menu {
+  position: sticky;
+  /* match header height */
+  z-index: 999;
+  display: block;
+}
+
+/* Content below header + navbar */
+
+
+@media (max-width: 1024px) {
+  app-header {
+    height: 70px;
+    /* if header height increases */
+  }
+
+  app-menu {
+    top: 65px;
+    /* match new header height */
+  }
+
+
+}
+
+@media (max-width: 768px) {
+
+  /* Hide header */
+  app-header {
+    display: none;
+  }
+
+  /* Navbar moves to top */
+  app-menu {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+
 }

@@ -1,11 +1,18 @@
-import { Component, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  Inject,
+  PLATFORM_ID,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { CommonModule, isPlatformBrowser, NgIf } from '@angular/common';
 import Splide from '@splidejs/splide';
 import { Blogs } from '../../model/class/Blogs';
 import { IBlogs } from '../../model/interface/IBlogs';
 import { BlogsService } from '../../service/blogs.service';
 import { TextlimitPipe } from '../../pipe/textlimit.pipe';
-import { Router, ɵEmptyOutletComponent } from '@angular/router';
+import { Router } from '@angular/router';
 import { SkeletonloaderComponent } from '../../reusableComponent/skeletonloader/skeletonloader.component';
 
 @Component({
@@ -16,6 +23,7 @@ import { SkeletonloaderComponent } from '../../reusableComponent/skeletonloader/
   styleUrl: './blogs.component.scss',
 })
 export class BlogsComponent {
+  @ViewChild('blogsCarousal') blogsCarousal!: ElementRef;
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private blogsservice: BlogsService,
@@ -36,8 +44,10 @@ export class BlogsComponent {
       this.blogsInterface = result;
       this.IsLoaded = false;
       setTimeout(() => {
-        this.InitSplit();
-      }, 0);
+        if (this.blogsCarousal) {
+          this.InitSplit();
+        }
+      });
     });
   }
 
@@ -63,7 +73,7 @@ export class BlogsComponent {
       }).mount();
     }
   }
-  GoToBlogsPage(blogId: number, blogURL: string) {
-    this.routerblogs.navigate([`/blogs/${blogURL}`, blogId]);
+  GoToBlogsPage(blogURL: string) {
+    this.routerblogs.navigate([`/blogs/${blogURL}`]);
   }
 }

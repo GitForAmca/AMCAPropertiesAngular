@@ -1,28 +1,28 @@
 <div class="card mb-4 recentblogs shadow-sm border-0" style="border-radius: 10px;">
-    <div class="card-header text-white">
-        <h5 class="mb-0">Recent Blogs</h5>
-    </div>
+  <div class="card-header text-white">
+    <h5 class="mb-0">Recent Blogs</h5>
+  </div>
 
-    <ul class="list-group list-group-flush">
-        <li *ngFor="let blog of lastestBlogInterface"
-            class="list-group-item d-flex align-items-start border-0 border-bottom" style="background-color: #F9F9F9;">
+  <ul class="list-group list-group-flush">
+    <li *ngFor="let blog of lastestBlogInterface"
+      class="list-group-item d-flex align-items-start border-0 border-bottom" style="background-color: #F9F9F9;">
 
-            <div class="flex-shrink-0">
-                <img [src]="blog.imagesPath || 'assets/default-blog.png'" alt="{{ blog.title }}" class="rounded"
-                    style="width: 70px; height: 70px; object-fit: cover; border: 2px solid #C7B47F;">
-            </div>
+      <div class="flex-shrink-0">
+        <img [src]="blog.imagesPath || 'assets/default-blog.png'" alt="{{ blog.title }}" class="rounded"
+          style="width: 70px; height: 70px; object-fit: cover; border: 2px solid #C7B47F;">
+      </div>
 
-            <div class="flex-grow-1 ms-3">
-                <a class="fw-semibold text-decoration-none cursor-pointer color-primary-w"
-                    (click)="GoToBlogsPage(blog.autoId, blog.blogURL)">
-                    {{ blog.title }}
-                </a>
-                <p class="small mb-1" style="color: #969AA0;">
-                    {{ blog.createdOn | date:'MMM d, y' }}
-                </p>
-                <div [innerHTML]="(blog.description | slice:0:100) + (blog.description.length > 100 ? '...' : '')"></div>
-            </div>
+      <div class="flex-grow-1 ms-3">
+        <a class="fw-semibold text-decoration-none cursor-pointer color-primary-w"
+          (click)="GoToBlogsPage(blog.blogURL)">
+          {{ blog.title }}
+        </a>
+        <p class="small mb-1" style="color: #969AA0;">
+          {{ blog.createdOn | date:'MMM d, y' }}
+        </p>
+        <div [innerHTML]="(blog.description | slice:0:100) + (blog.description.length > 100 ? '...' : '')"></div>
+      </div>
 
-        </li>
-    </ul>
+    </li>
+  </ul>
 </div>

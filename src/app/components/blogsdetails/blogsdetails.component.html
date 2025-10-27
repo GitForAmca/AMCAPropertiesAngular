@@ -20,17 +20,18 @@
 <div class="row blog-details-section py-4">
   <div class="container narrow-container">
     <div class="row">
-      <div class="col-lg-8">
-        <h1 class="mb-3">{{ blogTitle }}</h1>
+      <div class="col-lg-8" [routerLink]="['/blogs/', singleBlog?.blogURL]">
+        <h1 class="mb-3">{{ singleBlog?.title }}</h1>
         <p class="text-muted small mb-4" *ngIf="!IsLoaded">
-          <i class="bi bi-calendar-event"></i> {{ blogDate }}
+          <i class="bi bi-calendar-event"></i> {{ singleBlog?.createdOn }}
         </p>
-        
+
         <app-skeletonloader *ngIf="IsLoaded"></app-skeletonloader>
-        <img src="{{blogImage}}" *ngIf="IsShowImage" alt="{{ blogTitle }}" class="img-fluid rounded mb-4 w-100" style="height: 400px; object-fit: cover; object-position: top;">
-        
+        <img src="{{singleBlog?.imagesPath}}" *ngIf="IsShowImage" alt="{{ blogTitle }}"
+          class="img-fluid rounded mb-4 w-100" style="height: 400px; object-fit: cover; object-position: top;">
+
         <div class="blog-content">
-          <div [innerHTML]="blogDescription"></div>
+          <div [innerHTML]="singleBlog?.description"></div>
         </div>
       </div>
 
