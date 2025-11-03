@@ -63,8 +63,8 @@ export class OffplanlatestprojctsComponent {
       });
   }
 
-  GoToProjectDetails(projectId: number, pageURL: string) {
-    this.router.navigate([`/project/${pageURL}`, projectId]);
+  GoToProjectDetails(pageURL: string) {
+    this.router.navigate([`/project/${pageURL}`]);
   }
 
   initSplideMain() {

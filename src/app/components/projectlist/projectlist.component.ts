@@ -1,5 +1,11 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, HostListener, Inject, Input, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  Inject,
+  Input,
+  PLATFORM_ID,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SkeletonloaderComponent } from '../../reusableComponent/skeletonloader/skeletonloader.component';
@@ -36,32 +42,32 @@ import { ProjectCompletionYearList } from '../../model/class/ProjectCompletionYe
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule, SkeletonloaderComponent],
   templateUrl: './projectlist.component.html',
-  styleUrl: './projectlist.component.scss'
+  styleUrl: './projectlist.component.scss',
 })
 export class ProjectlistComponent {
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object, 
-    private projectdetailsservice : ProjectdetailsService,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private projectdetailsservice: ProjectdetailsService,
     public router: Router,
-    private route: ActivatedRoute, 
-    private dropdowns : DropdownsService,
-    private activedeveloper : DevelopersService) {}
+    private route: ActivatedRoute,
+    private dropdowns: DropdownsService,
+    private activedeveloper: DevelopersService
+  ) {}
 
+  @Input() projectType: number = 0;
+  @Input() status: number = 0;
+  @Input() pageheading: string = '';
+  @Input() developerurl: string = '';
+  @Input() areaurl: string = '';
 
-  @Input() projectType : number = 0;
-  @Input() status : number = 0;
-  @Input() pageheading : string = "";
-  @Input() developerurl : string = "";
-  @Input() areaurl : string = "";  
-  
   ngOnInit(): void {
-    debugger
+    debugger;
     this.projectDetailsobj.projectType = this.projectType || 0;
     this.projectDetailsobj.status = this.status || 0;
-    this.projectDetailsobj.developerURL = this.developerurl || "";
-    this.projectDetailsobj.areaURL = this.areaurl || "";
+    this.projectDetailsobj.developerURL = this.developerurl || '';
+    this.projectDetailsobj.areaURL = this.areaurl || '';
 
-    this.pageheading = this.pageheading || "Project List";
+    this.pageheading = this.pageheading || 'Project List';
 
     this.GetPurposeDropdown();
     this.GetAreaDropdown();
@@ -73,17 +79,24 @@ export class ProjectlistComponent {
     this.GetActiveProjectDropdown();
     this.GetProjectCompletionDropdown();
 
-    this.route.queryParams.subscribe(params => {
-      debugger
-      this.projectDetailsobj.projectId       = params['projectId']       ? +params['projectId'] : 0;
-      this.projectDetailsobj.priceFrom    = params['priceFrom']    ? +params['priceFrom'] : 0;
-      this.projectDetailsobj.priceTo      = params['priceTo']      ? +params['priceTo'] : 0;
+    this.route.queryParams.subscribe((params) => {
+      debugger;
+      this.projectDetailsobj.projectId = params['projectId']
+        ? +params['projectId']
+        : 0;
+      this.projectDetailsobj.priceFrom = params['priceFrom']
+        ? +params['priceFrom']
+        : 0;
+      this.projectDetailsobj.priceTo = params['priceTo']
+        ? +params['priceTo']
+        : 0;
 
-      this.projectDetailsobj.beds = params['beds'] ? params['beds'].split(',').map(Number): [];
-
+      this.projectDetailsobj.beds = params['beds']
+        ? params['beds'].split(',').map(Number)
+        : [];
 
       // Type & Status can still come from query if present
-      
+
       if (params['status']) {
         this.projectDetailsobj.status = +params['status'];
       }
@@ -97,97 +110,117 @@ export class ProjectlistComponent {
         this.projectDetailsobj.area = +params['area'];
       }
 
-
       this.GetProjectDetails(1);
     });
   }
 
   bedsBathsDropdownOpen = false;
-    priceDropdownOpen = false;
-    propertyListCount : number = 0;
-  
-    propertyPurpose : IPropertyPurpose[] = [];
-    propertyArea : IPropertyArea[] = [];
-    propertyUnit : IUnitType[] = [];
-    propertyBath : IBaths[] = [];
-    propertyBed : IBeds[] = [];
-    propertyStatus : IPropertyStatus[] = [];
-    projectDeveloperList : IActiveDeveloper [] = [];
-    projectDetails : IProjectDetails[] = [];
-    projectImages : IProjectImages[] = [];
-    completionyearlist : IProjectCompletionYearList[] = [];
-    activeproject : IActiveProjectList[] = [];
-    
-    propertyPurposeobj : PropertyPurpose = new PropertyPurpose();
-    propertyAreaobj : PropertyArea = new PropertyArea();
-    propertyUnitobj : UnitType = new UnitType();
-    propertyBathobj : Baths = new Baths();
-    propertyBedobj : Beds = new Beds();
-    projectDeveloperListobj : ActiveDeveloper = new ActiveDeveloper();
-    propertyStatusobj : PropertyStatus = new PropertyStatus();
-    projectDetailsobj : ProjectDetails = new ProjectDetails();
-    projectImagesobj : ProjectImages = new ProjectImages();
-    activeprojectobj : ActiveProjectList = new ActiveProjectList();
-    completionyearlistobj : ProjectCompletionYearList = new ProjectCompletionYearList();
-  
-    unitImagesMap: { [unitId: number]: IUnitImages[] } = {};
-    unitImageCountMap: { [unitId: number]: number } = {};
+  priceDropdownOpen = false;
+  propertyListCount: number = 0;
 
-  GetPurposeDropdown(){
-    this.dropdowns.GetPropertiesPurpose(this.propertyPurposeobj).subscribe((result:any) => {
-      this.propertyPurpose = result;
-    })
+  propertyPurpose: IPropertyPurpose[] = [];
+  propertyArea: IPropertyArea[] = [];
+  propertyUnit: IUnitType[] = [];
+  propertyBath: IBaths[] = [];
+  propertyBed: IBeds[] = [];
+  propertyStatus: IPropertyStatus[] = [];
+  projectDeveloperList: IActiveDeveloper[] = [];
+  projectDetails: IProjectDetails[] = [];
+  projectImages: IProjectImages[] = [];
+  completionyearlist: IProjectCompletionYearList[] = [];
+  activeproject: IActiveProjectList[] = [];
+
+  propertyPurposeobj: PropertyPurpose = new PropertyPurpose();
+  propertyAreaobj: PropertyArea = new PropertyArea();
+  propertyUnitobj: UnitType = new UnitType();
+  propertyBathobj: Baths = new Baths();
+  propertyBedobj: Beds = new Beds();
+  projectDeveloperListobj: ActiveDeveloper = new ActiveDeveloper();
+  propertyStatusobj: PropertyStatus = new PropertyStatus();
+  projectDetailsobj: ProjectDetails = new ProjectDetails();
+  projectImagesobj: ProjectImages = new ProjectImages();
+  activeprojectobj: ActiveProjectList = new ActiveProjectList();
+  completionyearlistobj: ProjectCompletionYearList =
+    new ProjectCompletionYearList();
+
+  unitImagesMap: { [unitId: number]: IUnitImages[] } = {};
+  unitImageCountMap: { [unitId: number]: number } = {};
+
+  GetPurposeDropdown() {
+    this.dropdowns
+      .GetPropertiesPurpose(this.propertyPurposeobj)
+      .subscribe((result: any) => {
+        this.propertyPurpose = result;
+      });
   }
 
-  GetAreaDropdown(){
-    this.propertyAreaobj.areaType = "Projects";
-    this.dropdowns.GetAvailablePropertiesArea(this.propertyAreaobj).subscribe((result:any) => {
-      this.propertyArea = result;
-      const selectedArea = this.propertyArea.find(a => a.autoId === this.projectDetailsobj.area);
-      this.searchText = selectedArea ? selectedArea.area : '';
-    })
+  GetAreaDropdown() {
+    this.propertyAreaobj.areaType = 'Projects';
+    this.dropdowns
+      .GetAvailablePropertiesArea(this.propertyAreaobj)
+      .subscribe((result: any) => {
+        this.propertyArea = result;
+        const selectedArea = this.propertyArea.find(
+          (a) => a.autoId === this.projectDetailsobj.area
+        );
+        this.searchText = selectedArea ? selectedArea.area : '';
+      });
   }
-  GetUnitTypeDropdown(){
-    this.dropdowns.GetUnitType(this.propertyUnitobj).subscribe((result:any) => {
-      this.propertyUnit = result;
-    })
+  GetUnitTypeDropdown() {
+    this.dropdowns
+      .GetUnitType(this.propertyUnitobj)
+      .subscribe((result: any) => {
+        this.propertyUnit = result;
+      });
   }
-  GetBedsDropdown(){
-    this.dropdowns.GetPropertyBedroom(this.propertyBedobj).subscribe((result:any) => {
-      this.propertyBed = result;
-    })
+  GetBedsDropdown() {
+    this.dropdowns
+      .GetPropertyBedroom(this.propertyBedobj)
+      .subscribe((result: any) => {
+        this.propertyBed = result;
+      });
   }
-  GetBathsDropdown(){
-    this.dropdowns.GetPropertyBathroom(this.propertyBathobj).subscribe((result:any) => {
-      this.propertyBath = result;
-    })
+  GetBathsDropdown() {
+    this.dropdowns
+      .GetPropertyBathroom(this.propertyBathobj)
+      .subscribe((result: any) => {
+        this.propertyBath = result;
+      });
   }
-  GetPropertyStatusDropdown(){
-    this.dropdowns.GetPropertyStatus(this.propertyStatusobj).subscribe((result:any) => {
-      this.propertyStatus = result;
-    })
+  GetPropertyStatusDropdown() {
+    this.dropdowns
+      .GetPropertyStatus(this.propertyStatusobj)
+      .subscribe((result: any) => {
+        this.propertyStatus = result;
+      });
   }
-  GetActiveDeveloperDropdown(){
-    this.activedeveloper.GetActiveDevelopers(this.projectDeveloperListobj).subscribe((result:any) => {
-      this.projectDeveloperList = result;
-    })
+  GetActiveDeveloperDropdown() {
+    this.activedeveloper
+      .GetActiveDevelopers(this.projectDeveloperListobj)
+      .subscribe((result: any) => {
+        this.projectDeveloperList = result;
+      });
   }
-  GetActiveProjectDropdown(){
-    this.dropdowns.GetActiveProjectList(this.activeprojectobj).subscribe((result:any) => {
-      this.activeproject = result;
-    })
+  GetActiveProjectDropdown() {
+    this.dropdowns
+      .GetActiveProjectList(this.activeprojectobj)
+      .subscribe((result: any) => {
+        this.activeproject = result;
+      });
   }
-  GetProjectCompletionDropdown(){
-    this.dropdowns.GetProjectCompletionYearList(this.completionyearlistobj).subscribe((result:any) => {
-      this.completionyearlist = result;
-    })
+  GetProjectCompletionDropdown() {
+    this.dropdowns
+      .GetProjectCompletionYearList(this.completionyearlistobj)
+      .subscribe((result: any) => {
+        this.completionyearlist = result;
+      });
   }
-  isLoading : boolean = true;
+  isLoading: boolean = true;
   currentPage: number = 1;
   pageSize: number = 5;
-  pagesToShow: number = 5;  // show 5 page buttons at a time
-  totalPages : number[] = [];
-  displayPages: number[] = [];  // pages currently visible in pagination
+  pagesToShow: number = 5; // show 5 page buttons at a time
+  totalPages: number[] = [];
+  displayPages: number[] = []; // pages currently visible in pagination
   GetProjectDetails(page: number) {
     if (page < 1) return;
 
@@ -195,35 +228,42 @@ export class ProjectlistComponent {
     this.projectDetailsobj.pageNumber = page;
     this.isLoading = true;
 
-    this.projectdetailsservice.GetProjectDetailsService(this.projectDetailsobj).subscribe((result: any) => {
-      this.projectDetails = result;
+    this.projectdetailsservice
+      .GetProjectDetailsService(this.projectDetailsobj)
+      .subscribe((result: any) => {
+        this.projectDetails = result;
 
-      this.propertyListCount = (this.projectDetails && this.projectDetails.length > 0) 
-                            ? this.projectDetails[0].totalRecord 
-                            : 0;
+        this.propertyListCount =
+          this.projectDetails && this.projectDetails.length > 0
+            ? this.projectDetails[0].totalRecord
+            : 0;
 
-      this.currentPage = page;
+        this.currentPage = page;
 
-      const pages = Math.ceil(this.propertyListCount / this.pageSize);
-      this.totalPages = Array(pages).fill(0).map((x, i) => i + 1);
+        const pages = Math.ceil(this.propertyListCount / this.pageSize);
+        this.totalPages = Array(pages)
+          .fill(0)
+          .map((x, i) => i + 1);
 
-      this.updateDisplayPages();
+        this.updateDisplayPages();
 
-      // Fetch images for each unit
-      this.projectDetails.forEach(unit => {
-        this.projectImagesobj.projectId = unit.projectId;
-        this.projectImagesobj.pathType = "Image";
-        this.projectdetailsservice.GetProjectImagesService(this.projectImagesobj).subscribe((result: any) => {
-          this.unitImagesMap[unit.projectId] = result;
-          this.unitImageCountMap[unit.projectId] = result.length;
-          setTimeout(() => {
-            this.initSplide(unit.projectId);
-          }, 0);
+        // Fetch images for each unit
+        this.projectDetails.forEach((unit) => {
+          this.projectImagesobj.projectId = unit.projectId;
+          this.projectImagesobj.pathType = 'Image';
+          this.projectdetailsservice
+            .GetProjectImagesService(this.projectImagesobj)
+            .subscribe((result: any) => {
+              this.unitImagesMap[unit.projectId] = result;
+              this.unitImageCountMap[unit.projectId] = result.length;
+              setTimeout(() => {
+                this.initSplide(unit.projectId);
+              }, 0);
+            });
         });
-      });
 
-      this.isLoading = false;
-    });
+        this.isLoading = false;
+      });
   }
   // Update visible pages based on currentPage
   updateDisplayPages() {
@@ -264,28 +304,28 @@ export class ProjectlistComponent {
       }
     }
   }
-  GoToProjectDetails(projectId: number, pageURL: string) {
-    this.router.navigate([`/project/${pageURL}`, projectId]);
+  GoToProjectDetails(pageURL: string) {
+    this.router.navigate([`/project/${pageURL}`]);
   }
 
-  callSeller(call : string, event: MouseEvent){
+  callSeller(call: string, event: MouseEvent) {
     event.stopPropagation();
     event.preventDefault();
     window.location.href = `tel:` + call;
   }
-  whtsappSeller(whatspp : string, event : MouseEvent){
+  whtsappSeller(whatspp: string, event: MouseEvent) {
     event.stopPropagation();
     event.preventDefault();
     const formattedPhone = whatspp.replace(/\D/g, '');
     window.open(`https://wa.me/${formattedPhone}`, '_blank');
   }
-  mailSeller(mail : string, event : MouseEvent){
+  mailSeller(mail: string, event: MouseEvent) {
     event.stopPropagation();
     event.preventDefault();
     window.location.href = `mailTo:` + mail;
   }
 
-  getTimeElapsed(createdOn: string | Date): { text: string, isAgo: boolean } {
+  getTimeElapsed(createdOn: string | Date): { text: string; isAgo: boolean } {
     const nowUtc = new Date();
     const now = new Date(nowUtc.getTime() + 4 * 60 * 60 * 1000); // UAE time
 
@@ -296,26 +336,48 @@ export class ProjectlistComponent {
     const diffMinutes = Math.floor(diffMs / (1000 * 60));
     const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
     const diffDays = Math.floor(diffHours / 24);
-    const diffMonths = now.getMonth() - created.getMonth() + 12 * (now.getFullYear() - created.getFullYear());
+    const diffMonths =
+      now.getMonth() -
+      created.getMonth() +
+      12 * (now.getFullYear() - created.getFullYear());
 
     if (diffMonths >= 1) {
       const day = created.getDate().toString().padStart(2, '0');
-      const monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+      const monthNames = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec',
+      ];
       const month = monthNames[created.getMonth()];
       const year = created.getFullYear();
       return { text: `${day}-${month}-${year}`, isAgo: false };
-    } 
-    else if (diffDays >= 1) {
-      return { text: `${diffDays} day${diffDays !== 1 ? 's' : ''}`, isAgo: true };
-    } 
-    else if (diffHours >= 1) {
-      return { text: `${diffHours} hour${diffHours !== 1 ? 's' : ''}`, isAgo: true };
-    } 
-    else {
-      return { text: `${diffMinutes} minute${diffMinutes !== 1 ? 's' : ''}`, isAgo: true };
+    } else if (diffDays >= 1) {
+      return {
+        text: `${diffDays} day${diffDays !== 1 ? 's' : ''}`,
+        isAgo: true,
+      };
+    } else if (diffHours >= 1) {
+      return {
+        text: `${diffHours} hour${diffHours !== 1 ? 's' : ''}`,
+        isAgo: true,
+      };
+    } else {
+      return {
+        text: `${diffMinutes} minute${diffMinutes !== 1 ? 's' : ''}`,
+        isAgo: true,
+      };
     }
   }
-  
+
   toggleDropdown(type: string) {
     if (type === 'bedsBaths') {
       this.bedsBathsDropdownOpen = !this.bedsBathsDropdownOpen;
@@ -344,26 +406,31 @@ export class ProjectlistComponent {
   get selectedBedsText(): string {
     return this.projectDetailsobj.beds.length
       ? this.projectDetailsobj.beds
-          .map(id => this.propertyBed.find(b => b.autoId === id)?.type)
+          .map((id) => this.propertyBed.find((b) => b.autoId === id)?.type)
           .filter(Boolean)
           .join(', ')
       : '';
   }
-  
-  search(){ 
+
+  search() {
     this.projectDetailsobj.pageNumber = 1;
-    if(this.projectDetailsobj.priceTo == null || this.projectDetailsobj.priceTo == 0){
-        this.projectDetailsobj.priceTo = this.projectDetailsobj.priceFrom;
+    if (
+      this.projectDetailsobj.priceTo == null ||
+      this.projectDetailsobj.priceTo == 0
+    ) {
+      this.projectDetailsobj.priceTo = this.projectDetailsobj.priceFrom;
     }
-    if(this.projectDetailsobj.priceTo != null || this.projectDetailsobj.priceTo != 0){
-      if(this.projectDetailsobj.priceTo < this.projectDetailsobj.priceFrom){
+    if (
+      this.projectDetailsobj.priceTo != null ||
+      this.projectDetailsobj.priceTo != 0
+    ) {
+      if (this.projectDetailsobj.priceTo < this.projectDetailsobj.priceFrom) {
         this.projectDetailsobj.priceTo = this.projectDetailsobj.priceFrom;
       }
     }
 
-
     this.router.navigate(['/project-list'], {
-    queryParams: {
+      queryParams: {
         area: this.projectDetailsobj.area,
         developersId: this.projectDetailsobj.developersId,
         projectId: this.projectDetailsobj.projectId,
@@ -371,8 +438,10 @@ export class ProjectlistComponent {
         completionyear: this.projectDetailsobj.completionYear,
         priceFrom: this.projectDetailsobj.priceFrom,
         priceTo: this.projectDetailsobj.priceTo,
-        beds: this.projectDetailsobj.beds.length ? this.projectDetailsobj.beds.join(',') : ''
-      }
+        beds: this.projectDetailsobj.beds.length
+          ? this.projectDetailsobj.beds.join(',')
+          : '',
+      },
     });
   }
 
@@ -382,11 +451,17 @@ export class ProjectlistComponent {
     if (!clickedInside) {
       this.bedsBathsDropdownOpen = false;
       this.priceDropdownOpen = false;
-      if(this.projectDetailsobj.priceTo == null || this.projectDetailsobj.priceTo == 0){
+      if (
+        this.projectDetailsobj.priceTo == null ||
+        this.projectDetailsobj.priceTo == 0
+      ) {
         this.projectDetailsobj.priceTo = this.projectDetailsobj.priceFrom;
       }
-      if(this.projectDetailsobj.priceTo != null || this.projectDetailsobj.priceTo != 0){
-        if(this.projectDetailsobj.priceTo < this.projectDetailsobj.priceFrom){
+      if (
+        this.projectDetailsobj.priceTo != null ||
+        this.projectDetailsobj.priceTo != 0
+      ) {
+        if (this.projectDetailsobj.priceTo < this.projectDetailsobj.priceFrom) {
           this.projectDetailsobj.priceTo = this.projectDetailsobj.priceFrom;
         }
       }
@@ -399,10 +474,11 @@ export class ProjectlistComponent {
 
   onSearchArea() {
     const text = this.searchText.toLowerCase();
-    this.filteredAreas = this.propertyArea.filter(a =>
+    this.filteredAreas = this.propertyArea.filter((a) =>
       a.area.toLowerCase().includes(text)
     );
-    this.showDropdown = this.filteredAreas.length > 0 && this.searchText.length > 0;
+    this.showDropdown =
+      this.filteredAreas.length > 0 && this.searchText.length > 0;
   }
 
   selectArea(area: any) {
@@ -412,6 +488,6 @@ export class ProjectlistComponent {
   }
 
   onBlur() {
-    setTimeout(() => this.showDropdown = false, 150);
+    setTimeout(() => (this.showDropdown = false), 150);
   }
 }

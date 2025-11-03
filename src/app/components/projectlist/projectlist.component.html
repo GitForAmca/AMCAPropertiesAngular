@@ -1,289 +1,275 @@
-<div class="row properties-list"> 
-    <div class="container narrow-container">
-        <form class="row g-3 justify-content-center" autocomplete="off" (ngSubmit)="search()">
-            <div class="row g-3 rounded-3 border-secondary-subtle p-3 pe-0 ps-0 m-0">
+<div class="row properties-list">
+  <div class="container narrow-container">
+    <form class="row g-3 justify-content-center" autocomplete="off" (ngSubmit)="search()">
+      <div class="row g-3 rounded-3 border-secondary-subtle p-3 pe-0 ps-0 m-0">
 
-                <!-- Location -->
-                <div class="col-12 col-md position-relative">
-                <div class="input-group">
-                    <span class="input-group-text bg-white border-end-0">
-                    <i class="bi bi-geo-alt-fill text-muted"></i>
-                    </span>
-                    <input type="text"
-                        class="form-control border-start-0"
-                        placeholder="Search Area..."
-                        [(ngModel)]="searchText"
-                        [ngModelOptions]="{standalone: true}"
-                        (input)="onSearchArea()"
-                        (focus)="onSearchArea()"
-                        (blur)="onBlur()">
-                </div>
-                <ul *ngIf="showDropdown" class="list-group position-absolute w-100 shadow"
-                        style="z-index:1000; max-height:200px;max-width: 97%; overflow-y:auto; left:7px; right:-7px;">
-                    @for (area of filteredAreas; track $index) {
-                    <li class="list-group-item list-group-item-action" (click)="selectArea(area)">
-                        <div>
-                        <span class="fw-semibold">{{ area.area }}</span>
-                        <small class="d-block" style="font-size:12px;">{{ area.emiratesName }}</small>
-                        </div>
-                    </li>
-                    }
-                </ul>
-                </div>
+        <!-- Location -->
+        <div class="col-12 col-md position-relative">
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0">
+              <i class="bi bi-geo-alt-fill text-muted"></i>
+            </span>
+            <input type="text" class="form-control border-start-0" placeholder="Search Area..." [(ngModel)]="searchText"
+              [ngModelOptions]="{standalone: true}" (input)="onSearchArea()" (focus)="onSearchArea()" (blur)="onBlur()">
+          </div>
+          <ul *ngIf="showDropdown" class="list-group position-absolute w-100 shadow"
+            style="z-index:1000; max-height:200px;max-width: 97%; overflow-y:auto; left:7px; right:-7px;">
+            @for (area of filteredAreas; track $index) {
+            <li class="list-group-item list-group-item-action" (click)="selectArea(area)">
+              <div>
+                <span class="fw-semibold">{{ area.area }}</span>
+                <small class="d-block" style="font-size:12px;">{{ area.emiratesName }}</small>
+              </div>
+            </li>
+            }
+          </ul>
+        </div>
 
-                <!-- Developer -->
-                <div class="col-12 col-md">
-                    <select class="form-select cursor-pointer"
-                            [(ngModel)]="projectDetailsobj.developersId"
-                            [ngModelOptions]="{standalone: true}">
-                        <option [ngValue]="0">Developer</option>
-                        @for(item of projectDeveloperList; track $index){
-                        <option [ngValue]="item.developersId">{{item.developersName}}</option>
-                        }
-                    </select>
-                </div>
+        <!-- Developer -->
+        <div class="col-12 col-md">
+          <select class="form-select cursor-pointer" [(ngModel)]="projectDetailsobj.developersId"
+            [ngModelOptions]="{standalone: true}">
+            <option [ngValue]="0">Developer</option>
+            @for(item of projectDeveloperList; track $index){
+            <option [ngValue]="item.developersId">{{item.developersName}}</option>
+            }
+          </select>
+        </div>
 
-                <!-- Project -->
-                <div class="col-12 col-md">
-                    <select class="form-select cursor-pointer"
-                            [(ngModel)]="projectDetailsobj.projectId"
-                            [ngModelOptions]="{standalone: true}">
-                        <option [ngValue]="0">Project</option>
-                        @for(item of activeproject; track $index){
-                        <option [ngValue]="item.autoId">{{item.projectName}}</option>
-                        }
-                    </select>
-                </div>
+        <!-- Project -->
+        <div class="col-12 col-md">
+          <select class="form-select cursor-pointer" [(ngModel)]="projectDetailsobj.projectId"
+            [ngModelOptions]="{standalone: true}">
+            <option [ngValue]="0">Project</option>
+            @for(item of activeproject; track $index){
+            <option [ngValue]="item.autoId">{{item.projectName}}</option>
+            }
+          </select>
+        </div>
 
-                <!-- Type -->
-                <div class="col-12 col-md">
-                <select class="form-select cursor-pointer"
-                        [(ngModel)]="projectDetailsobj.projectType"
-                        [ngModelOptions]="{standalone: true}">
-                    <option [ngValue]="0">Property Type</option>
-                    @for(item of propertyUnit; track $index){
-                    <option [ngValue]="item.autoId">{{item.type}}</option>
-                    }
-                </select>
-                </div>
+        <!-- Type -->
+        <div class="col-12 col-md">
+          <select class="form-select cursor-pointer" [(ngModel)]="projectDetailsobj.projectType"
+            [ngModelOptions]="{standalone: true}">
+            <option [ngValue]="0">Property Type</option>
+            @for(item of propertyUnit; track $index){
+            <option [ngValue]="item.autoId">{{item.type}}</option>
+            }
+          </select>
+        </div>
 
-                <!-- Completion Year -->
-                <div class="col-12 col-md">
-                <select class="form-select cursor-pointer"
-                        [(ngModel)]="projectDetailsobj.completionYear"
-                        [ngModelOptions]="{standalone: true}">
-                    <option [ngValue]="0">Completion Year</option>
-                    @for(item of completionyearlist; track $index){
-                    <option [ngValue]="item.completionYear">{{item.completionYear}}</option>
-                    }
-                </select>
-                </div>
+        <!-- Completion Year -->
+        <div class="col-12 col-md">
+          <select class="form-select cursor-pointer" [(ngModel)]="projectDetailsobj.completionYear"
+            [ngModelOptions]="{standalone: true}">
+            <option [ngValue]="0">Completion Year</option>
+            @for(item of completionyearlist; track $index){
+            <option [ngValue]="item.completionYear">{{item.completionYear}}</option>
+            }
+          </select>
+        </div>
 
-                <!-- Price Range -->
-                <div class="col-12 col-md">
-                <div class="dropdown w-100" [class.show]="priceDropdownOpen">
-                    <button class="btn btn-outline-secondary text-start form-select dropdown-toggle btnsearch-style w-100"
-                            type="button"
-                            (click)="toggleDropdown('price')">
-                    AED {{ this.projectDetailsobj.priceFrom || 'Min' }} - {{ this.projectDetailsobj.priceTo || 'Max' }}
-                    </button>
-                    <div class="dropdown-menu shadow border-0 mt-1 p-3" [class.show]="priceDropdownOpen" style="min-width:100%;">
-                    <div class="row g-2">
-                        <div class="col-12">
-                        <label class="form-label small fw-semibold">Min Price (AED)</label>
-                        <input type="number" class="form-control"
-                                [(ngModel)]="projectDetailsobj.priceFrom"
-                                [ngModelOptions]="{standalone: true}">
-                        </div>
-                        <div class="col-12">
-                        <label class="form-label small fw-semibold">Max Price (AED)</label>
-                        <input type="number" class="form-control"
-                                [(ngModel)]="projectDetailsobj.priceTo"
-                                [ngModelOptions]="{standalone: true}">
-                        </div>
-                    </div>
-                    </div>
+        <!-- Price Range -->
+        <div class="col-12 col-md">
+          <div class="dropdown w-100" [class.show]="priceDropdownOpen">
+            <button class="btn btn-outline-secondary text-start form-select dropdown-toggle btnsearch-style w-100"
+              type="button" (click)="toggleDropdown('price')">
+              AED {{ this.projectDetailsobj.priceFrom || 'Min' }} - {{ this.projectDetailsobj.priceTo || 'Max' }}
+            </button>
+            <div class="dropdown-menu shadow border-0 mt-1 p-3" [class.show]="priceDropdownOpen"
+              style="min-width:100%;">
+              <div class="row g-2">
+                <div class="col-12">
+                  <label class="form-label small fw-semibold">Min Price (AED)</label>
+                  <input type="number" class="form-control" [(ngModel)]="projectDetailsobj.priceFrom"
+                    [ngModelOptions]="{standalone: true}">
                 </div>
+                <div class="col-12">
+                  <label class="form-label small fw-semibold">Max Price (AED)</label>
+                  <input type="number" class="form-control" [(ngModel)]="projectDetailsobj.priceTo"
+                    [ngModelOptions]="{standalone: true}">
                 </div>
-
-                <!-- Beds & Baths -->
-                <div class="col-12 col-md">
-                <div class="dropdown w-100" [class.show]="bedsBathsDropdownOpen">
-                    <button class="btn btn-outline-secondary text-start form-select dropdown-toggle btnsearch-style w-100"
-                            type="button"
-                            (click)="toggleDropdown('bedsBaths')">
-                    {{ selectedBedsText }} Beds
-                    </button>
-                    <div class="dropdown-menu shadow border-0 mt-1 p-3" [class.show]="bedsBathsDropdownOpen" style="min-width:100%;">
-                    <!-- Bedrooms -->
-                    <div class="mb-3">
-                        <label class="form-label small fw-semibold">Bedrooms</label>
-                        <div class="d-flex flex-wrap gap-2">
-                        <button *ngFor="let bed of propertyBed"
-                                type="button"
-                                class="btn btn-outline-secondary btn-sm"
-                                [class.active]="projectDetailsobj.beds.includes(bed.autoId)"
-                                (click)="selectBed(bed.autoId)">
-                            {{ bed.type }}
-                        </button>
-                        </div>
-                    </div>
-                    <!-- Reset -->
-                    <button class="btn btn-link p-0 small text-danger" type="button" (click)="resetBedsBaths()">Reset</button>
-                    </div>
-                </div>
-                </div>
-
-                <!-- Search Button -->
-                <div class="col-12 col-md d-flex align-items-center btn-w-c">
-                <button type="submit" class="btn btn-primary-color w-100 w-md-auto">
-                    <i class="bi bi-search"></i> 
-                </button>
-                </div>
-
+              </div>
             </div>
-            </form>
+          </div>
+        </div>
 
-    </div>
+        <!-- Beds & Baths -->
+        <div class="col-12 col-md">
+          <div class="dropdown w-100" [class.show]="bedsBathsDropdownOpen">
+            <button class="btn btn-outline-secondary text-start form-select dropdown-toggle btnsearch-style w-100"
+              type="button" (click)="toggleDropdown('bedsBaths')">
+              {{ selectedBedsText }} Beds
+            </button>
+            <div class="dropdown-menu shadow border-0 mt-1 p-3" [class.show]="bedsBathsDropdownOpen"
+              style="min-width:100%;">
+              <!-- Bedrooms -->
+              <div class="mb-3">
+                <label class="form-label small fw-semibold">Bedrooms</label>
+                <div class="d-flex flex-wrap gap-2">
+                  <button *ngFor="let bed of propertyBed" type="button" class="btn btn-outline-secondary btn-sm"
+                    [class.active]="projectDetailsobj.beds.includes(bed.autoId)" (click)="selectBed(bed.autoId)">
+                    {{ bed.type }}
+                  </button>
+                </div>
+              </div>
+              <!-- Reset -->
+              <button class="btn btn-link p-0 small text-danger" type="button" (click)="resetBedsBaths()">Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search Button -->
+        <div class="col-12 col-md d-flex align-items-center btn-w-c">
+          <button type="submit" class="btn btn-primary-color w-100 w-md-auto">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
 </div>
 <div class="row page-heading">
-    <div class="container narrow-container">
-        <div class="row align-items-center">
-            <div class="col-md-8">
-                <nav aria-label="breadcrumb" class="mb-2">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="/"><i class="bi bi-house-door"></i> Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{pageheading}}</li>
-                    </ol>
-                </nav>
-                <h4 class="fw-bold">{{pageheading}}</h4>
-            </div>
-            <div class="col-md-4 text-md-end mt-2 mt-md-0">
-                <p class="mb-0 text-muted small">{{propertyListCount}} properties</p>
-            </div>
-        </div>
+  <div class="container narrow-container">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <nav aria-label="breadcrumb" class="mb-2">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/"><i class="bi bi-house-door"></i> Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{pageheading}}</li>
+          </ol>
+        </nav>
+        <h4 class="fw-bold">{{pageheading}}</h4>
+      </div>
+      <div class="col-md-4 text-md-end mt-2 mt-md-0">
+        <p class="mb-0 text-muted small">{{propertyListCount}} properties</p>
+      </div>
     </div>
+  </div>
 </div>
 <div class="row property-list">
-    <div class="container narrow-container">
-        <div class="row">
-            <div class="col-md-12">
-                <app-skeletonloader *ngIf="isLoading"></app-skeletonloader>
-                <div class="card shadow-sm rounded border mt-3 d-flex justify-content-center align-items-center" style="height: 200px;" *ngIf="!isLoading && projectDetails?.length === 0">
-                    <div class="text-center text-muted">
-                        <h5>Not Found</h5>
-                    </div>
-                </div>
-                <div *ngIf="!isLoading && projectDetails.length > 0">
-                    @for(unit of projectDetails; track $index){
-                        <div class="card shadow-sm rounded border mt-3">
-                            <div class="row g-0">
-                                <div class="col-md-4 position-relative">
-                                    <div class="splide" id="properties-list-carousal{{unit.projectId}}">
-                                        <div class="splide__track"> 
-                                            <ul class="splide__list">
-                                                @for (image of unitImagesMap[unit.projectId] || []; track $index) {
-                                                    <li class="splide__slide">
-                                                        <img src="{{image.path}}" class="img-fluid object-fit-cover rounded-start custom-height-width" alt="Property Image">
-                                                    </li>
-                                                }
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="property-category">
-                                        <ul>
-                                            <li>{{unit.status}}</li>
-                                        </ul>
-                                    </div>
-                                    <div class="position-absolute bottom-0 start-0 p-2">
-                                        <span class="bg-dark text-white px-2 py-1 rounded small"><i class="bi bi-camera"></i> {{unitImageCountMap[unit.projectId] || 0}}</span>
-                                    </div>
-                                    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-2 d-flex gap-1">
-                                        <span class="dot bg-white rounded-circle"></span>
-                                        <span class="dot bg-white rounded-circle"></span>
-                                        <span class="dot bg-white rounded-circle"></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-8 p-3 cursor-pointer" (click)="GoToProjectDetails(unit.projectId, unit.projectURL)">
-                                    <div class="d-flex justify-content-between align-items-end position-relative">
-                                        <small class="text-muted">{{unit.projectType}}</small>
-                                        <img src="{{ unit.developerLogo }}" 
-                                            class="position-absolute" 
-                                            style="right: 0; top: 30px; max-height: 40px; object-fit: contain;">
-                                    </div>
-                        
-                                    <h5 class="fw-bold mt-1 property-price">
-                                        {{unit.projectName}}
-                                    </h5>
-                                    <p class="mb-1"><span>Starting Price : {{ unit.startingPrice | number:'1.0-0' }} AED</span></p>
-                        
-                                    <p class="mb-2 text-secondary small">
-                                        <i class="bi bi-geo-alt"></i> {{unit.area}}
-                                    </p>
-                        
-                                    <div class="property-features">
-                                        <ul>
-                                            <li><img src="images/bedIcon.png"> <span>{{unit.projectBeds}}</span></li>
-                                            <li><img src="images/calIcon.png"> <span>Complition Year: {{unit.completionYear}}</span></li>
-                                        </ul>
-                                    </div>
-                        
-                                    <div class="d-flex flex-wrap justify-content-between align-items-center border-top pt-3">
-                                        <div class="d-flex align-items-center gap-2"> 
-                                            <i class="bi bi-calendar-check"></i>
-                                            <small class="text-muted">{{ getTimeElapsed(unit.createdOnUAE).text }} <span *ngIf="getTimeElapsed(unit.createdOnUAE).isAgo"> ago</span></small>
-                                        </div>
-                                        <div class="d-flex gap-2">
-                                            <button (click)="callSeller(unit.contactSellerPhone, $event)" class="btn btn-sm call"><i class="bi bi-telephone-fill me-1"></i>Call</button>
-                                            <button (click)="mailSeller(unit.contactSellerEmail, $event)" class="btn btn-sm mail"><i class="bi bi-envelope-fill me-1"></i>Email</button>
-                                            <button (click)="whtsappSeller(unit.countryCodeContactSeller + unit.contactSellerPhone, $event)" class="btn btn-sm whatsapp"><i class="bi bi-whatsapp me-1"></i>WhatsApp</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
+  <div class="container narrow-container">
+    <div class="row">
+      <div class="col-md-12">
+        <app-skeletonloader *ngIf="isLoading"></app-skeletonloader>
+        <div class="card shadow-sm rounded border mt-3 d-flex justify-content-center align-items-center"
+          style="height: 200px;" *ngIf="!isLoading && projectDetails?.length === 0">
+          <div class="text-center text-muted">
+            <h5>Not Found</h5>
+          </div>
         </div>
-        <div class="row align-items-center custom-pagination-row mt-5">
-            <div class="col-4">
-                <!-- Previous Button -->
-                <ul class="pagination custom-pagination mb-0 w-100 justify-content-start">
-                    <li class="page-item" 
-                        [class.disabled]="currentPage === 1" 
-                        (click)="onPageChange(currentPage - 1)">
-                        <a class="page-link" href="javascript:void(0)">
-                            <i class="bi bi-chevron-left"></i>
-                        </a>
-                    </li>
-                </ul>
+        <div *ngIf="!isLoading && projectDetails.length > 0">
+          @for(unit of projectDetails; track $index){
+          <div class="card shadow-sm rounded border mt-3">
+            <div class="row g-0">
+              <div class="col-md-4 position-relative">
+                <div class="splide" id="properties-list-carousal{{unit.projectId}}">
+                  <div class="splide__track">
+                    <ul class="splide__list">
+                      @for (image of unitImagesMap[unit.projectId] || []; track $index) {
+                      <li class="splide__slide">
+                        <img src="{{image.path}}" class="img-fluid object-fit-cover rounded-start custom-height-width"
+                          alt="Property Image">
+                      </li>
+                      }
+                    </ul>
+                  </div>
+                </div>
+                <div class="property-category">
+                  <ul>
+                    <li>{{unit.status}}</li>
+                  </ul>
+                </div>
+                <div class="position-absolute bottom-0 start-0 p-2">
+                  <span class="bg-dark text-white px-2 py-1 rounded small"><i class="bi bi-camera"></i>
+                    {{unitImageCountMap[unit.projectId] || 0}}</span>
+                </div>
+                <div class="position-absolute bottom-0 start-50 translate-middle-x mb-2 d-flex gap-1">
+                  <span class="dot bg-white rounded-circle"></span>
+                  <span class="dot bg-white rounded-circle"></span>
+                  <span class="dot bg-white rounded-circle"></span>
+                </div>
+              </div>
+              <div class="col-md-8 p-3 cursor-pointer" (click)="GoToProjectDetails(unit.projectURL)">
+                <div class="d-flex justify-content-between align-items-end position-relative">
+                  <small class="text-muted">{{unit.projectType}}</small>
+                  <img src="{{ unit.developerLogo }}" class="position-absolute"
+                    style="right: 0; top: 30px; max-height: 40px; object-fit: contain;">
                 </div>
 
-                <div class="col-4">
-                <!-- Center Page Numbers -->
-                <ul class="pagination custom-pagination mb-0 w-100 justify-content-center">
-                    <li class="page-item"
-                        *ngFor="let page of displayPages"
-                        [class.active]="page === currentPage"
-                        (click)="onPageChange(page)">
-                        <a class="page-link" href="javascript:void(0)">{{ page }}</a>
-                    </li>
-                </ul>
+                <h5 class="fw-bold mt-1 property-price">
+                  {{unit.projectName}}
+                </h5>
+                <p class="mb-1"><span>Starting Price : {{ unit.startingPrice | number:'1.0-0' }} AED</span></p>
+
+                <p class="mb-2 text-secondary small">
+                  <i class="bi bi-geo-alt"></i> {{unit.area}}
+                </p>
+
+                <div class="property-features">
+                  <ul>
+                    <li><img src="images/bedIcon.png"> <span>{{unit.projectBeds}}</span></li>
+                    <li><img src="images/calIcon.png"> <span>Complition Year: {{unit.completionYear}}</span></li>
+                  </ul>
                 </div>
 
-                <div class="col-4">
-                <!-- Next Button -->
-                <ul class="pagination custom-pagination mb-0 w-100 justify-content-end">
-                    <li class="page-item" 
-                        [class.disabled]="currentPage === totalPages.length" 
-                        (click)="onPageChange(currentPage + 1)">
-                        <a class="page-link" href="javascript:void(0)">
-                            <i class="bi bi-chevron-right"></i>
-                        </a>
-                    </li>
-                </ul>
+                <div class="d-flex flex-wrap justify-content-between align-items-center border-top pt-3">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-calendar-check"></i>
+                    <small class="text-muted">{{ getTimeElapsed(unit.createdOnUAE).text }} <span
+                        *ngIf="getTimeElapsed(unit.createdOnUAE).isAgo"> ago</span></small>
+                  </div>
+                  <div class="d-flex gap-2">
+                    <button (click)="callSeller(unit.contactSellerPhone, $event)" class="btn btn-sm call"><i
+                        class="bi bi-telephone-fill me-1"></i>Call</button>
+                    <button (click)="mailSeller(unit.contactSellerEmail, $event)" class="btn btn-sm mail"><i
+                        class="bi bi-envelope-fill me-1"></i>Email</button>
+                    <button (click)="whtsappSeller(unit.countryCodeContactSeller + unit.contactSellerPhone, $event)"
+                      class="btn btn-sm whatsapp"><i class="bi bi-whatsapp me-1"></i>WhatsApp</button>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+          }
         </div>
+      </div>
     </div>
+    <div class="row align-items-center custom-pagination-row mt-5">
+      <div class="col-4">
+        <!-- Previous Button -->
+        <ul class="pagination custom-pagination mb-0 w-100 justify-content-start">
+          <li class="page-item" [class.disabled]="currentPage === 1" (click)="onPageChange(currentPage - 1)">
+            <a class="page-link" href="javascript:void(0)">
+              <i class="bi bi-chevron-left"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-4">
+        <!-- Center Page Numbers -->
+        <ul class="pagination custom-pagination mb-0 w-100 justify-content-center">
+          <li class="page-item" *ngFor="let page of displayPages" [class.active]="page === currentPage"
+            (click)="onPageChange(page)">
+            <a class="page-link" href="javascript:void(0)">{{ page }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-4">
+        <!-- Next Button -->
+        <ul class="pagination custom-pagination mb-0 w-100 justify-content-end">
+          <li class="page-item" [class.disabled]="currentPage === totalPages.length"
+            (click)="onPageChange(currentPage + 1)">
+            <a class="page-link" href="javascript:void(0)">
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

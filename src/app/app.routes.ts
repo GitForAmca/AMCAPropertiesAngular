@@ -47,7 +47,7 @@ export const routes: Routes = [
     component: PropertieslistComponent,
   },
   {
-    path: 'property/:pageURL/:unitId',
+    path: 'property/:pageURL',
     component: PropertydetailsComponent,
   },
   {
@@ -55,7 +55,7 @@ export const routes: Routes = [
     component: ProjectlistComponent,
   },
   {
-    path: 'project/:pageURL/:projectId',
+    path: 'project/:pageURL',
     component: ProjectdetailsComponent,
   },
   {

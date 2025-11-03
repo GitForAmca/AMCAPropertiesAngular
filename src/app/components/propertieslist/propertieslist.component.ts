@@ -288,8 +288,8 @@ export class PropertieslistComponent {
       }
     }
   }
-  GoToPropertyDetails(unitId: number, url: string) {
-    this.router.navigate([`/property/${url}`, unitId]);
+  GoToPropertyDetails(url: string) {
+    this.router.navigate([`/property/${url}`]);
   }
   GetpropertyStatusList(id: number) {
     this.isLoading = true;
