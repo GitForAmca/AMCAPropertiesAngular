@@ -132,7 +132,9 @@
         </nav>
         <h1 class="fw-bold fs-4">{{pageheading}}</h1>
       </div>
-      <div class="col-md-4 text-md-end mt-2 mt-md-0">
+      <!-- This container hidden if PropertyListCount equals 0 ( propertyListCount != 0 ) -->
+
+      <div class="col-md-4 text-md-end mt-2 mt-md-0" *ngIf="propertyListCount != 0">
         <div class="btn-group w-100 property-toggle mb-1" role="group" aria-label="Property Status">
 
           <input type="radio" class="btn-check" name="status" id="all" autocomplete="off"
@@ -148,6 +150,7 @@
         </div>
         <p class="mb-0 text-muted small">{{propertyListCount}} properties</p>
       </div>
+
     </div>
   </div>
 </div>
@@ -160,10 +163,16 @@
         </div>
       </ng-container>
       <div class="col-md-12">
-        <div class="card shadow-sm rounded border mt-3 d-flex justify-content-center align-items-center"
+        <!-- <div class="card shadow-sm rounded border mt-3 d-flex justify-content-center align-items-center"
           style="height: 200px;" *ngIf="!isLoading && unitDetails?.length === 0">
           <div class="text-center text-muted">
             <h5>Not Found</h5>
+          </div>
+        </div> -->
+        <div class="card shadow-sm rounded border mt-3 d-flex justify-content-center align-items-center"
+          style="height: 200px;" *ngIf="!isLoading && unitDetails?.length === 0">
+          <div class="text-center text-muted">
+            <img src="images/propertiesListingEmpty.jpg" style="width: 1150px; height: 200px; border-radius: 10px;" />
           </div>
         </div>
         <div *ngIf="!isLoading && unitDetails.length > 0">
@@ -247,7 +256,7 @@
         </div>
       </div>
     </div>
-    <div class="row align-items-center custom-pagination-row mt-5">
+    <div class="row align-items-center custom-pagination-row mt-5" *ngIf="propertyListCount != 0">
       <div class="col-4">
         <!-- Previous Button -->
         <ul class="pagination custom-pagination mb-0 w-100 justify-content-start">

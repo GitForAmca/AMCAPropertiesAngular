@@ -141,10 +141,10 @@
             <li class="breadcrumb-item active" aria-current="page">{{pageheading}}</li>
           </ol>
         </nav>
-        <h4 class="fw-bold">{{pageheading}}</h4>
+        <!-- <h4 class="fw-bold">{{pageheading}}</h4> -->
       </div>
       <div class="col-md-4 text-md-end mt-2 mt-md-0">
-        <p class="mb-0 text-muted small">{{propertyListCount}} properties</p>
+        <p class="mb-0 text-muted small" *ngIf="propertyListCount !==0">{{propertyListCount}} properties</p>
       </div>
     </div>
   </div>
@@ -153,11 +153,18 @@
   <div class="container narrow-container">
     <div class="row">
       <div class="col-md-12">
-        <app-skeletonloader *ngIf="isLoading"></app-skeletonloader>
+        <!-- <app-skeletonloader *ngIf="isLoading"></app-skeletonloader>
         <div class="card shadow-sm rounded border mt-3 d-flex justify-content-center align-items-center"
           style="height: 200px;" *ngIf="!isLoading && projectDetails?.length === 0">
           <div class="text-center text-muted">
             <h5>Not Found</h5>
+          </div>
+        </div> -->
+
+        <div class="card shadow-sm rounded border mt-3 d-flex justify-content-center align-items-center"
+          style="height: 200px;" *ngIf="!isLoading && projectDetails?.length === 0">
+          <div class="text-center text-muted">
+            <img src="images/propertiesListingEmpty.jpg" style="width: 1150px; height: 200px; border-radius: 10px;" />
           </div>
         </div>
         <div *ngIf="!isLoading && projectDetails.length > 0">
@@ -237,7 +244,7 @@
         </div>
       </div>
     </div>
-    <div class="row align-items-center custom-pagination-row mt-5">
+    <div class="row align-items-center custom-pagination-row mt-5" *ngIf="propertyListCount !==0">
       <div class="col-4">
         <!-- Previous Button -->
         <ul class="pagination custom-pagination mb-0 w-100 justify-content-start">
