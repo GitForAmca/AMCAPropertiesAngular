@@ -217,7 +217,7 @@ export const routes: Routes = [
     data: {
       title: '',
       description:
-        'Learn everything about renting a property in Dubai with AMCA Properties — expert advice, legal guidance, and top rental listings in prime areas.',
+        'Learn everything about renting a property in Dubai with AMCA Properties — expert advice, legal guidance, and top rental listings in prime areas. ',
     },
   },
   {
@@ -272,12 +272,24 @@ export const routes: Routes = [
         'Review AMCA Properties’ terms and conditions for using our Dubai real estate services, ensuring clarity, transparency, and trusted property dealings.',
     },
   },
-  {
-    path: 'careerCvForm',
-    component: CareerCvFormComponent,
-  },
+
   {
     path: 'careers',
     component: CareersComponent,
+    data: {
+      title: '',
+      description:
+        'Explore exciting real estate career opportunities at AMCA Properties. Join our growing team in Dubai and build a rewarding future in sales, marketing, and property management.',
+    },
+  },
+
+  {
+    path: 'careerCvForm',
+    component: CareerCvFormComponent,
+    data: {
+      title: '',
+      description:
+        'Explore exciting real estate career opportunities at AMCA Properties. Join our growing team in Dubai and build a rewarding future in sales, marketing, and property management.',
+    },
   },
 ];
