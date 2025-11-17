@@ -277,7 +277,7 @@ export const routes: Routes = [
     path: 'careers',
     component: CareersComponent,
     data: {
-      title: '',
+      title: 'Careers',
       description:
         'Explore exciting real estate career opportunities at AMCA Properties. Join our growing team in Dubai and build a rewarding future in sales, marketing, and property management.',
     },
@@ -287,7 +287,7 @@ export const routes: Routes = [
     path: 'careerCvForm',
     component: CareerCvFormComponent,
     data: {
-      title: '',
+      title: 'Careers',
       description:
         'Explore exciting real estate career opportunities at AMCA Properties. Join our growing team in Dubai and build a rewarding future in sales, marketing, and property management.',
     },
