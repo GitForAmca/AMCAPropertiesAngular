@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { PropertieslistComponent } from '../propertieslist/propertieslist.component';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-penthouseforsale',
   standalone: true,
-  imports: [PropertieslistComponent, CommonModule],
+  imports: [PropertieslistComponent, CommonModule, RouterLink],
   templateUrl: './penthouseforsale.component.html',
   styleUrl: './penthouseforsale.component.scss',
 })

@@ -3,33 +3,35 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProjectdetailsService {
   http = inject(HttpClient);
-  constructor() { }
+  constructor() {}
 
   private baseUrl = environment.apiUrl;
 
-  GetProjectDetailsService(obj : any){
+  GetProjectDetailsService(obj: any) {
     const payload = {
       ...obj, // spread all existing properties
-      beds: obj.beds.join(',')
+      beds: obj.beds.join(','),
     };
-    return this.http.post(`${this.baseUrl}api/GetPropertyProjectDetails`, payload);
+    return this.http.post(
+      `${this.baseUrl}api/GetPropertyProjectDetails`,
+      payload
+    );
   }
 
-
-  GetProjectDetailsListService(obj : any){
+  GetProjectDetailsListService(obj: any) {
     return this.http.post(`${this.baseUrl}api/GetProjectDetailsList`, obj);
   }
-  GetProjectImagesService(obj : any){
+  GetProjectImagesService(obj: any) {
     return this.http.post(`${this.baseUrl}api/GetProjectImages`, obj);
   }
-  GetProjectAmenitiesService(obj : any){
+  GetProjectAmenitiesService(obj: any) {
     return this.http.post(`${this.baseUrl}api/GetProjectAmenitiesList`, obj);
   }
-  GetProjectPlacesNearBy(obj: any){
+  GetProjectPlacesNearBy(obj: any) {
     return this.http.post(`${this.baseUrl}api/GetProjectPlacesNearByList`, obj);
   }
 }

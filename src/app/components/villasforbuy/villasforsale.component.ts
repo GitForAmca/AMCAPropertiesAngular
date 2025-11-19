@@ -1,23 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { PropertieslistComponent } from "../propertieslist/propertieslist.component";
+import { PropertieslistComponent } from '../propertieslist/propertieslist.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-villasforsale',
   standalone: true,
-  imports: [CommonModule, PropertieslistComponent],
+  imports: [CommonModule, RouterLink, PropertieslistComponent],
   templateUrl: './villasforsale.component.html',
-  styleUrl: './villasforsale.component.scss'
+  styleUrl: './villasforsale.component.scss',
 })
 export class VillasforsaleComponent {
-  
   faqs = [
     {
       question: 'Why Invest in Villas in Dubai?',
       answer: `<p class="text-muted mb-4">
         Villas in Dubai are highly sought-after as they offer the perfect blend of comfort, privacy and luxury. Villas are the best option in Dubai's real estate market because they have access to beach views, beautiful gardens, and convenient access to first-rate services. Foreigners and investors looking for high rental yield will love these villas.
       </p>`,
-      open: false
+      open: false,
     },
     {
       question: 'What are the key benefits of buying a villa in Dubai?',
@@ -28,7 +28,7 @@ export class VillasforsaleComponent {
                         <li>World-Class Infrastructure</li>
                         <li>Tax-Free Benefits</li>
                     </ul>`,
-      open: false
+      open: false,
     },
     {
       question: 'Explain the process of buying a villa in Dubai?',
@@ -42,18 +42,20 @@ export class VillasforsaleComponent {
                         <li>Secure Financing</li>
                         <li>Complete Legal Formalities</li>
                     </ul>`,
-      open: false
+      open: false,
     },
     {
-      question: 'Why is a luxury villa in Dubai considered the best investment option?',
+      question:
+        'Why is a luxury villa in Dubai considered the best investment option?',
       answer: `<p class="text-muted mb-4">There are plenty of options available in Dubai for investment, but investing in villas in Dubai is considered the best option as some beautiful areas and developments have many villas for investment. Investors can generate high ROI with a luxury villa in Dubai.</p>`,
-      open: false
+      open: false,
     },
     {
-      question: 'Why are villas in Dubai a cheap alternative to real estate investment?',
+      question:
+        'Why are villas in Dubai a cheap alternative to real estate investment?',
       answer: `<p class="text-muted mb-4">The competitive market plays an important role in Dubai’s reducing property prices. The availability of off-plan properties has made top real estate developers compete in Dubai, this has resulted in lowering property prices of villas in Dubai.</p>`,
-      open: false
-    }
+      open: false,
+    },
   ];
 
   toggleFaq(index: number) {

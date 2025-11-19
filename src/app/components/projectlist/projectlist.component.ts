@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { SkeletonloaderComponent } from '../../reusableComponent/skeletonloader/skeletonloader.component';
 import { ProjectdetailsService } from '../../service/projectdetails.service';
 import Splide from '@splidejs/splide';
 import { DropdownsService } from '../../service/dropdowns.service';
@@ -40,7 +39,7 @@ import { ProjectCompletionYearList } from '../../model/class/ProjectCompletionYe
 @Component({
   selector: 'app-projectlist',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, SkeletonloaderComponent],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './projectlist.component.html',
   styleUrl: './projectlist.component.scss',
 })

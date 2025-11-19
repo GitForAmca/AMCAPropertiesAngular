@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PropertieslistComponent } from '../propertieslist/propertieslist.component';
-
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-apartmentsforsale',
   standalone: true,
-  imports: [CommonModule, PropertieslistComponent],
+  imports: [CommonModule, PropertieslistComponent, RouterLink],
   templateUrl: './apartmentsforsale.component.html',
   styleUrl: './apartmentsforsale.component.scss',
 })
