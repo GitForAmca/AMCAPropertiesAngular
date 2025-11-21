@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PropertieslistComponent } from '../propertieslist/propertieslist.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-offplanvillas',
   standalone: true,
-  imports: [CommonModule, PropertieslistComponent],
+  imports: [CommonModule, PropertieslistComponent, RouterLink],
   templateUrl: './offplanvillas.component.html',
   styleUrl: './offplanvillas.component.scss',
 })
