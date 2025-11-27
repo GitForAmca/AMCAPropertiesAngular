@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { BlogsService } from '../../service/blogs.service';
 import { Router } from '@angular/router';
 import { Blogs } from '../../model/class/Blogs';
@@ -9,6 +9,7 @@ import { IBlogCategory } from '../../model/interface/IBlogCategory';
 import { DropdownsService } from '../../service/dropdowns.service';
 import { FormsModule } from '@angular/forms';
 import { SkeletonloaderComponent } from '../../reusableComponent/skeletonloader/skeletonloader.component';
+import Splide from '@splidejs/splide';
 
 @Component({
   selector: 'app-blogslist',
@@ -19,6 +20,7 @@ import { SkeletonloaderComponent } from '../../reusableComponent/skeletonloader/
 })
 export class BlogslistComponent {
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private blogsservice: BlogsService,
     private dropdownservice: DropdownsService,
     private routerblogs: Router
@@ -43,6 +45,10 @@ export class BlogslistComponent {
     this.blogsservice.GetBlogs(this.blogsobj).subscribe((result: any) => {
       this.blogsInterface = result;
       this.IsLoaded = false;
+
+      setTimeout(() => {
+        this.initSplide();
+      }, 0);
     });
   }
   getBlogsCategory() {
@@ -58,5 +64,28 @@ export class BlogslistComponent {
   GetBlogsCategoryWise(autoId: number) {
     this.blogsobj.categoryId = autoId;
     this.getBlogs();
+  }
+
+  initSplide() {
+    if (isPlatformBrowser(this.platformId)) {
+      new Splide('#blog-list-carousal', {
+        type: 'slide',
+        perPage: 3,
+        gap: '1rem',
+        autoplay: false,
+        pagination: true,
+        arrows: true,
+        breakpoints: {
+          1024: {
+            perPage: 2,
+          },
+          640: {
+            perPage: 2,
+            arrows: false,
+            pagination: true,
+          },
+        },
+      }).mount();
+    }
   }
 }

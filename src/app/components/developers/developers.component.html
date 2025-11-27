@@ -42,9 +42,66 @@
     </div>
   </div>
 </div>
-<div class="row developers-list-section py-4">
+<div class="row developers-list-section ">
   <div class="container narrow-container">
     <div class="row">
+      <div class="col-lg-12">
+        <h2 class="fw-bold fs-4">Azizi Developments</h2>
+        <p class="text-muted mb-4">
+          Azizi delivers modern, well-connected communities offering great value in the Dubai real estate market—perfect
+          for investors seeking quality and affordability.
+        </p>
+      </div>
+
+
+
+      <div class="col-lg-12  pt-4">
+        <h2 class="fw-bold fs-4">Danube Properties</h2>
+        <p class="text-muted mb-4">
+          Danube is known for budget-friendly luxury and innovative payment plans, making property investment in Dubai
+          accessible for all types of buyers.
+        </p>
+      </div>
+
+
+
+      <div class="col-lg-12  pt-4">
+        <h2 class="fw-bold fs-4">DAMAC Properties</h2>
+        <p class="text-muted mb-4">
+          DAMAC builds iconic luxury communities and branded residences, offering premium lifestyle options and strong
+          returns in Dubai real estate.
+        </p>
+      </div>
+
+      <div class="col-lg-12  pt-4">
+        <h2 class="fw-bold fs-4">Arada</h2>
+        <p class="text-muted mb-4">
+          Arada develops sustainable, lifestyle-driven communities across the UAE, delivering long-term value and strong
+          demand.
+        </p>
+      </div>
+
+
+
+      <div class="col-lg-12  pt-4">
+        <h2 class="fw-bold fs-4">Imtiaz Developments</h2>
+        <p class="text-muted mb-4">
+          Imtiaz offers contemporary residential projects with strong build quality and attractive pricing, making them
+          ideal for investors entering the Dubai market.
+        </p>
+      </div>
+
+      <div class="col-lg-12  pt-4 pb-4">
+        <h2 class="fw-bold fs-4">Sobha Realty</h2>
+        <p class="text-muted mb-3">
+          Sobha is renowned for luxury craftsmanship, premium master-planned communities, and exceptional quality across
+          Dubai’s high-end real estate sector.
+        </p>
+
+
+      </div>
+
+
 
       <!-- Developer Card -->
       <ng-container *ngIf="isLoading">
@@ -53,7 +110,7 @@
         </div>
       </ng-container>
 
-      <div class="col-md-3 mb-4" *ngFor="let developer of activeDeveloper">
+      <div class="col-md-3 mb-4 " *ngFor="let developer of activeDeveloper">
         <div class="card border-0 shadow-sm text-center card-hover" [routerLink]="['/developer/', developer.pageURL]"
           style="border-radius: 12px;" *ngIf="!isLoading && activeDeveloper.length >0">
           <img [src]="developer.logoPath" alt="{{ developer.developersName }}"
@@ -64,7 +121,14 @@
           </div>
         </div>
       </div>
+      <div class="col-lg-12 border-top pt-4">
+        <p class="text-muted mb-3">
+          At AMCA Properties, we help investors navigate the UAE real estate market with clarity and confidence. From
+          top developers to high-ROI communities, we guide you toward the right opportunities tailored to your goals.
+        </p>
 
+
+      </div>
       <!-- FAQs -->
       <section class="container py-4">
         <div class="container narrow-container  mb-4">

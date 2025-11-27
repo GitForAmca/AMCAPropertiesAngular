@@ -22,32 +22,36 @@
     </div>
   </div>
 </div>
-
-
-
 <div class="row blogs-list-section py-4">
   <div class="container narrow-container">
     <div class="row">
       <ng-container *ngIf="IsLoaded">
         <div class="col-md-4 mb-4" *ngFor="let skeleton of skeletonArray">
           <app-skeletonloader></app-skeletonloader>
-
         </div>
       </ng-container>
-      <div class="col-md-4 mb-4" *ngFor="let blog of blogsInterface">
-        <div class="card border-0 shadow-sm card-hover" style="border-radius: 12px;"
-          (click)="GoToBlogsPage(blog.blogURL)">
-          <img [src]="blog.imagesPath || 'assets/default-blog.png'" alt="{{ blog.title }}" class="card-img-top"
-            style="height: 200px; object-fit: cover; border-radius: 12px 12px 0 0;">
-          <div class="card-body">
-            <h6 class="fw-bold mb-1 color-primary-w">{{ blog.title }}</h6>
-            <div class="small text-semibold mb-1"
-              [innerHTML]="(blog.description | slice:0:100) + (blog.description.length > 100 ? '...' : '')"></div>
-            <p class="small text-secondary mb-0">{{ blog.categoryName }}</p>
-          </div>
+      <div class="row   splide" id="blog-list-carousal" style="width: 100%;">
+        <div class="splide__track">
+          <ul class="splide__list">
+
+            <li class="splide__slide col-md-4 mb-4" *ngFor="let blog of blogsInterface">
+              <div class="card border-0 shadow-sm card-hover" style="border-radius: 12px; display: flex;"
+                (click)="GoToBlogsPage(blog.blogURL)">
+                <img [src]="blog.imagesPath || 'assets/default-blog.png'" alt="{{ blog.title }}" class="card-img-top"
+                  style="height: 200px; object-fit: cover; border-radius: 12px 12px 0 0;">
+                <div class="card-body">
+                  <h6 class="fw-bold mb-1 color-primary-w">
+                    {{ (blog.title  | slice:0:80) + (blog.title.length > 100 ? '...' : '') }}</h6>
+                  <!-- <div class="small text-semibold mb-1" 
+              [innerHTML]="(blog.description | stripHtml   | slice:0:100) + (blog.description.length > 100 ? '...' : '')">
+            </div> -->
+                  <p class="small text-secondary mb-0">{{ blog.categoryName }}</p>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
-
     </div>
   </div>
 </div>
