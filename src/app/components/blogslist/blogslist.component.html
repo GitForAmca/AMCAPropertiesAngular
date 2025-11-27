@@ -40,8 +40,13 @@
                 <img [src]="blog.imagesPath || 'assets/default-blog.png'" alt="{{ blog.title }}" class="card-img-top"
                   style="height: 200px; object-fit: cover; border-radius: 12px 12px 0 0;">
                 <div class="card-body">
+                  <p class="small mb-1" style="color: #969AA0;">
+                    {{ blog.createdOn | date:'MMM d, y' }}
+                  </p>
                   <h6 class="fw-bold mb-1 color-primary-w">
                     {{ (blog.title  | slice:0:80) + (blog.title.length > 100 ? '...' : '') }}</h6>
+
+
                   <!-- <div class="small text-semibold mb-1" 
               [innerHTML]="(blog.description | stripHtml   | slice:0:100) + (blog.description.length > 100 ? '...' : '')">
             </div> -->
