@@ -4,59 +4,69 @@
       <div class="col-md-8">
         <nav aria-label="breadcrumb" class="mb-2">
           <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="/"><i class="bi bi-house-door"></i> Home</a></li>
+            <li class="breadcrumb-item"><a routerLink="/"><i class="bi bi-house-door"></i> Home</a></li>
           </ol>
         </nav>
-        <h1 class="fw-bold fs-4">Latest News and Blogs</h1>
+        <h1 class="fw-bold fs-4 pt-2">Latest News and Blogs</h1>
       </div>
       <div class="col-md-4 d-flex justify-content-md-end mt-2 mt-md-0">
         <select class="form-select w-auto" [(ngModel)]="Selectedcategory"
           (ngModelChange)="GetBlogsCategoryWise(Selectedcategory)">
-          <option value="0">All</option>
-          <option *ngFor="let cat of blogsCategoryInterface" [value]="cat.autoId">
-            {{cat.categoryName}}
-          </option>
+          <option [value]="0">All</option>
+          <option *ngFor="let cat of blogsCategoryInterface" [value]="cat.autoId">{{ cat.categoryName }}</option>
         </select>
       </div>
-
     </div>
   </div>
 </div>
-<div class="row blogs-list-section py-4">
+<div class="blogs-list-section py-4">
   <div class="container narrow-container">
-    <div class="row">
-      <ng-container *ngIf="IsLoaded">
-        <div class="col-md-4 mb-4" *ngFor="let skeleton of skeletonArray">
-          <app-skeletonloader></app-skeletonloader>
-        </div>
-      </ng-container>
-      <div class="row   splide" id="blog-list-carousal" style="width: 100%;">
-        <div class="splide__track">
-          <ul class="splide__list">
-
-            <li class="splide__slide col-md-4 mb-4" *ngFor="let blog of blogsInterface">
-              <div class="card border-0 shadow-sm card-hover" style="border-radius: 12px; display: flex;"
-                (click)="GoToBlogsPage(blog.blogURL)">
-                <img [src]="blog.imagesPath || 'assets/default-blog.png'" alt="{{ blog.title }}" class="card-img-top"
-                  style="height: 200px; object-fit: cover; border-radius: 12px 12px 0 0;">
-                <div class="card-body">
-                  <p class="small mb-1" style="color: #969AA0;">
-                    {{ blog.createdOn | date:'MMM d, y' }}
-                  </p>
-                  <h6 class="fw-bold mb-1 color-primary-w">
-                    {{ (blog.title  | slice:0:80) + (blog.title.length > 100 ? '...' : '') }}</h6>
-
-
-                  <!-- <div class="small text-semibold mb-1" 
-              [innerHTML]="(blog.description | stripHtml   | slice:0:100) + (blog.description.length > 100 ? '...' : '')">
-            </div> -->
-                  <p class="small text-secondary mb-0">{{ blog.categoryName }}</p>
-                </div>
-              </div>
-            </li>
-          </ul>
+    <ng-container *ngIf="!IsLoaded">
+      <div class="mb-4" *ngFor="let skeleton of skeletonArray">
+        <app-skeletonloader></app-skeletonloader>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="IsLoaded && paginatedBlogs.length > 0">
+      <div *ngFor="let blog of paginatedBlogs" class="card shadow-sm rounded border mt-3 cursor-pointer"
+        (click)="GoToBlogsPage(blog.blogURL)">
+        <div class="row g-0">
+          <div class="col-md-4 position-relative">
+            <img [src]="blog.imagesPath || 'assets/default-blog.png'" class="img-fluid rounded-start"
+              alt="{{blog.title}}" style="height:200px; object-fit:cover;">
+          </div>
+          <div class="col-md-8 p-3">
+            <small class="text-muted">{{ blog.createdOn | date:'MMM d, y' }}</small>
+            <h5 class="fw-bold mt-1">{{ (blog.title | slice:0:100) + (blog.title.length > 100 ? '...' : '') }}</h5>
+            <p class="text-secondary mb-2">{{ blog.categoryName }}</p>
+            <div style="display: flex; flex-wrap: nowrap;">
+              <p class="small text-truncate text-muted flex-wrap" style="font-size: 16px;"
+                [innerHTML]="(blog.description   | stripHtml | slice:0:90) + (blog.description.length > 100 ? '...' : '')">
+              </p>
+            </div>
+          </div>
         </div>
       </div>
+    </ng-container>
+    <div class="card shadow-sm rounded border mt-3 d-flex justify-content-center align-items-center"
+      style="height: 200px;" *ngIf="IsLoaded && paginatedBlogs.length === 0">
+      <div class="text-center text-muted">
+        <h5>Not Found</h5>
+      </div>
     </div>
+    <div class="d-flex justify-content-between align-items-center mt-4" *ngIf="IsLoaded && totalPages > 0">
+      <button class="btn " style="border: 1px solid gray; cursor: pointer;" [disabled]="currentPage === 1"
+        (click)="onPageChange(currentPage - 1)"><i class="bi bi-chevron-left"></i></button>
+      <div>
+        <button *ngFor="let page of displayPages" class="btn" style="background-color:#C7B47F; border: none;"
+          [ngClass]="{'btn-primary': page === currentPage, 'btn-outline-primary': page !== currentPage}"
+          (click)="onPageChange(page)">
+          {{ page }}
+        </button>
+      </div>
+
+      <button class="btn " style="border: 1px solid gray; cursor: pointer;" [disabled]="currentPage === totalPages"
+        (click)="onPageChange(currentPage + 1)"> <i class="bi bi-chevron-right"></i></button>
+    </div>
+
   </div>
 </div>
