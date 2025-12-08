@@ -33,3 +33,30 @@
     margin-bottom: 0.5rem;
   }
 }
+
+.pagination-btn {
+  background-color: #C7B47F;
+  border: 1px solid navajowhite;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.pagination-btn:hover {
+  background-color: #B39C68;
+  cursor: pointer;
+  transform: scale(1.05);
+  color: white;
+}
+
+.btn-primary {
+  background-color: white;
+  color: rgb(201, 189, 189);
+}
+
+.btn-outline-primary {
+  background-color: #C7B47F;
+  border: 1px solid navajowhite;
+  color: white;
+}
