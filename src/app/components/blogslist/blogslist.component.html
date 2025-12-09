@@ -32,7 +32,10 @@
         <div class="row g-0">
           <div class="col-md-4 position-relative">
             <img [src]="blog.imagesPath || 'assets/default-blog.png'" class="img-fluid rounded-start"
-              alt="{{blog.title}}" style="height:200px; width: 330px; object-fit:cover;">
+              alt="{{blog.title}}" style="object-position: center;
+    width: 376px;
+    height: 164px;
+    object-fit: cover;">
           </div>
           <div class="col-md-8 p-3">
             <small class="text-muted">{{ blog.createdOn | date:'MMM d, y' }}</small>

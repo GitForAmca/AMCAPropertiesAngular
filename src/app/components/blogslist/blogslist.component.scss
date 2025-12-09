@@ -35,7 +35,7 @@
 }
 
 .pagination-btn {
-  background-color: #C7B47F;
+  // background-color: #C7B47F;
   border: 1px solid navajowhite;
   color: white;
   padding: 5px 12px;
@@ -44,19 +44,20 @@
 }
 
 .pagination-btn:hover {
-  background-color: #B39C68;
+  background-color: white;
   cursor: pointer;
   transform: scale(1.05);
-  color: white;
-}
-
-.btn-primary {
-  background-color: white;
   color: rgb(201, 189, 189);
 }
 
-.btn-outline-primary {
-  background-color: #C7B47F;
-  border: 1px solid navajowhite;
+.btn-primary {
+  background-color: #B39C68;
   color: white;
+  // color: rgb(201, 189, 189);
+}
+
+.btn-outline-primary {
+  background-color: white;
+  border: 1px solid navajowhite;
+  color: rgb(201, 189, 189);
 }
