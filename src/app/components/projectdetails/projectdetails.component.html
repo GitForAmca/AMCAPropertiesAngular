@@ -18,14 +18,17 @@
       <div class="col-md-12">
         <div class="image-gallery-layout">
           <div class="left-image">
-            <img [src]="firstUnitImagePath" class="thumbnail blur-load" (load)="OnImageLoad($event)" alt="Image 1" />
+            <img [src]="firstUnitImagePath" class="thumbnail blur-load" (load)="OnImageLoad($event)"
+              alt="project-image" />
           </div>
           <div class="right-images">
             <div class="top-image">
-              <img [src]="secondUnitImagePath" class="thumbnail blur-load" (load)="OnImageLoad($event)" alt="Image 2" />
+              <img [src]="secondUnitImagePath" class="thumbnail blur-load" (load)="OnImageLoad($event)"
+                alt="project-image" />
             </div>
             <div class="bottom-image">
-              <img [src]="thirdUnitImagePath" class="thumbnail blur-load" (load)="OnImageLoad($event)" alt="Image 3" />
+              <img [src]="thirdUnitImagePath" class="thumbnail blur-load" (load)="OnImageLoad($event)"
+                alt="project-image" />
               <div class="total-image-count"><i class="bi bi-camera"></i> {{unitImagesCount}}</div>
             </div>
           </div>
@@ -40,7 +43,7 @@
                   @for (item of unitImages; track $index) {
                   <li class="splide__slide">
                     <div class="image-wrapper">
-                      <img [src]="item.path" alt="Property Image" />
+                      <img [src]="item.path" alt="project-image" />
                     </div>
                   </li>
                   }
@@ -53,7 +56,7 @@
                   @for (item of unitImages; track $index) {
                   <li class="splide__slide">
                     <div class="image-wrapper">
-                      <img [src]="item.path" alt="Property Image" />
+                      <img [src]="item.path" alt="project-image" />
                     </div>
                   </li>
                   }

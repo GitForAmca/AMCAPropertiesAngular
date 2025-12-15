@@ -18,14 +18,17 @@
       <div class="col-md-12">
         <div class="image-gallery-layout">
           <div class="left-image">
-            <img [src]="firstUnitImagePath" class="thumbnail blur-load" (load)="OnImageLoad($event)" alt="Image 1" />
+            <img [src]="firstUnitImagePath" class="thumbnail blur-load" (load)="OnImageLoad($event)"
+              alt="properties-image" />
           </div>
           <div class="right-images">
             <div class="top-image">
-              <img [src]="secondUnitImagePath" class="thumbnail blur-load" (load)="OnImageLoad($event)" alt="Image 2" />
+              <img [src]="secondUnitImagePath" class="thumbnail blur-load" (load)="OnImageLoad($event)"
+                alt="properties-image" />
             </div>
             <div class="bottom-image">
-              <img [src]="thirdUnitImagePath" class="thumbnail blur-load" (load)="OnImageLoad($event)" alt="Image 3" />
+              <img [src]="thirdUnitImagePath" class="thumbnail blur-load" (load)="OnImageLoad($event)"
+                alt="properties-image" />
               <div class="total-image-count"><i class="bi bi-camera"></i> {{unitImagesCount}}</div>
             </div>
           </div>
@@ -40,7 +43,7 @@
                   @for (item of unitImages; track $index) {
                   <li class="splide__slide">
                     <div class="image-wrapper">
-                      <img [src]="item.path" alt="Property Image" />
+                      <img [src]="item.path" alt="properties-image" />
                     </div>
                   </li>
                   }
@@ -53,7 +56,7 @@
                   @for (item of unitImages; track $index) {
                   <li class="splide__slide">
                     <div class="image-wrapper">
-                      <img [src]="item.path" alt="Property Image" />
+                      <img [src]="item.path" alt="properties-image" />
                     </div>
                   </li>
                   }
@@ -92,8 +95,8 @@
             <div class="property-features">
               <ul>
                 <li><img src="images/bedIcon.png"> <span>{{unitBedroom}}</span></li>
-                <li><img src="images/showerIcon.png"> <span>{{unitBathroom}}</span></li>
-                <li><img src="images/scaleIcon.png"> <span>{{unitSqFeet}}</span></li>
+                <li><img src="images/showerIcon.png" alt="Shower Icon"> <span>{{unitBathroom}}</span></li>
+                <li><img src="images/scaleIcon.png" alt="Scale Icon"> <span>{{unitSqFeet}}</span></li>
               </ul>
             </div>
           </div>
@@ -240,10 +243,10 @@
 
           <div class="d-flex gap-2">
             <a href="https://wa.me/971501234567" target="_blank" class="btn btn-whatsapp w-50">
-              <i class="bi bi-whatsapp me-1"></i> WhatsApp
+              <i class="bi bi-whatsapp me-1" aria-label="WhatsApp Icon"></i> WhatsApp
             </a>
             <a href="tel:+971501234567" class="btn btn-call w-50">
-              <i class="bi bi-telephone me-1"></i> Call
+              <i class="bi bi-telephone me-1" aria-label="Phone Icon"></i> Call
             </a>
           </div>
         </div>

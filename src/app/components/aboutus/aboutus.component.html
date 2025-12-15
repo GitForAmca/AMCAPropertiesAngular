@@ -20,7 +20,8 @@
       <div class="col-md-12">
         <h1 class="mb-3">About AMCA Properties</h1>
         <p class="lead text-muted">
-          AMCA Properties has become one of the most trusted real estate brokerages in Dubai. We are built on trust and transparency. We specialize in buying, renting, selling, mortgages, and property management. 
+          AMCA Properties has become one of the most trusted real estate brokerages in Dubai. We are built on trust and
+          transparency. We specialize in buying, renting, selling, mortgages, and property management.
         </p>
       </div>
     </div>
@@ -31,20 +32,27 @@
   <div class="container narrow-container">
     <div class="row align-items-center g-5">
       <div class="col-lg-6">
-        <img src="images/aboutus.jpg" 
-       class="img-fluid w-100 px-0"  
-       alt="About Us Banner">
+        <img src="images/aboutus.jpg" class="img-fluid w-100 px-0" alt="About us – AMCA Properties">
       </div>
       <div class="col-lg-6">
         <h2 class="mb-3">Who We Are</h2>
         <p>
-          Here we help to discover the best properties across Dubai, from apartments and lawn houses to off-plan villas and commercial spaces. Our experienced team offers end-to-end support, personalized guidance, and market insights to local and international clients.
+          Here we help to discover the best properties across Dubai, from apartments and lawn houses to off-plan villas
+          and commercial spaces. Our experienced team offers end-to-end support, personalized guidance, and market
+          insights to local and international clients.
         </p>
         <p>
-          At AMCA Properties, we specialize in curating extraordinary lifestyles through exclusive real estate offerings in Dubai’s most prestigious locations. Here we connect our clients from iconic penthouses with skyline views to elegant villas in serene communities. Our team in AMCA Properties delivers an experience defined by trust, discretion, and unmatched quality. We focus on properties that represent luxurious, architectural brilliance and excellence.
+          At AMCA Properties, we specialize in curating extraordinary lifestyles through exclusive real estate offerings
+          in Dubai’s most prestigious locations. Here we connect our clients from iconic penthouses with skyline views
+          to elegant villas in serene communities. Our team in AMCA Properties delivers an experience defined by trust,
+          discretion, and unmatched quality. We focus on properties that represent luxurious, architectural brilliance
+          and excellence.
         </p>
         <p>
-          As Dubai continues to grow as a global hub for luxury lifestyle and investment, we help our clients unlock exclusive opportunities and establish roots in the top cities of the UAE. Our experts handle every detail with professionalism and utmost discretion. With Dubai’s blend of innovation and luxury living, we help you find your home. We provide rental solutions that are fast, effective, and trustworthy.
+          As Dubai continues to grow as a global hub for luxury lifestyle and investment, we help our clients unlock
+          exclusive opportunities and establish roots in the top cities of the UAE. Our experts handle every detail with
+          professionalism and utmost discretion. With Dubai’s blend of innovation and luxury living, we help you find
+          your home. We provide rental solutions that are fast, effective, and trustworthy.
         </p>
       </div>
     </div>
@@ -58,7 +66,7 @@
         <div class="p-4 border rounded-3 shadow-sm h-100">
           <h3 class="fw-bold mb-3">Our Vision</h3>
           <p>
-            To redefine real estate service standards, helping clients unlock long-term 
+            To redefine real estate service standards, helping clients unlock long-term
             value and lifestyle benefits in Dubai’s most sought-after communities.
           </p>
         </div>
@@ -67,7 +75,7 @@
         <div class="p-4 border rounded-3 shadow-sm h-100">
           <h3 class="fw-bold mb-3">Our Mission</h3>
           <p>
-            To deliver high standards of real estate services across Dubai with complete 
+            To deliver high standards of real estate services across Dubai with complete
             knowledge, care, and trust — helping you make smarter property decisions.
           </p>
         </div>
@@ -79,22 +87,19 @@
 <div class="row py-5">
   <div class="container narrow-container">
     <div class="col-lg-12">
-        <h2 class="mb-3">FAQs</h2>
-        <div class="accordion">
-            <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
-                <h2 class="accordion-header">
-                <button class="accordion-button" 
-                        [class.collapsed]="!faq.open"
-                        type="button"
-                        (click)="toggleFaq(i)">
-                    {{ faq.question }}
-                </button>
-                </h2>
-                <div class="accordion-collapse" [class.collapse]="true" [class.show]="faq.open">
-                <div class="accordion-body" [innerHTML]="faq.answer"></div>
-                </div>
-            </div>
+      <h2 class="mb-3">FAQs</h2>
+      <div class="accordion">
+        <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
+          <h2 class="accordion-header">
+            <button class="accordion-button" [class.collapsed]="!faq.open" type="button" (click)="toggleFaq(i)">
+              {{ faq.question }}
+            </button>
+          </h2>
+          <div class="accordion-collapse" [class.collapse]="true" [class.show]="faq.open">
+            <div class="accordion-body" [innerHTML]="faq.answer"></div>
+          </div>
         </div>
       </div>
+    </div>
   </div>
 </div>

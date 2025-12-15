@@ -51,16 +51,18 @@
                 <div class="property-features">
                   <ul>
                     <li><img src="images/bedIcon.png"> <span>{{items.bedroomType}}</span></li>
-                    <li><img src="images/showerIcon.png"> <span>{{items.bathroomType}}</span></li>
-                    <li><img src="images/scaleIcon.png"> <span>{{items.unitSize}}</span></li>
+                    <li><img src="images/showerIcon.png" alt="Shower Icon"> <span>{{items.bathroomType}}</span>
+                    </li>
+                    <li><img src="images/scaleIcon.png" alt="Scale Icon"> <span>{{items.unitSize}}</span></li>
                   </ul>
                 </div>
                 <div class="property-location">
-                  <img src="images/locationIcon.png">
+                  <img src="images/locationIcon.png" alt="Location Icon">
                   <span>{{items.area}}</span>
                 </div>
                 <div class="property-enquire-now d-flex gap-2">
-                  <button type="button" class="btn btn-primary-color-outline w-100" (click)="enquiryform.open(items.autoId)">Enquire
+                  <button type="button" class="btn btn-primary-color-outline w-100"
+                    (click)="enquiryform.open(items.autoId)">Enquire
                     Now</button>
                 </div>
               </div>
