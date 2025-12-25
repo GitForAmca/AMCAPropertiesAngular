@@ -1,26 +1,29 @@
 @import 'variables';
 
 
-.properties-list{
-    border-bottom: 1px solid #ddd;
+.properties-list {
+  border-bottom: 1px solid #ddd;
 }
-.page-heading{
-    margin-top: 1rem;
-    ol{
-        li{
-            a{
-                color: $primary-color;
-            }
-        }
+
+.page-heading {
+  margin-top: 1rem;
+
+  ol {
+    li {
+      a {
+        color: $primary-color;
+      }
     }
+  }
 }
+
 .property-toggle .btn {
   padding: 6px 20px;
   font-weight: 500;
   border-color: #ccc;
 }
 
-.property-toggle .btn-check:checked + .btn {
+.property-toggle .btn-check:checked+.btn {
   background-color: #f8f9fa;
   border: 1px solid $primary-color;
   color: $primary-color;
@@ -39,102 +42,133 @@
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
 }
-.property-list{
-    .card{
-        padding-left: 0px;
-        .property-category{
-            position: absolute;
-            top: 15px;
-            left: 9px;
-            ul{
-                padding: 0px;
-                margin: 0px;
-                list-style: none;
-                li{
-                    display: inline-block;
-                    padding: 3px 6px;
-                    font-size: 12px;
-                    font-weight: bold;
-                    background-color: #ffffff;
-                    border-radius: 4px;
-                    color: #000;
-                    margin-left: 10px;
-                    &:first-child{
-                        margin-left: 0px
-                    }
-                }
-                .for-sale{
-                    background-color: #eb4d4d;
-                    color: #fff;
-                }
-                .for-rent{
-                    background-color: #3eb96d;
-                    color: #fff;
-                }
-            }
+
+.property-list {
+  .card {
+    padding-left: 0px;
+
+    .property-category {
+      position: absolute;
+      top: 15px;
+      left: 9px;
+
+      ul {
+        padding: 0px;
+        margin: 0px;
+        list-style: none;
+
+        li {
+          display: inline-block;
+          padding: 3px 6px;
+          font-size: 12px;
+          font-weight: bold;
+          background-color: #ffffff;
+          border-radius: 4px;
+          color: #000;
+          margin-left: 10px;
+
+          &:first-child {
+            margin-left: 0px
+          }
         }
-        .property-price{
-            display: flex;
-            align-items: center; 
-            gap: 5px;
-            font-size: 25px;
-            .rent-type{
-                font-size: 18px;
-                font-weight: 500;
-            }
+
+        .for-sale {
+          background-color: #eb4d4d;
+          color: #fff;
         }
-        .property-features{
-            margin-top: 5px;
-            ul{
-                padding: 0px;
-                margin: 0px;
-                list-style: none;
-                li{
-                    display: inline-flex;
-                    align-items: center;
-                    padding: 0px 10px;
-                    font-size: 14px;
-                    font-weight: 500;
-                    gap: 5px;
-                    &:first-child{
-                        padding-left: 0px;
-                    }
-                    &:last-child{
-                        padding-right: 0px;
-                    }
-                }
-            }
+
+        .for-rent {
+          background-color: #3eb96d;
+          color: #fff;
         }
-        .call{
-            background-color: #EA3130;
-            color: #fff;
-        }
-        .whatsapp{
-            background-color: #1DAD18;
-            color: #fff;
-        }
-        .mail{
-            background-color: #3E8BF0;
-            color: #fff;
-        }
-        .splide{
-            .splide__track{
-                padding-bottom: 0px;
-            }
-            ::ng-deep .splide__arrow--next{
-                right: 1em !important;
-                background-color: rgba(255,255,255,1);
-                border: 0px;
-            }
-            ::ng-deep .splide__arrow--prev {
-                left: 1em !important;
-                background-color: rgba(255,255,255,1);
-                border: 0px;
-            }
-        }
+      }
     }
-    .custom-height-width{
-        width: 381px;
-        height: 233px;
+
+    .property-price {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 25px;
+
+      .rent-type {
+        font-size: 18px;
+        font-weight: 500;
+      }
     }
+
+    .property-features {
+      margin-top: 5px;
+
+      ul {
+        padding: 0px;
+        margin: 0px;
+        list-style: none;
+
+        li {
+          display: inline-flex;
+          align-items: center;
+          padding: 0px 10px;
+          font-size: 14px;
+          font-weight: 500;
+          gap: 5px;
+
+          &:first-child {
+            padding-left: 0px;
+          }
+
+          &:last-child {
+            padding-right: 0px;
+          }
+        }
+      }
+    }
+
+    .call {
+      background-color: #EA3130;
+      color: #fff;
+    }
+
+    .whatsapp {
+      background-color: #1DAD18;
+      color: #fff;
+    }
+
+    .mail {
+      background-color: #3E8BF0;
+      color: #fff;
+    }
+
+    .splide {
+      .splide__track {
+        padding-bottom: 0px;
+      }
+
+      ::ng-deep .splide__arrow--next {
+        right: 1em !important;
+        background-color: rgba(255, 255, 255, 1);
+        border: 0px;
+      }
+
+      ::ng-deep .splide__arrow--prev {
+        left: 1em !important;
+        background-color: rgba(255, 255, 255, 1);
+        border: 0px;
+      }
+    }
+  }
+
+  .custom-height-width {
+    width: 381px;
+    height: 233px;
+  }
+}
+
+
+@media(max-width: 576px) {
+
+
+  .card .img-wrapper img {
+    width: 100%;
+    height: 160px
+  }
 }

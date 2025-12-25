@@ -1,21 +1,23 @@
 <div class="container-fluid">
-    <app-header></app-header>
-    <app-menu></app-menu>
-    <router-outlet></router-outlet>
-    <app-footer></app-footer>
+  <app-header></app-header>
+  <app-menu></app-menu>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
 
-    <div class="modal d-block" tabindex="-1" *ngIf="isModalOpen" style="background: rgba(0,0,0,0.5); overflow: hidden;z-index: 9999;">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content p-4">   
-                <div class="modal-header">
-                    <h5 class="modal-title fw-bold">Schedule a call with our property consultants</h5>
-                    <button type="button" class="btn-close" (click)="close()"></button>
-                </div>
-                <div class="modal-body mt-3">
-                    <app-contactusenquiryform (enquirySubmitted)="handleEnquiry($event)"></app-contactusenquiryform>
-                </div>
-            </div>
+  <div class="modal d-block" tabindex="-1" *ngIf="isModalOpen"
+    style="background: rgba(0,0,0,0.5); overflow: hidden;z-index: 9999;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-4">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold">Schedule a call with our property consultants</h5>
+          <button type="button" class="btn-close" (click)="close()"></button>
         </div>
+        <div class="modal-body mt-3">
+          <app-contactusenquiryform (enquirySubmitted)="handleEnquiry($event)"></app-contactusenquiryform>
+        </div>
+      </div>
     </div>
-    <app-messagepopup #messagepopup [headingpopup]="headingText" [textpopup]="messagePoppup" [IsSuccesspopup]="IsSuccess"></app-messagepopup>
+  </div>
+  <app-messagepopup #messagepopup [headingpopup]="headingText" [textpopup]="messagePoppup" [IsSuccesspopup]="IsSuccess">
+  </app-messagepopup>
 </div>
