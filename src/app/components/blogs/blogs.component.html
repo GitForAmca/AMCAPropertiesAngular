@@ -22,7 +22,7 @@
       <div class="row properties-carousel splide" id="blogs-carousal">
         <div class="splide__track">
           <ul class="splide__list">
-            @for (item of blogsInterface; track $index) {
+            @for (item of blogsInterface.slice(0 , 4); track $index) {
             <li class="splide__slide" #blogsCarousal *ngIf="!IsLoaded && blogsInterface.length > 0">
               <div class="img-wrapper">
                 <img [src]="item.imagesPath" class="standard-logo">
