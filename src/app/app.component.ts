@@ -1,4 +1,10 @@
-import { Component, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
+import {
+  Component,
+  inject,
+  Inject,
+  PLATFORM_ID,
+  ViewChild,
+} from '@angular/core';
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -11,7 +17,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { filter, map, mergeMap } from 'rxjs';
 import { MetaService } from './service/meta.service';
 import { ContactusenquiryformComponent } from './reusableComponent/contactusenquiryform/contactusenquiryform.component';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { MessagepopupComponent } from './reusableComponent/messagepopup/messagepopup.component';
 import { CanonicalServiceService } from './service/canonical-service.service';
 
@@ -36,6 +42,7 @@ export class AppComponent {
   headingText = '';
   messagePoppup = '';
   IsSuccess = false;
+  document = inject(DOCUMENT);
 
   handleEnquiry(event: { success: boolean; message: string }) {
     // Close the enquiry modal
@@ -73,14 +80,19 @@ export class AppComponent {
         if (data['title'] && data['description']) {
           this.metaService.setMeta(data['title'], data['description']);
         }
-        //  Set Canonical Tag (either from route data or auto-generated)
-        if (data['canonical']) {
-          this.canonicalService.setCanonicalURL(data['canonical']);
-        } else {
-          // fallback: current page URL
-          const url = 'https://amcaproperties.com' + this.router.url;
-          this.canonicalService.setCanonicalURL(url);
-        }
+
+        let canonicalUrl = data['canonical']
+          ? data['canonical']
+          : 'https://amcaproperties.com' + this.router.url;
+
+        let link: HTMLLinkElement =
+          this.document.querySelector("link[rel='canonical']") ||
+          this.document.createElement('link');
+
+        link.setAttribute('rel', 'canonical');
+        link.setAttribute('href', canonicalUrl);
+
+        this.document.head.appendChild(link);
       });
   }
   ngAfterViewInit(): void {
@@ -96,7 +108,3 @@ export class AppComponent {
     this.isModalOpen = false;
   }
 }
-//
-//
-//
-//
