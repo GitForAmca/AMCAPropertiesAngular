@@ -9,5 +9,5 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   emailText = 'info@amcaproperties.com';
-  contactNoText = '+971 4 491 8258';
+  contactNoText = '+971 58 507 1024';
 }
