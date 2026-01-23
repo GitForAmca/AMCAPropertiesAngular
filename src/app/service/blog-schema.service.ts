@@ -13,7 +13,7 @@ export class BlogSchemaService {
       headline: blog.title?.trim() || 'Untitled Blog',
       description: blog.metaDescription?.trim() || blog.description || '',
       author: {
-        '@type': 'Person',
+        '@type': 'Company',
         // name: blog.createdByName?.trim() || 'Admin',
         name: 'AMCA Properties',
       },
