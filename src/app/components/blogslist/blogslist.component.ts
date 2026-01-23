@@ -16,6 +16,7 @@ import { DropdownsService } from '../../service/dropdowns.service';
 import { FormsModule } from '@angular/forms';
 import { SkeletonloaderComponent } from '../../reusableComponent/skeletonloader/skeletonloader.component';
 import { StripHtmlPipe } from '../../pipe/strip-html.pipe';
+import { BlogSchemaService } from '../../service/blog-schema.service';
 
 @Component({
   selector: 'app-blogslist',
@@ -35,7 +36,8 @@ export class BlogslistComponent implements OnInit, AfterViewChecked {
     @Inject(PLATFORM_ID) private platformId: Object,
     private blogsservice: BlogsService,
     private dropdownservice: DropdownsService,
-    private routerblogs: Router
+    private routerblogs: Router,
+    private blogSchemaService: BlogSchemaService,
   ) {}
   IsLoaded = false;
   Selectedcategory: number = 0;
@@ -60,6 +62,9 @@ export class BlogslistComponent implements OnInit, AfterViewChecked {
   getBlogs() {
     this.blogsservice.GetBlogs(this.blogsobj).subscribe((result: any) => {
       this.blogsInterface = result || [];
+      if (this.blogsInterface.length) {
+        this.blogSchemaService.addBlogsSchema(this.blogsInterface);
+      }
       this.currentPage = 1;
       this.updatePagination();
       this.IsLoaded = true;
@@ -91,7 +96,7 @@ export class BlogslistComponent implements OnInit, AfterViewChecked {
     this.paginatedBlogs = this.blogsInterface.slice(start, end);
     this.displayPages = Array.from(
       { length: this.totalPages },
-      (_, i) => i + 1
+      (_, i) => i + 1,
     );
   }
 

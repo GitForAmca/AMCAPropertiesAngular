@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { BlogsService } from '../../service/blogs.service';
 import { SkeletonloaderComponent } from '../../reusableComponent/skeletonloader/skeletonloader.component';
 import { BlogssidebarComponent } from '../blogssidebar/blogssidebar.component';
+import { BlogSchemaService } from '../../service/blog-schema.service';
 
 @Component({
   selector: 'app-blogsdetails',
@@ -25,7 +26,8 @@ export class BlogsdetailsComponent {
   constructor(
     private route: ActivatedRoute,
     private blogsservice: BlogsService,
-    private routerblogs: Router
+    private routerblogs: Router,
+    private blogSchemaService: BlogSchemaService,
   ) {}
 
   IsLoaded = true;
@@ -62,9 +64,11 @@ export class BlogsdetailsComponent {
       this.blogsInterface = result;
       // Find the blog matching the current blogURL
       this.singleBlog = this.blogsInterface.find(
-        (blog) => blog.blogURL === this.blogsobj.blogURL
+        (blog) => blog.blogURL === this.blogsobj.blogURL,
       );
-
+      if (this.singleBlog) {
+        this.blogSchemaService.addBlogSchema(this.singleBlog);
+      }
       this.IsLoaded = false;
       this.IsShowImage = true;
     });
