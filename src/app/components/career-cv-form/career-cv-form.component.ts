@@ -39,7 +39,7 @@ export class CareerCvFormComponent {
     private fb: FormBuilder,
     private dropdownservice: DropdownsService,
     private submitCvService: EnquiryService,
-    private fileUploadService: EnquiryService
+    private fileUploadService: EnquiryService,
   ) {
     this.cvForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -205,7 +205,7 @@ export class CareerCvFormComponent {
 
               // Patch UAE ISD code again
               const uae = this.countrylisinterface.find(
-                (c) => c.countryID === 221
+                (c) => c.countryID === 221,
               );
               if (uae) {
                 this.cvForm.patchValue({ countryCode: uae.countryISDCode });

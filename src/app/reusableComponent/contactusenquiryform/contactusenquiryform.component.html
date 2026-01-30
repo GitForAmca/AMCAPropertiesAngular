@@ -1,77 +1,76 @@
-
 <form [formGroup]="contactForm" (ngSubmit)="submitEnquiry()" autocomplete="on">
 
-    <!-- Name -->
-    <div class="mb-3">
-        <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
-        <input type="text" id="name" class="form-control" formControlName="name" placeholder="Enter Name">
-        <div class="text-danger" *ngIf="name?.invalid && name?.touched">
-            <div *ngIf="name?.errors?.['required']">Name is required.</div>
-        </div>
+  <!-- Name -->
+  <div class="mb-3">
+    <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+    <input type="text" id="name" class="form-control" formControlName="name" placeholder="Enter Name">
+    <div class="text-danger" *ngIf="name.invalid && name.touched">
+      <div *ngIf="name.errors?.['required']">Name is required.</div>
+    </div>
+  </div>
+
+  <!-- Email -->
+  <div class="mb-3">
+    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+    <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter email">
+    <div class="text-danger" *ngIf="email.invalid && email.touched">
+      <div *ngIf="email.errors?.['required']">Email is required.</div>
+      <div *ngIf="email.errors?.['email']">Invalid email format.</div>
+    </div>
+  </div>
+
+  <!-- Phone -->
+  <div class="mb-3">
+    <label for="phone" class="form-label">Phone <span class="text-danger">*</span></label>
+    <div class="d-flex align-items-center gap-2">
+
+      <!-- Country Code Dropdown -->
+      <ng-select [items]="countrylisinterface" bindLabel="countryName" bindValue="countryISDCode"
+        formControlName="countryCode" placeholder="+ Country" [searchable]="true" [clearable]="false"
+        class="flex-shrink-0" style="width: 130px; min-width: 100px;">
+
+        <ng-template ng-option-tmp let-item="item">
+          <img [src]="item.flag" class="me-1" style="width:20px; height:14px;">
+          {{ item.countryName }} {{ item.countryISDCode }}
+        </ng-template>
+
+        <ng-template ng-label-tmp let-item="item">
+          <img [src]="item.flag" class="me-1" style="width:20px; height:14px;">
+          {{ item.countryISDCode }}
+        </ng-template>
+
+      </ng-select>
+
+      <!-- Mobile Number Input -->
+      <input type="text" id="phone" class="form-control flex-grow-1" formControlName="phone"
+        placeholder="Enter mobile number">
+
     </div>
 
-    <!-- Email -->
-    <div class="mb-3">
-        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-        <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter email">
-        <div class="text-danger" *ngIf="email?.invalid && email?.touched">
-            <div *ngIf="email?.errors?.['required']">Email is required.</div>
-            <div *ngIf="email?.errors?.['email']">Invalid email format.</div>
-        </div>
+    <!-- Error Message (Separate) -->
+    <div class="text-danger mt-1" *ngIf="phone.invalid && phone.touched">
+      <span *ngIf="phone.errors?.['required']">Mobile number is required.</span>
+      <span *ngIf="phone.errors?.['pattern']">Only numbers allowed.</span>
+      <span *ngIf="phone.errors?.['minlength']">Not Valid</span>
     </div>
+  </div>
 
-    <!-- Phone -->
-    <div class="mb-3">
-        <label for="phone" class="form-label">Phone <span class="text-danger">*</span></label>
-        <div class="d-flex align-items-center gap-2">
 
-            <!-- Country Code Dropdown -->
-            <ng-select [items]="countrylisinterface" bindLabel="countryName" bindValue="countryID"
-                formControlName="countryCode" placeholder="+ Country" [searchable]="true" [clearable]="false"
-                class="flex-shrink-0" style="width: 130px; min-width: 100px;">
-
-                <ng-template ng-option-tmp let-item="item">
-                    <img [src]="item.flag" class="me-1" style="width:20px; height:14px;">
-                    {{ item.countryName }} {{ item.countryISDCode }}
-                </ng-template>
-
-                <ng-template ng-label-tmp let-item="item">
-                    <img [src]="item.flag" class="me-1" style="width:20px; height:14px;">
-                    {{ item.countryISDCode }}
-                </ng-template>
-
-            </ng-select>
-
-            <!-- Mobile Number Input -->
-            <input type="text" id="phone" class="form-control flex-grow-1" formControlName="phone"
-                placeholder="Enter mobile number">
-
-        </div>
-
-        <!-- Error Message (Separate) -->
-        <div class="text-danger mt-1" *ngIf="phone?.invalid && phone?.touched">
-            <span *ngIf="phone.errors?.['required']">Mobile number is required.</span>
-            <span *ngIf="phone.errors?.['pattern']">Only numbers allowed.</span>
-            <span *ngIf="phone.errors?.['minlength']">Not Valid</span>
-        </div>
+  <!-- Message -->
+  <div class="mb-3">
+    <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
+    <textarea id="message" rows="5" class="form-control" formControlName="message"
+      placeholder="Enter your message"></textarea>
+    <div class="text-danger" *ngIf="message.touched">
+      <div *ngIf="message.errors?.['required']">Message is required.</div>
+      <div *ngIf="!message.errors?.['required'] && message.errors?.['minWords']">
+        Message must be at least 10 words.
+      </div>
+      <div *ngIf="!message.errors?.['required'] && message.errors?.['invalidContent']">
+        No special characters or URLs allowed.
+      </div>
     </div>
+  </div>
 
-
-    <!-- Message -->
-    <div class="mb-3">
-        <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
-        <textarea id="message" rows="5" class="form-control" formControlName="message"
-            placeholder="Enter your message"></textarea>
-        <div class="text-danger" *ngIf="message.touched">
-            <div *ngIf="message.errors?.['required']">Message is required.</div>
-            <div *ngIf="!message.errors?.['required'] && message.errors?.['minWords']">
-                Message must be at least 10 words.
-            </div>
-            <div *ngIf="!message.errors?.['required'] && message.errors?.['invalidContent']">
-                No special characters or URLs allowed.
-            </div>
-        </div>
-    </div>
-
-    <button type="submit" class="btn btn-primary-color w-100" [disabled]="contactForm.invalid">Submit</button>
+  <button type="submit" class="btn btn-primary-color w-100" [disabled]="contactForm.invalid">Submit</button>
 </form>

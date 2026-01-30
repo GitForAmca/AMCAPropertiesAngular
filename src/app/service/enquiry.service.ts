@@ -31,4 +31,8 @@ export class EnquiryService {
     formData.append('file', file);
     return this.http.post<any>(`${this.baseUrl}api/UploadCareerCV`, formData);
   }
+
+  EmailEnquiry(obj: any) {
+    return this.http.post(`${this.baseUrl}Email/GeneralSendMail`, obj);
+  }
 }

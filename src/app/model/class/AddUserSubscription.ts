@@ -1,10 +1,9 @@
 export class AddUserSubscription {
-  Name: string;
-  Email: string;
+  name: string;
+  email: string;
 
-  
   constructor() {
-    this.Name = '';
-    this.Email = '';
+    this.name = '';
+    this.email = '';
   }
 }
